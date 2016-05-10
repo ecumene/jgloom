@@ -26,6 +26,8 @@ public class GLError extends IllegalStateException {
         super(""+error);
     }
 
+    /**
+     */
     public static void checkOGL() throws GLError {
         if(GL11.glGetError() != GL11.GL_NO_ERROR)
             throw new GLError(GL11.glGetError());

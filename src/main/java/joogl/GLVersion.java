@@ -3,8 +3,10 @@ package joogl;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Contains information about an OpenGL version
+ */
 public class GLVersion {
-
 	private GLPlatform platform;
 
 	private int majorVersion;
