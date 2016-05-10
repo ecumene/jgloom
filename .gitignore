@@ -35,5 +35,19 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Eclipse bin folder
+bin/
+
+# Gradle files
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
