@@ -14,10 +14,10 @@ public class TestGLUtil {
     public static void openContext(){
         SharedLibraryLoader.load();
         if (glfwInit() != GL_TRUE)
-            throw new RuntimeException("Error creating GLFW context...");
+            throw new GLError("Error creating GLFW context...");
         windowID = glfwCreateWindow(640, 480, "GLFW Window", NULL, NULL);
         if (windowID == NULL)
-            throw new RuntimeException("Couldn't create GLFW window"); // Unchecked exception
+            throw new GLError("Couldn't create GLFW window"); // Unchecked exception
 
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_SAMPLES, 4);
@@ -35,5 +35,6 @@ public class TestGLUtil {
     public static void closeContext(){
         glfwDestroyWindow(windowID);
         glfwTerminate();
+        GL.destroy();
     }
 }
