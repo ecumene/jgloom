@@ -7,9 +7,10 @@ import org.lwjgl.opengl.GL11;
  * or inappropriate time.
  */
 public class GLError extends IllegalStateException {
+	private static final long serialVersionUID = -4526854477334203279L;
 
-    /**
-     * Trow an OpenGL error with the description given
+	/**
+     * Throw an OpenGL error with the description given
      * @param desc The description
      */
     public GLError(String desc){
