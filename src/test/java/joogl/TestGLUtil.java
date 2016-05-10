@@ -1,14 +1,12 @@
 package joogl;
 
 import joogl.SharedLibraryLoader;
-import org.lwjgl.opengl.GLContext;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.GLFW_RESIZABLE;
-import static org.lwjgl.glfw.GLFW.glfwWindowHint;
-import static org.lwjgl.opengl.GL11.GL_FALSE;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
+
+import org.lwjgl.opengl.GL;
 
 public class TestGLUtil {
     private static long windowID = 0L;
@@ -30,7 +28,7 @@ public class TestGLUtil {
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
         glfwMakeContextCurrent(windowID);
 
-        GLContext.createFromCurrent();
+        GL.createCapabilities();
         glfwSwapInterval(1);
     }
 
