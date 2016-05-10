@@ -4,15 +4,18 @@ import org.junit.Test;
 
 import joogl.utils.ContextManager;
 
-public class TestGL {
+public class TestGL
+{
     @Test
-    public void testSharedLibraries(){
+    public void testSharedLibraries()
+    {
     	// Loads the native libraries
         SharedLibraryLoader.load();
     }
 
     @Test
-    public void testContextManager(){
+    public void testContextManager()
+    {
     	// Creates a default context manager
     	ContextManager contextManager = new ContextManager();
     	contextManager.createContext();
