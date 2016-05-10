@@ -12,7 +12,7 @@ public class TestGL {
     }
 
     @Test
-    public void testGLFW(){
+    public void testContextManager(){
     	// Creates a default context manager
     	ContextManager contextManager = new ContextManager();
     	contextManager.createContext();
