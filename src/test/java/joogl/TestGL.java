@@ -2,40 +2,37 @@ package joogl;
 
 import org.junit.Test;
 
-import joogl.gl.Framebuffer;
-import joogl.gl.Texture;
+import joogl.gl.GLContext;
+import joogl.glfw.GLFWContext;
 import joogl.glfw.Window;
 
 public class TestGL
 {
 	// Context manager for window
-	public Window contextManager;
-	// Framebuffer for rendering
-	public Framebuffer framebuffer;
-	// Framebuffer's render texture
-	public Texture renderTexture;
-
+	public Window window;
+	
 	@Test
 	public void testGLUtils()
 	{
-		// Creates a default context manager
-		contextManager = new Window();
-		contextManager.createContext();
-		// Creates a new framebuffer and gets texture
-		framebuffer = new Framebuffer(800, 450);
-		renderTexture = framebuffer.getRenderTexture();
-
-		// Demonstrates maintaining context and
-		// updating context window data
-		for (long l = 0; !contextManager.shouldWindowClose(); l++)
+		// Creates GLFW context
+		GLFWContext.createContext();
+		// Creates a test window
+		window = new Window();
+		Window.genWindow(window, 800, 450, "Test Window", true);
+		// Creates GL context
+		GLContext.createContext();
+		
+		// Maintains test window
+		while (!Window.shouldWindowClose(window))
 		{
-			contextManager.setTitle("" + l);
-			contextManager.update();
+			Window.updateWindow(window);
 		}
+		
+		// Destroys test window
+		Window.destroyWindow(window);
 
-		// Destroys the framebuffer (and texture)
-		framebuffer.destroy();
-		// Destroys the context manager
-		contextManager.destroyContext();
+		// Destroys GLFW and GL contexts
+		GLFWContext.destroyContext();
+		GLContext.destroyContext();
 	}
 }
