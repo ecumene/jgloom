@@ -1,4 +1,4 @@
-package joogl;
+package joogl.errors;
 
 /**
  * Signals any errors that can occur in the JOOGL library
