@@ -1,4 +1,4 @@
-package joogl.utils;
+package joogl.gl;
 
 public class MeshRenderer
 {

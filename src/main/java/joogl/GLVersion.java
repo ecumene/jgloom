@@ -3,6 +3,9 @@ package joogl;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import joogl.errors.JOOGLException;
+
+
 /**
  * Contains information about an OpenGL version
  */
