@@ -4,11 +4,24 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import joogl.errors.GLError;
 
+/**
+ * Creates and destroys the GLFW context
+ */
 public class GLFWContext
 {
+	/**
+	 * Major version of GL context
+	 */
 	public static final int CONTEXT_VERSION_MAJOR = 3;
+	
+	/**
+	 * Minor version of GL context
+	 */
 	public static final int CONTEXT_VERSION_MINOR = 2;
 	
+	/**
+	 * Creates the GLFW context
+	 */
 	public static void createContext()
 	{
 		if (glfwInit() != GLFW_TRUE)
@@ -19,6 +32,9 @@ public class GLFWContext
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	}
 	
+	/**
+	 * Destroys the GLFW context
+	 */
 	public static void destroyContext()
 	{
 		glfwTerminate();

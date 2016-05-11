@@ -136,7 +136,7 @@ public class Framebuffer
 	{
 		glDeleteFramebuffers(framebuffer.framebuffer);
 		glDeleteRenderbuffers(framebuffer.depthRenderbuffer);
-		framebuffer.renderTexture.destroy();
+		Texture.destroyTexture(framebuffer.renderTexture);
 	}
 	
 	/**

@@ -3,10 +3,13 @@ package joogl.gl;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
- * Container for managing a texture
+ * Handles textures and texture binding
  */
 public class Texture
 {
+	/**
+	 * Pointer to the GL texture object
+	 */
 	private int texture;
 	
 	/**
@@ -24,35 +27,36 @@ public class Texture
 	}
 	
 	/**
-	 * Binds the texture
+	 * @return Pointer to the GL texture object
 	 */
-	public void bind()
+	public int getTexture()
 	{
-		glBindTexture(GL_TEXTURE_2D, texture);
+		return texture;
 	}
 	
 	/**
-	 * Releases the texture (binds 0)
+	 * Binds the given texture
+	 * @param texture Texture wrapper to bind
 	 */
-	public void release()
+	public static void bindTexture(Texture texture)
+	{
+		glBindTexture(GL_TEXTURE_2D, texture.texture);
+	}
+	
+	/**
+	 * Releases all textures (binds 0)
+	 */
+	public static void releaseTextures()
 	{
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 	
 	/**
-	 * Deletes the contained texture
+	 * Deletes the given texture wrapper
+	 * @param texture Texture wrapper to delete
 	 */
-	public void destroy()
+	public static void destroyTexture(Texture texture)
 	{
-		glDeleteTextures(texture);
-	}
-	
-	/**
-	 * Texture being managed by the container
-	 * @return Texture pointer of texture
-	 */
-	public int getTexture()
-	{
-		return texture;
+		glDeleteTextures(texture.texture);
 	}
 }
