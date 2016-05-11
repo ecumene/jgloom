@@ -14,28 +14,28 @@ public class TestGL
 	@Test
 	public void testGLUtils()
 	{
-		// Creates GLFW context
+		// Create GLFW context
 		GLFWContext.createContext();
-		// Creates a test window
+		// Create a test window
 		window = new Window();
 		Window.genWindow(window, 800, 450, "Test Window", true);
-		// Creates GL context
+		// Create GL context
 		GLContext.createContext();
 		// Value to increment during run
 		long l = 0L;
 		
-		// Maintains test window
+		// Maintain test window
 		while (!Window.shouldWindowClose(window))
 		{
+			// Set title to number and increment
 			Window.setWindowTitle(window, "" + l);
 			Window.updateWindow(window);
 			l ++;
 		}
 		
-		// Destroys test window
+		// Destroy test window
 		Window.destroyWindow(window);
-
-		// Destroys GLFW and GL contexts
+		// Destroy GLFW and GL contexts
 		GLFWContext.destroyContext();
 		GLContext.destroyContext();
 	}

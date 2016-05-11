@@ -13,34 +13,95 @@ import java.nio.IntBuffer;
  */
 public class Framebuffer
 {
+	/**
+	 * Pointer to the GL framebuffer object
+	 */
 	private int framebuffer;
+	
+	/**
+	 * Pointer to the depth renderbuffer
+	 */
 	private int depthRenderbuffer;
+	
+	/**
+	 * Texture containing framebuffer render data
+	 */
 	private Texture renderTexture;
-	private int width, height;
+	
+	/**
+	 * Width of the framebuffer/render texture
+	 */
+	private int width;
+	
+	/**
+	 * Height of the framebuffer/render texture
+	 */
+	private int height;
+	
+	/**
+	 * @return Pointer to the GL framebuffer object
+	 */
+	public int getFramebuffer()
+	{
+		return framebuffer;
+	}
+	
+	/**
+	 * @return Pointer to the depth renderbuffer
+	 */
+	public int getDepthRenderbuffer()
+	{
+		return depthRenderbuffer;
+	}
+	
+	/**
+	 * @return Width of the framebuffer/render texture
+	 */
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	/**
+	 * @return Height of the framebuffer/render texture
+	 */
+	public int getHeight()
+	{
+		return height;
+	}
+	
+	/**
+	 * @return Texture containing framebuffer render data
+	 */
+	public Texture getRenderTexture()
+	{
+		return renderTexture;
+	}
 	
 	/**
 	 * Creates a framebuffer and requisite objects
-	 * @param width Width of the framebuffer / render texture
-	 * @param height Height of the framebuffer / render texture
+	 * @param framebuffer Framebuffer wrapper to initialize
+	 * @param width Width of the framebuffer/render texture
+	 * @param height Height of the framebuffer/render texture
 	 */
-	public Framebuffer(int width, int height)
+	public static void genFramebuffer(Framebuffer framebuffer, int width, int height)
 	{
-		this.width = width;
-		this.height = height;
-		framebuffer = glGenFramebuffers();
-		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+		framebuffer.width = width;
+		framebuffer.height = height;
+		framebuffer.framebuffer = glGenFramebuffers();
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer.framebuffer);
 		
 		int texture = glGenTextures();
-		renderTexture = new Texture(texture);
+		framebuffer.renderTexture = new Texture(texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		
-		depthRenderbuffer = glGenRenderbuffers();
-		glBindRenderbuffer(GL_RENDERBUFFER, depthRenderbuffer);
+		framebuffer.depthRenderbuffer = glGenRenderbuffers();
+		glBindRenderbuffer(GL_RENDERBUFFER, framebuffer.depthRenderbuffer);
 		glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
-		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderbuffer);
+		glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, framebuffer.depthRenderbuffer);
 		
 		glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
 		IntBuffer drawBuffers = ByteBuffer.allocateDirect(4).asIntBuffer();
@@ -51,81 +112,39 @@ public class Framebuffer
 	}
 	
 	/**
-	 * Binds the framebuffer for rendering
+	 * Binds the given framebuffer for rendering
+	 * @param framebuffer Framebuffer to bind
 	 */
-	public void bind()
+	public static void bindFramebuffer(Framebuffer framebuffer)
 	{
-		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer);
+		glBindFramebuffer(GL_FRAMEBUFFER, framebuffer.framebuffer);
 	}
 	
 	/**
-	 * Releases the framebuffer (binds 0).
+	 * Releases all framebuffers (binds 0)
 	 */
-	public void release()
+	public static void releaseFramebuffers()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	}
 	
 	/**
 	 * Deletes the framebuffer and requisite objects
+	 * @param framebuffer Framebuffer to destroy
 	 */
-	public void destroy()
+	public static void destroyFramebuffer(Framebuffer framebuffer)
 	{
-		glDeleteFramebuffers(framebuffer);
-		glDeleteRenderbuffers(depthRenderbuffer);
-		renderTexture.destroy();
+		glDeleteFramebuffers(framebuffer.framebuffer);
+		glDeleteRenderbuffers(framebuffer.depthRenderbuffer);
+		framebuffer.renderTexture.destroy();
 	}
 	
 	/**
-	 * Sets the viewport size to the framebuffer's
+	 * Sets the viewport size to the given framebuffer
+	 * @param framebuffer Framebuffer to set viewport of
 	 */
-	public void setViewport()
+	public static void setViewport(Framebuffer framebuffer)
 	{
-		glViewport(0, 0, width, height);
-	}
-	
-	/**
-	 * Framebuffer being managed by the container
-	 * @return Framebuffer pointer to framebuffer
-	 */
-	public int getFramebuffer()
-	{
-		return framebuffer;
-	}
-	
-	/**
-	 * Depth renderbuffer used for depth calculations
-	 * @return Renderbuffer pointer to depth buffer
-	 */
-	public int getDepthRenderbuffer()
-	{
-		return depthRenderbuffer;
-	}
-	
-	/**
-	 * Width of the framebuffer
-	 * @return Private width value
-	 */
-	public int getWidth()
-	{
-		return width;
-	}
-	
-	/**
-	 * Height of the framebuffer
-	 * @return Private height value
-	 */
-	public int getHeight()
-	{
-		return height;
-	}
-	
-	/**
-	 * Texture containing the rendered image
-	 * @return Texture being rendered into
-	 */
-	public Texture getRenderTexture()
-	{
-		return renderTexture;
+		glViewport(0, 0, framebuffer.width, framebuffer.height);
 	}
 }
