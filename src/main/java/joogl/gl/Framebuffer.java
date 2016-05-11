@@ -1,4 +1,4 @@
-package joogl.utils;
+package joogl.gl;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;

@@ -3,12 +3,12 @@ package joogl;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 
-import joogl.utils.ContextManager;
+import joogl.glfw.Window;
 
 public class TestGLVersion {
     @Test
     public void testGLVersion() throws JOOGLException{
-        ContextManager contextManager = new ContextManager();
+        Window contextManager = new Window();
         contextManager.createContext();
         GLVersion version = new GLVersion(GLPlatform.OpenGL, GL11.glGetString(GL11.GL_VERSION),
                 GL11.glGetString(GL11.GL_VENDOR),

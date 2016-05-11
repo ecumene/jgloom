@@ -2,14 +2,14 @@ package joogl;
 
 import org.junit.Test;
 
-import joogl.utils.ContextManager;
-import joogl.utils.Framebuffer;
-import joogl.utils.Texture;
+import joogl.gl.Framebuffer;
+import joogl.gl.Texture;
+import joogl.glfw.Window;
 
 public class TestGL
 {
 	// Context manager for window
-	public ContextManager contextManager;
+	public Window contextManager;
 	// Framebuffer for rendering
 	public Framebuffer framebuffer;
 	// Framebuffer's render texture
@@ -19,7 +19,7 @@ public class TestGL
 	public void testGLUtils()
 	{
 		// Creates a default context manager
-		contextManager = new ContextManager();
+		contextManager = new Window();
 		contextManager.createContext();
 		// Creates a new framebuffer and gets texture
 		framebuffer = new Framebuffer(800, 450);
