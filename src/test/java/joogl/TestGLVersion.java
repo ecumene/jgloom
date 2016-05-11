@@ -3,6 +3,7 @@ package joogl;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 
+import joogl.errors.JOOGLException;
 import joogl.gl.GLContext;
 import joogl.glfw.GLFWContext;
 import joogl.glfw.Window;

@@ -2,7 +2,7 @@ package joogl.glfw;
 
 import static org.lwjgl.glfw.GLFW.*;
 
-import joogl.GLError;
+import joogl.errors.GLError;
 
 public class GLFWContext
 {

@@ -8,7 +8,7 @@ import joogl.glfw.Window;
 
 public class TestGL
 {
-	// Context manager for window
+	// Test window for testing
 	public Window window;
 	
 	@Test
@@ -21,11 +21,15 @@ public class TestGL
 		Window.genWindow(window, 800, 450, "Test Window", true);
 		// Creates GL context
 		GLContext.createContext();
+		// Value to increment during run
+		long l = 0L;
 		
 		// Maintains test window
 		while (!Window.shouldWindowClose(window))
 		{
+			Window.setWindowTitle(window, "" + l);
 			Window.updateWindow(window);
+			l ++;
 		}
 		
 		// Destroys test window

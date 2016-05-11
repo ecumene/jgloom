@@ -1,4 +1,4 @@
-package joogl;
+package joogl.errors;
 
 import org.lwjgl.opengl.GL11;
 
