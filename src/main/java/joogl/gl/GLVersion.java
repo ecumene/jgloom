@@ -1,9 +1,9 @@
-package joogl;
+package joogl.gl;
+
+import joogl.JOOGLException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import joogl.errors.JOOGLException;
 
 
 /**

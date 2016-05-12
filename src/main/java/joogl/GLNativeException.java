@@ -1,4 +1,4 @@
-package joogl.errors;
+package joogl;
 
 import org.lwjgl.opengl.GL11;
 
@@ -6,14 +6,14 @@ import org.lwjgl.opengl.GL11;
  * Signals that an OpenGL method has been invoked / used at an incorrect
  * or inappropriate time.
  */
-public class GLError extends IllegalStateException {
+public class GLNativeException extends IllegalStateException {
 	private static final long serialVersionUID = -4526854477334203279L;
 
 	/**
      * Throw an OpenGL error with the description given
      * @param desc The description
      */
-    public GLError(String desc){
+    public GLNativeException(String desc){
         super(desc);
     }
 
@@ -22,16 +22,16 @@ public class GLError extends IllegalStateException {
      * interprets errors just prints them)
      * @param error The error to save
      */
-    public GLError(int error){
+    public GLNativeException(int error){
         super(""+error);
     }
 
     /**
      * Checks for and throws OpenGL errors
-     * @throws GLError If an OpenGL error exists
+     * @throws GLNativeException If an OpenGL error exists
      */
-    public static void checkOGL() throws GLError {
+    public static void checkOGL() throws GLNativeException {
         if(GL11.glGetError() != GL11.GL_NO_ERROR)
-            throw new GLError(GL11.glGetError());
+            throw new GLNativeException(GL11.glGetError());
     }
 }
