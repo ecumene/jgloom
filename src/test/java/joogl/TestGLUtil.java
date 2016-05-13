@@ -3,7 +3,6 @@ package joogl;
 import joogl.glfw.GLFWWindowContainer;
 import joogl.glfw.GLFWWindows;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
