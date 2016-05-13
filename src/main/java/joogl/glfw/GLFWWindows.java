@@ -44,7 +44,7 @@ public class GLFWWindows {
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
      */
     public static synchronized GLFWWindow getCurrentContext() {
-        return GLFW::glfwGetCurrentContext; // Damn that's some fly code
+        return GLFW::glfwGetCurrentContext;
     }
 
     /**
@@ -138,7 +138,8 @@ public class GLFWWindows {
      * @return The handle of the created window, or NULL if an error occurred.
      */
     public static synchronized GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
-        return () -> GLFW.glfwCreateWindow(width, height, title, monitor, share);
+        long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
+        return () -> window;
     }
 
     /**
