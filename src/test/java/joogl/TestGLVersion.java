@@ -1,27 +1,16 @@
 package joogl;
 
+import joogl.gl.GLPlatform;
+import joogl.gl.GLVersion;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 
-import joogl.errors.JOOGLException;
-import joogl.gl.GLContext;
-import joogl.glfw.GLFWContext;
-import joogl.glfw.Window;
-
-public class TestGLVersion
-{
+public class TestGLVersion {
 	@Test
-	public void testGLVersion() throws JOOGLException
-	{
-		GLFWContext.createContext();
-		Window temp = new Window();
-		Window.genWindow(temp, 20, 20, "Temp", false);
-		GLContext.createContext();
+	public void testGLVersion() throws JOOGLException {
+		TestGLUtil.openContext();
 		GLVersion version = new GLVersion(GLPlatform.OpenGL, GL11.glGetString(GL11.GL_VERSION),
 				GL11.glGetString(GL11.GL_VENDOR), GL11.glGetString(GL11.GL_RENDERER));
-		System.out.println(version.getMajorVersion() + " " + version.getMinorVersion());
-		Window.destroyWindow(temp);
-		GLFWContext.destroyContext();
-		GLContext.destroyContext();
+		TestGLUtil.closeContext();
 	}
 }

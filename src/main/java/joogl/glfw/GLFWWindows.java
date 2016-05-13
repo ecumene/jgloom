@@ -33,28 +33,18 @@ public class GLFWWindows {
      * context at a time.
      *<b>This function may be called from any thread.</b>
      * @param window The window whose context to make current, or NULL to detach the current context.
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized void makeContextCurrent(GLFWWindow window) throws GLNativeException {
+    public static synchronized void makeContextCurrent(GLFWWindow window) {
         GLFW.glfwMakeContextCurrent(window.getGLFWWindow());
-        GLNativeException.checkOGL();
     }
 
     /**
      * This function returns the window whose OpenGL or OpenGL ES context is current on the calling thread.
      *<b>This function may be called from any thread.</b>
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized GLFWWindow getCurrentContext() throws GLNativeException {
-        GLFWWindow window = new GLFWWindow() {
-            @Override
-            public long getGLFWWindow() {
-                return GLFW.glfwGetCurrentContext();
-            }
-        };
-        GLNativeException.checkOGL();
-        return window; // Damn that's some fly code
+    public static synchronized GLFWWindow getCurrentContext() {
+        return GLFW::glfwGetCurrentContext; // Damn that's some fly code
     }
 
     /**
@@ -64,12 +54,20 @@ public class GLFWWindows {
      * <b>May only be called from the main thread.</b>
      * {@link GLFWWindows#terminate()} can be called before {@link GLFWWindows#init()}
      * @return true if successful false if not
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized boolean init() throws GLNativeException {
-        boolean init = GLFW.glfwInit() == GL11.GL_TRUE;
-        GLNativeException.checkOGL();
-        return init;
+    public static synchronized boolean init() {
+        return GLFW.glfwInit() == GL11.GL_TRUE;
+    }
+
+    /**
+     * This function sets the swap interval for the current context, i.e. the number of screen updates to wait from the
+     * time {@link GLFWWindowContainer#swapBuffers()} was called before swapping the buffers and returning. This is
+     * sometimes called vertical synchronization, vertical retrace synchronization or just vsync.
+     * @param interval The minimum number of screen updates to wait for until the buffers are swapped by
+     *                 {@link GLFWWindowContainer#swapBuffers()}
+     */
+    public static synchronized void setSwapInterval(int interval) {
+        GLFW.glfwSwapInterval(interval);
     }
 
     /**
@@ -78,11 +76,9 @@ public class GLFWWindows {
      * before you will be able to use most GLFW functions.
      * <b>May only be called from the main thread.</b>
      * {@link GLFWWindows#terminate()} can be called before {@link GLFWWindows#init()}
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized void terminate() throws GLNativeException {
+    public static synchronized void terminate() {
         GLFW.glfwTerminate();
-        GLNativeException.checkOGL();
     }
 
     /**
@@ -140,17 +136,9 @@ public class GLFWWindows {
      * @param monitor The monitor to use for full screen mode, or NULL to use windowed mode.
      * @param share   The window whose context to share resources with, or NULL to not share resources.
      * @return The handle of the created window, or NULL if an error occurred.
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized GLFWWindow createWindow(int width, int height, String title, long monitor, long share) throws GLNativeException {
-        GLFWWindow window = new GLFWWindow() {
-            @Override
-            public long getGLFWWindow() {
-                return GLFW.glfwCreateWindow(width, height, title, monitor, share);
-            }
-        };
-        GLNativeException.checkOGL();
-        return window;
+    public static synchronized GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
+        return () -> GLFW.glfwCreateWindow(width, height, title, monitor, share);
     }
 
     /**
@@ -158,45 +146,37 @@ public class GLFWWindows {
      * hints, once set, retain their values until changed by a call to {@link GLFWWindows#hint(int, int)} or
      * {@link GLFWWindows#defaultWindowHints()}, or until the library is terminated.
      * <b>May only be called from the main thread.</b>
-     * @throws GLNativeException because API calls can return OpenGL errors
      * @param target The window hint to set
      * @param hint   The new value to set
      */
-    public static synchronized void hint(int target, int hint) throws GLNativeException {
+    public static synchronized void hint(int target, int hint) {
         GLFW.glfwWindowHint(target, hint);
-        GLNativeException.checkOGL();
     }
 
     /**
      * Resets all windows to their default values
      * http://www.glfw.org/docs/latest/window.html#window_hints_values
      * <b>May only be called from the main thread.</b>
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized void defaultWindowHints() throws GLNativeException {
+    public static synchronized void defaultWindowHints() {
         GLFW.glfwDefaultWindowHints();
-        GLNativeException.checkOGL();
     }
 
     /**
      * This function processes only those events that are already in the event queue and then returns immediately.
      * Processing events will cause the window and input callbacks associated with those events to be called
      * <b>May only be called from the main thread.</b>
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized void pollEvents() throws GLNativeException {
+    public static synchronized void pollEvents() {
         GLFW.glfwPollEvents();
-        GLNativeException.checkOGL();
     }
 
     /**
      * This function posts an empty event from the current thread to the event queue, causing {@link GLFWWindows#waitEvents()} to return.
      * <b>May only be called from the main thread.</b>
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized void postEmptyEvent() throws GLNativeException {
+    public static synchronized void postEmptyEvent() {
         GLFW.glfwPostEmptyEvent();
-        GLNativeException.checkOGL();
     }
 
     /**
@@ -205,11 +185,9 @@ public class GLFWWindows {
      * the queue are processed and the function then returns immediately. Processing events will cause the window and
      * input callbacks associated with those events to be called.
      * <b>May only be called from the main thread.</b>
-     * @throws GLNativeException because API calls can return OpenGL errors
      */
-    public static synchronized void waitEvents() throws GLNativeException {
+    public static synchronized void waitEvents() {
         GLFW.glfwWaitEvents();
-        GLNativeException.checkOGL();
     }
 
 }
