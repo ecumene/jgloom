@@ -1,6 +1,5 @@
 package joogl.glfw;
 
-import joogl.GLNativeException;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
