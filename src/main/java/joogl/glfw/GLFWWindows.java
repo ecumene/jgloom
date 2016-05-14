@@ -44,7 +44,12 @@ public class GLFWWindows {
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
      */
     public static synchronized GLFWWindow getCurrentContext() {
-        return GLFW::glfwGetCurrentContext;
+    	//TODO This method will have the same problems as .createWindow (points to GLFW method)
+    	return new GLFWWindow()
+    	{
+			@Override
+			public long getGLFWWindow() { return GLFW.glfwGetCurrentContext(); }
+    	};
     }
 
     /**
@@ -92,9 +97,9 @@ public class GLFWWindows {
      */
     public static synchronized GLFWVersion getVersion(){
         // Ugly... But it works!
-        ByteBuffer major = BufferUtils.createByteBuffer(4);
-        ByteBuffer minor = BufferUtils.createByteBuffer(4);
-        ByteBuffer patch = BufferUtils.createByteBuffer(4);
+        final ByteBuffer major = BufferUtils.createByteBuffer(4);
+        final ByteBuffer minor = BufferUtils.createByteBuffer(4);
+        final ByteBuffer patch = BufferUtils.createByteBuffer(4);
         GLFW.glfwGetVersion(major, minor, patch);
         GLNativeException.checkOGL();
 
@@ -138,8 +143,12 @@ public class GLFWWindows {
      * @return The handle of the created window, or NULL if an error occurred.
      */
     public static synchronized GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
-        long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
-        return () -> window;
+        final long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
+        return new GLFWWindow()
+    	{
+			@Override
+			public long getGLFWWindow() { return window; }
+    	};
     }
 
     /**
