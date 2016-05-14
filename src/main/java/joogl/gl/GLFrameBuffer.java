@@ -1,7 +1,6 @@
 package joogl.gl;
 
 import org.lwjgl.opengl.GL30;
-import org.lwjgl.opengl.GL43;
 
 /**
  * Framebuffer Objects are OpenGL Objects, which allow for the creation of user-defined Framebuffers. With them, one
