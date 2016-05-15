@@ -1,7 +1,7 @@
-package joogl;
+package jgloom;
 
-import joogl.gl.GLPlatform;
-import joogl.gl.GLVersion;
+import jgloom.gl.GLPlatform;
+import jgloom.gl.GLVersion;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 

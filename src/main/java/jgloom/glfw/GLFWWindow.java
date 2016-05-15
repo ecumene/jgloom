@@ -1,4 +1,4 @@
-package joogl.glfw;
+package jgloom.glfw;
 
 /**
  * Represents a single GLFW window object

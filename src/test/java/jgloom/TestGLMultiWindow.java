@@ -1,10 +1,10 @@
-package joogl;
+package jgloom;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import joogl.glfw.GLFWWindow;
-import joogl.glfw.GLFWWindowContainer;
-import joogl.glfw.GLFWWindows;
+import jgloom.glfw.GLFWWindow;
+import jgloom.glfw.GLFWWindowContainer;
+import jgloom.glfw.GLFWWindows;
 
 import org.junit.Test;
 import org.lwjgl.opengl.GLContext;

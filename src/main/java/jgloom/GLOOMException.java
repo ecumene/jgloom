@@ -1,4 +1,4 @@
-package joogl;
+package jgloom;
 
 /**
  * Signals any errors that can occur in the JGLOOM library

@@ -1,4 +1,4 @@
-package joogl;
+package jgloom;
 
 import org.lwjgl.opengl.GL11;
 

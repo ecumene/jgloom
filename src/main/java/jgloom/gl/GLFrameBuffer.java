@@ -1,4 +1,4 @@
-package joogl.gl;
+package jgloom.gl;
 
 import org.lwjgl.opengl.GL30;
 

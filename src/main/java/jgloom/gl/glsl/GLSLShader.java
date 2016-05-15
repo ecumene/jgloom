@@ -1,4 +1,4 @@
-package joogl.gl.glsl;
+package jgloom.gl.glsl;
 
 import org.lwjgl.opengl.GL43;
 

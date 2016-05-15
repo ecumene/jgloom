@@ -1,6 +1,6 @@
-package joogl.glfw;
+package jgloom.glfw;
 
-import joogl.GLNativeException;
+import jgloom.GLNativeException;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;

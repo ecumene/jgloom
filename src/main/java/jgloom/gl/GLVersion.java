@@ -1,6 +1,6 @@
-package joogl.gl;
+package jgloom.gl;
 
-import joogl.GLOOMException;
+import jgloom.GLOOMException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
