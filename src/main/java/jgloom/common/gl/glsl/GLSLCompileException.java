@@ -1,5 +1,6 @@
-package jgloom;
+package jgloom.common.gl.glsl;
 
+import jgloom.GLNativeException;
 import jgloom.gl.glsl.GLSLShader;
 
 /**
