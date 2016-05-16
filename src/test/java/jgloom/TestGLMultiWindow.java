@@ -10,14 +10,12 @@ import jgloom.common.glfw.GLFWWindows;
 import org.junit.Test;
 import org.lwjgl.opengl.GLContext;
 
-public class TestGLMultiWindow
-{
+public class TestGLMultiWindow {
 	public GLFWWindow window1;
 	public GLFWWindow window2;
-	
+
 	@Test
-	public void testGLMultiWindow()
-	{
+	public void testGLMultiWindow() {
 		SharedLibraryLoader.load();
 		GLFWWindows.init();
 		window1 = new GLFWWindowContainer(GLFWWindows.createWindow(800, 450, "Window 1", 0L, 0L));
@@ -28,12 +26,12 @@ public class TestGLMultiWindow
 		GLContext.createFromCurrent();
 
 		GLFWWindows.makeContextCurrent(window1);
-			glClearColor(1, 0, 0, 1);
+		glClearColor(1, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		((GLFWWindowContainer) window1).swapBuffers();
 
 		GLFWWindows.makeContextCurrent(window2);
-			glClearColor(0, 1, 0, 1);
+		glClearColor(0, 1, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 		((GLFWWindowContainer) window2).swapBuffers();
 
