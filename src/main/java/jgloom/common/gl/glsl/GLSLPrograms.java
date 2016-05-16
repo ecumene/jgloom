@@ -1,5 +1,6 @@
 package jgloom.common.gl.glsl;
 
+import jgloom.gl.glsl.GLSLShader;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -27,27 +28,16 @@ public class GLSLPrograms {
 	}
 
 	/**
-	 * Links the given GLSL program, allocating locations for its uniform
-	 * variables, setting all user-defined GLSL variables to 0, and more
-	 * @param program
-	 * @throws GLNativeException When the program can not be linked
-	 */
-	public static synchronized void linkProgram(GLSLProgram program) {
-		GL20.glLinkProgram(program.getGLSLProgram());
-		int linkStatus = GL20.glGetProgrami(program.getGLSLProgram(), GL20.GL_LINK_STATUS);
-		if (linkStatus == GL11.GL_FALSE)
-			throw new GLNativeException("Could not link program");
-	}
-
-	/**
-	 * Tells OpenGL to use the given {@link GLSLProgram}; if null is specified,
-	 * the program 0 is bound, meaning no program is bound
-	 * @param program
+	 * Installs the program object specified by program​ as part of current rendering state. One or more executables are
+	 * created in a program object by successfully attaching shader objects to it with
+	 * {@link GLSLProgramContainer#attachGLSLShader(GLSLShader)}, successfully compiling the shader objects with
+	 * {@link GLSLShaderContainer#compileShader()}, and successfully linking the program object with
+	 * {@link GLSLProgramContainer#link()}
+	 * @param program The program to use
 	 */
 	public static synchronized void useProgram(GLSLProgram program) {
-		if (program == null)
-			GL20.glUseProgram(0);
-		else
-			GL20.glUseProgram(program.getGLSLProgram());
+		if (program == null) GL20.glUseProgram(0);
+		else                 GL20.glUseProgram(program.getGLSLProgram());
 	}
+
 }

@@ -32,7 +32,7 @@ public class TestGLSLProgram {
 		fragment.uploadSource(fragmentSrc);
 		fragment.compileShader();
 		program.attachGLSLShader(fragment);
-		GLSLPrograms.linkProgram(program);
+		program.link();
 		GLSLPrograms.useProgram(program);
 
 		while (!window.shouldClose()) {
