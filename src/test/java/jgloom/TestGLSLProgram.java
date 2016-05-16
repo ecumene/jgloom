@@ -13,22 +13,20 @@ import jgloom.common.gl.glsl.GLSLShaders;
 import jgloom.common.glfw.GLFWWindowContainer;
 import jgloom.common.glfw.GLFWWindows;
 
-public class TestGLSLProgram
-{
+public class TestGLSLProgram {
 	String fragmentSrc = "#version 110\n void main() { gl_FragColor = vec4(0, 1, 0, 1); }";
 	GLFWWindowContainer window;
 	GLSLShaderContainer fragment;
 	GLSLProgramContainer program;
-	
+
 	@Test
-	public void testGLSLProgram()
-	{
+	public void testGLSLProgram() {
 		SharedLibraryLoader.load();
 		GLFWWindows.init();
 		window = new GLFWWindowContainer(GLFWWindows.createWindow(800, 450, "Window 1", 0L, 0L));
 		GLFWWindows.makeContextCurrent(window);
 		GLContext.createFromCurrent();
-		
+
 		program = new GLSLProgramContainer(GLSLPrograms.createProgram());
 		fragment = new GLSLShaderContainer(GLSLShaders.createShader(GL20.GL_FRAGMENT_SHADER));
 		fragment.uploadSource(fragmentSrc);
@@ -36,21 +34,20 @@ public class TestGLSLProgram
 		program.attachGLSLShader(fragment);
 		GLSLPrograms.linkProgram(program);
 		GLSLPrograms.useProgram(program);
-		
-		while (!window.shouldClose())
-		{
+
+		while (!window.shouldClose()) {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-			
+
 			GL11.glBegin(GL11.GL_TRIANGLES);
 			GL11.glVertex2f(-1, -1);
 			GL11.glVertex2f(1, -1);
 			GL11.glVertex2f(0, 1);
 			GL11.glEnd();
-			
+
 			window.swapBuffers();
 			GLFWWindows.pollEvents();
 		}
-		
+
 		program.destroy();
 		fragment.destroy();
 		window.destroy();
