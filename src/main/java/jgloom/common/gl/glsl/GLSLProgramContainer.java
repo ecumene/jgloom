@@ -19,7 +19,7 @@ public class GLSLProgramContainer implements GLSLProgram {
 
 	/**
 	 * Initializes the GLSL program container
-	 * @param windowInstance The GLSL program to track and contain
+	 * @param programInstance The GLSL program to track and contain
 	 */
 	public GLSLProgramContainer(GLSLProgram programInstance) {
 		this.programInstance = programInstance;
