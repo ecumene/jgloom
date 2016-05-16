@@ -17,7 +17,7 @@ public class GLSLShaderContainer implements GLSLShader
 	/**
 	 * Initializes the GLSL shader container
 	 * 
-	 * @param windowInstance The GLFW Window to track and contain
+	 * @param windowInstance The GLSL shader to track and contain
 	 */
 	public GLSLShaderContainer(GLSLShader shaderInstance)
 	{
@@ -49,6 +49,14 @@ public class GLSLShaderContainer implements GLSLShader
 			String errorLog = GL20.glGetShaderInfoLog(shaderInstance.getGLSLShader());
 			throw new GLSLCompileException(errorLog);
 		}
+	}
+	
+	/**
+	 * Deltes the GLSL shader
+	 */
+	public void destroy()
+	{
+		GL20.glDeleteShader(shaderInstance.getGLSLShader());
 	}
 	
 	@Override
