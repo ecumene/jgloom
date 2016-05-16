@@ -1,4 +1,4 @@
-![imgsafe](https://i.imgsafe.org/fa48aa1.png)
+<img src="https://i.imgsafe.org/fa48aa1.png" width=600></img>
 
 JGLOOm Java openGL: Object Oriented (man!) is Java library that wraps the functionality of the OpenGL API in a more
 object-oriented package. It puts OpenGL objects into Java interfaces, and their functions into static factories /
