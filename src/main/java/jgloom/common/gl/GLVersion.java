@@ -1,6 +1,7 @@
-package jgloom.gl;
+package jgloom.common.gl;
 
 import jgloom.GLOOMException;
+import jgloom.gl.GLPlatform;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

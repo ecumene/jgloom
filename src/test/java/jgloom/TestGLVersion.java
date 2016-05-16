@@ -1,7 +1,7 @@
 package jgloom;
 
 import jgloom.gl.GLPlatform;
-import jgloom.gl.GLVersion;
+import jgloom.common.gl.GLVersion;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 

@@ -1,7 +1,8 @@
 package jgloom;
 
-import jgloom.glfw.GLFWWindowContainer;
-import jgloom.glfw.GLFWWindows;
+import jgloom.common.SharedLibraryLoader;
+import jgloom.common.glfw.GLFWWindowContainer;
+import jgloom.common.glfw.GLFWWindows;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;

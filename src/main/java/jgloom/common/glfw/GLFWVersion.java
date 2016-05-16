@@ -1,4 +1,4 @@
-package jgloom.glfw;
+package jgloom.common.glfw;
 
 /**
  * Describes the 3 components of a GLFW version (major, minor, and patch)
