@@ -12,6 +12,19 @@ import jgloom.gl.glsl.GLSLProgram;
  * {@link GLSLProgram}
  */
 public class GLSLPrograms {
+
+	/**
+	 * @return The currently bound shader program set by {@link GLSLPrograms#useProgram(GLSLProgram)}
+     */
+	public static synchronized GLSLProgram getCurrentProgram(){
+		return new GLSLProgram() {
+			@Override
+			public int getGLSLProgram() {
+				return GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
+			}
+		};
+	}
+
 	/**
 	 * Creates an empty GLSL program for attaching shaders to and using for
 	 * rendering

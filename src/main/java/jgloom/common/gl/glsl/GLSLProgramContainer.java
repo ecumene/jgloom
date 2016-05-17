@@ -1,6 +1,8 @@
 package jgloom.common.gl.glsl;
 
 import jgloom.GLNativeException;
+import org.joml.*;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -73,4 +75,130 @@ public class GLSLProgramContainer implements GLSLProgram {
 	public GLSLProgram getProgramInstance() {
 		return programInstance;
 	}
+
+    // I'm putting these at the bottom for convenience
+
+    // My hands hurt just reading this ...
+    //TODO: document this... whenever
+    //TODO: Add matrixi and matrixd methods and integer uploads + double uploads
+    //TODO: Add string versions of uniforms for them
+
+    public int getUniformLocation(String name){
+        return GL20.glGetUniformLocation(getGLSLProgram(), name);
+    }
+
+    public void setUniform(int location, int ... values){
+        if (values.length > 4)
+            throw new GLNativeException("Uniform component cannot have more than 4 components");
+
+        switch(values.length)
+        {
+            case 1:
+                GL20.glUniform1i(location, values[0]);
+                break;
+
+            case 2:
+                GL20.glUniform2i(location, values[0], values[1]);
+                break;
+
+            case 3:
+                GL20.glUniform3i(location, values[0], values[1], values[2]);
+                break;
+
+            case 4:
+                GL20.glUniform4i(location, values[0], values[1], values[2], values[3]);
+                break;
+        }
+    }
+
+    public void setUniform(int location, float... values) {
+        if (values.length > 4)
+            throw new GLNativeException("Uniform component cannot have more than 4 components");
+
+        switch (values.length)
+        {
+            case 1:
+                GL20.glUniform1f(location, values[0]);
+                break;
+
+            case 2:
+                GL20.glUniform2f(location, values[0], values[1]);
+                break;
+
+            case 3:
+                GL20.glUniform3f(location, values[0], values[1], values[2]);
+                break;
+
+            case 4:
+                GL20.glUniform4f(location, values[0], values[1], values[2], values[3]);
+                break;
+        }
+    }
+
+    public void setUniform(int location, boolean transpose, Matrix4f value) {
+        GL20.glUniformMatrix4fv(location, transpose, value.get(BufferUtils.createFloatBuffer(3*3)));
+    }
+
+    // Convenience methods
+
+    public void setUniform(int location, boolean transpose, Matrix3f value) {
+        GL20.glUniformMatrix3fv(location, transpose, value.get(BufferUtils.createFloatBuffer(3*3)));
+    }
+
+    public void setUniform(String name, int... values) {
+        setUniform(getUniformLocation(name), values);
+    }
+
+    public void setUniform(String name, float... values) {
+        setUniform(getUniformLocation(name), values);
+    }
+
+    public void setUniform(int location, Vector2f value) {
+        setUniform(location, value.x, value.y);
+    }
+
+    public void setUniform(int location, Vector3f value) {
+        setUniform(location, value.x, value.y, value.z);
+    }
+
+    public void setUniform(int location, Vector4f value) {
+        setUniform(location, value.x, value.y, value.z, value.w);
+    }
+
+    public void setUniform(String name, Vector2f value) {
+        setUniform(name, value.x, value.y);
+    }
+
+    public void setUniform(String name, Vector3f value) {
+        setUniform(name, value.x, value.y, value.z);
+    }
+
+    public void setUniform(String name, Vector4f value) {
+        setUniform(name, value.x, value.y, value.z, value.w);
+    }
+
+    public void setUniform(int location, Matrix3f value) {
+        setUniform(location, false, value);
+    }
+
+    public void setUniform(int location, Matrix4f value) {
+        setUniform(location, false, value);
+    }
+
+    public void setUniform(String name, boolean transpose, Matrix3f value) {
+        setUniform(getUniformLocation(name), transpose, value);
+    }
+
+    public void setUniform(String name, Matrix3f value) {
+        setUniform(name, false, value);
+    }
+
+    public void setUniform(String name, boolean transpose, Matrix4f value) {
+        setUniform(getUniformLocation(name), transpose, value);
+    }
+
+    public void setUniform(String name, Matrix4f value) {
+        setUniform(name, false, value);
+    }
+
 }
