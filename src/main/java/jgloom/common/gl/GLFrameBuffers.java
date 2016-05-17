@@ -13,8 +13,8 @@ public class GLFrameBuffers {
 		};
 	}
 	
-	public static synchronized void bindFrameBuffer(GLFrameBuffer frameBuffer) {
-		if (frameBuffer == null) GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, 0);
-		else 					 GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, frameBuffer.getFrameBuffer());
+	public static synchronized void bindFrameBuffer(int target, GLFrameBuffer frameBuffer) {
+		if (frameBuffer == null) GL30.glBindFramebuffer(target, 0);
+		else 					 GL30.glBindFramebuffer(target, frameBuffer.getFrameBuffer());
 	}
 }

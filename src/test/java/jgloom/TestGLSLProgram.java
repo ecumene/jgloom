@@ -3,6 +3,7 @@ package jgloom;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
+import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GLContext;
 
 import jgloom.common.SharedLibraryLoader;
@@ -44,8 +45,8 @@ public class TestGLSLProgram {
 		while (!window.shouldClose()) {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 			superFlop = !superFlop;
-			if (superFlop) GLFrameBuffers.bindFrameBuffer(frameBuffer);
-			else		   GLFrameBuffers.bindFrameBuffer(null);
+			if (superFlop) GLFrameBuffers.bindFrameBuffer(GL30.GL_FRAMEBUFFER, frameBuffer);
+			else		   GLFrameBuffers.bindFrameBuffer(GL30.GL_FRAMEBUFFER, null);
 
 			GL11.glBegin(GL11.GL_TRIANGLES);
 			GL11.glVertex2f(-1, -1);
