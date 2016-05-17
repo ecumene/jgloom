@@ -1,9 +1,10 @@
-package joogl;
+package jgloom.common.gl;
+
+import jgloom.GLOOMException;
+import jgloom.gl.GLPlatform;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import joogl.errors.JOOGLException;
 
 
 /**
@@ -25,9 +26,9 @@ public class GLVersion {
 	 * @param versionString  The OpenGL version string (ex. 1.1)
 	 * @param vendorString   The OpenGL vendor string
 	 * @param rendererString The OpenGL renderer string
-	 * @throws JOOGLException Parsing version numbers can go wrong when not to spec
+	 * @throws GLOOMException Parsing version numbers can go wrong when not to spec
      */
-	public GLVersion (GLPlatform platform, String versionString, String vendorString, String rendererString) throws JOOGLException {
+	public GLVersion (GLPlatform platform, String versionString, String vendorString, String rendererString) throws GLOOMException {
 		this.platform = platform;
 		if (platform == GLPlatform.GLES)
 			extractVersion("OpenGL ES (\\d(\\.\\d){0,2})", versionString);
@@ -47,7 +48,7 @@ public class GLVersion {
 		this.rendererString = rendererString;
 	}
 
-	private void extractVersion (String patternString, String versionString) throws JOOGLException {
+	private void extractVersion (String patternString, String versionString) throws GLOOMException {
 		Pattern pattern = Pattern.compile(patternString);
 		Matcher matcher = pattern.matcher(versionString);
 		boolean found = matcher.find();
@@ -61,7 +62,7 @@ public class GLVersion {
 			majorVersion = 2;
 			minorVersion = 0;
 			releaseVersion = 0;
-			throw new JOOGLException("Invalid version string: " + versionString);
+			throw new GLOOMException("Invalid version string: " + versionString);
 		}
 	}
 
