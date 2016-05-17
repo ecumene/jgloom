@@ -1,4 +1,4 @@
-package joogl;
+package jgloom.gl;
 
 /**
  * Signals the JOOGL library which platform the library is running on,
