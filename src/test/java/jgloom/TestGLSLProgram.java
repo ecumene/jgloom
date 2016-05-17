@@ -6,6 +6,8 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GLContext;
 
 import jgloom.common.SharedLibraryLoader;
+import jgloom.common.gl.GLFrameBufferContainer;
+import jgloom.common.gl.GLFrameBuffers;
 import jgloom.common.gl.glsl.GLSLProgramContainer;
 import jgloom.common.gl.glsl.GLSLPrograms;
 import jgloom.common.gl.glsl.GLSLShaderContainer;
@@ -27,6 +29,8 @@ public class TestGLSLProgram {
 		GLFWWindows.makeContextCurrent(window);
 		GLContext.createFromCurrent();
 
+		// The flashing is on purpose. Once GLFrameBuffer is fully implemented,
+		// I can make it so it does not flicker.
 		program = new GLSLProgramContainer(GLSLPrograms.createProgram());
 		fragment = new GLSLShaderContainer(GLSLShaders.createShader(GL20.GL_FRAGMENT_SHADER));
 		fragment.uploadSource(fragmentSrc);
@@ -34,9 +38,14 @@ public class TestGLSLProgram {
 		program.attachGLSLShader(fragment);
 		program.link();
 		GLSLPrograms.useProgram(program);
+		GLFrameBufferContainer frameBuffer = new GLFrameBufferContainer(GLFrameBuffers.createFrameBuffer());
+		boolean superFlop = false;
 
 		while (!window.shouldClose()) {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+			superFlop = !superFlop;
+			if (superFlop) GLFrameBuffers.bindFrameBuffer(frameBuffer);
+			else		   GLFrameBuffers.bindFrameBuffer(null);
 
 			GL11.glBegin(GL11.GL_TRIANGLES);
 			GL11.glVertex2f(-1, -1);

@@ -4,7 +4,6 @@ import jgloom.gl.glsl.GLSLShader;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
-import jgloom.GLNativeException;
 import jgloom.gl.glsl.GLSLProgram;
 
 /**
