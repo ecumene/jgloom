@@ -13,7 +13,7 @@ import jgloom.gl.glsl.GLSLProgram;
 public class GLSLPrograms {
 
 	/**
-	 * @return The currently bound shader program set by {@link GLSLProgramContainer#useProgram(GLSLProgram)}
+	 * @return The currently bound shader program set by {@link GLSLProgramContainer#use()}
      */
 	public static synchronized GLSLProgram getCurrentProgram(){
 		return new GLSLProgram() {
