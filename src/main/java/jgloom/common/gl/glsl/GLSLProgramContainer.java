@@ -24,6 +24,17 @@ public class GLSLProgramContainer implements GLSLProgram {
 		this.programInstance = programInstance;
 	}
 
+    /**
+     * Installs the program object specified by program​ as part of current rendering state. One or more executables are
+     * created in a program object by successfully attaching shader objects to it with
+     * {@link GLSLProgramContainer#attachGLSLShader(GLSLShader)}, successfully compiling the shader objects with
+     * {@link GLSLShaderContainer#compileShader()}, and successfully linking the program object with
+     * {@link GLSLProgramContainer#link()}
+     */
+    public void use(){
+        GL20.glUseProgram(programInstance.getGLSLProgram());
+    }
+
 	/**
 	 * In order to create a complete shader program, there must be a way to specify the list of things that will be
 	 * linked together. Program objects provide this mechanism. Shaders that are to be linked together in a program

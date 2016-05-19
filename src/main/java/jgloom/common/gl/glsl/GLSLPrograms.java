@@ -13,7 +13,7 @@ import jgloom.gl.glsl.GLSLProgram;
 public class GLSLPrograms {
 
 	/**
-	 * @return The currently bound shader program set by {@link GLSLPrograms#useProgram(GLSLProgram)}
+	 * @return The currently bound shader program set by {@link GLSLProgramContainer#useProgram(GLSLProgram)}
      */
 	public static synchronized GLSLProgram getCurrentProgram(){
 		return new GLSLProgram() {
@@ -37,19 +37,6 @@ public class GLSLPrograms {
 				return program;
 			}
 		};
-	}
-
-	/**
-	 * Installs the program object specified by program​ as part of current rendering state. One or more executables are
-	 * created in a program object by successfully attaching shader objects to it with
-	 * {@link GLSLProgramContainer#attachGLSLShader(GLSLShader)}, successfully compiling the shader objects with
-	 * {@link GLSLShaderContainer#compileShader()}, and successfully linking the program object with
-	 * {@link GLSLProgramContainer#link()}
-	 * @param program The program to use
-	 */
-	public static synchronized void useProgram(GLSLProgram program) {
-		if (program == null) GL20.glUseProgram(0);
-		else                 GL20.glUseProgram(program.getGLSLProgram());
 	}
 
 }
