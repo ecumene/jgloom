@@ -1,6 +1,5 @@
 package jgloom.common.gl.glsl;
 
-import jgloom.gl.glsl.GLSLShader;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 

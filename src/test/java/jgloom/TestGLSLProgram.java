@@ -38,7 +38,7 @@ public class TestGLSLProgram {
 		fragment.compileShader();
 		program.attachGLSLShader(fragment);
 		program.link();
-		GLSLPrograms.useProgram(program);
+		program.use();
 		GLFrameBufferContainer frameBuffer = new GLFrameBufferContainer(GLFrameBuffers.createFrameBuffer());
 		boolean superFlop = false;
 
