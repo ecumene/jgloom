@@ -175,7 +175,7 @@ public class GLSLProgramContainer implements GLSLProgram {
      * @param value     The value to upload
      */
     public void setUniformf(int location, boolean transpose, Matrix4f value) {
-        GL20.glUniformMatrix4fv(location, transpose, value.get(BufferUtils.createFloatBuffer(3*3)));
+        GL20.glUniformMatrix4fv(location, transpose, value.get(BufferUtils.createFloatBuffer(4*4)));
     }
 
     // Convenience methods
