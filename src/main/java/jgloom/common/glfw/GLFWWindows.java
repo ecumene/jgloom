@@ -45,12 +45,12 @@ public class GLFWWindows {
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
      */
     public static synchronized GLFWWindow getCurrentContext() {
-    	//TODO This method will have the same problems as .createWindow (points to GLFW method)
-    	return new GLFWWindow()
-    	{
-			@Override
-			public long getGLFWWindow() { return GLFW.glfwGetCurrentContext(); }
-    	};
+        //TODO This method will have the same problems as .createWindow (points to GLFW method)
+        return new GLFWWindow()
+        {
+            @Override
+            public long getGLFWWindow() { return GLFW.glfwGetCurrentContext(); }
+        };
     }
 
     /**
@@ -146,10 +146,10 @@ public class GLFWWindows {
     public static synchronized GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
         final long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
         return new GLFWWindow()
-    	{
-			@Override
-			public long getGLFWWindow() { return window; }
-    	};
+        {
+            @Override
+            public long getGLFWWindow() { return window; }
+        };
     }
 
     /**

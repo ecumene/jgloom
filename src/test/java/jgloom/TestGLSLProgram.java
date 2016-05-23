@@ -17,50 +17,50 @@ import jgloom.common.glfw.GLFWWindowContainer;
 import jgloom.common.glfw.GLFWWindows;
 
 public class TestGLSLProgram {
-	String fragmentSrc = "#version 110\n void main() { gl_FragColor = vec4(0, 1, 0, 1); }";
-	GLFWWindowContainer window;
-	GLSLShaderContainer fragment;
-	GLSLProgramContainer program;
+    String fragmentSrc = "#version 110\n void main() { gl_FragColor = vec4(0, 1, 0, 1); }";
+    GLFWWindowContainer window;
+    GLSLShaderContainer fragment;
+    GLSLProgramContainer program;
 
-	@Test
-	public void testGLSLProgram() {
-		SharedLibraryLoader.load();
-		GLFWWindows.init();
-		window = new GLFWWindowContainer(GLFWWindows.createWindow(800, 450, "Window 1", 0L, 0L));
-		GLFWWindows.makeContextCurrent(window);
-		GLContext.createFromCurrent();
+    @Test
+    public void testGLSLProgram() {
+        SharedLibraryLoader.load();
+        GLFWWindows.init();
+        window = new GLFWWindowContainer(GLFWWindows.createWindow(800, 450, "Window 1", 0L, 0L));
+        GLFWWindows.makeContextCurrent(window);
+        GLContext.createFromCurrent();
 
-		// The flashing is on purpose. Once GLFrameBuffer is fully implemented,
-		// I can make it so it does not flicker.
-		program = new GLSLProgramContainer(GLSLPrograms.createProgram());
-		fragment = new GLSLShaderContainer(GLSLShaders.createShader(GL20.GL_FRAGMENT_SHADER));
-		fragment.uploadSource(fragmentSrc);
-		fragment.compileShader();
-		program.attachGLSLShader(fragment);
-		program.link();
-		program.use();
-		GLFrameBufferContainer frameBuffer = new GLFrameBufferContainer(GLFrameBuffers.createFrameBuffer());
-		boolean superFlop = false;
+        // The flashing is on purpose. Once GLFrameBuffer is fully implemented,
+        // I can make it so it does not flicker.
+        program = new GLSLProgramContainer(GLSLPrograms.createProgram());
+        fragment = new GLSLShaderContainer(GLSLShaders.createShader(GL20.GL_FRAGMENT_SHADER));
+        fragment.uploadSource(fragmentSrc);
+        fragment.compileShader();
+        program.attachGLSLShader(fragment);
+        program.link();
+        program.use();
+        GLFrameBufferContainer frameBuffer = new GLFrameBufferContainer(GLFrameBuffers.createFrameBuffer());
+        boolean superFlop = false;
 
-		while (!window.shouldClose()) {
-			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-			superFlop = !superFlop;
-			if (superFlop) GLFrameBuffers.bindFrameBuffer(GL30.GL_FRAMEBUFFER, frameBuffer);
-			else		   GLFrameBuffers.bindFrameBuffer(GL30.GL_FRAMEBUFFER, null);
+        while (!window.shouldClose()) {
+            GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+            superFlop = !superFlop;
+            if (superFlop) GLFrameBuffers.bindFrameBuffer(GL30.GL_FRAMEBUFFER, frameBuffer);
+            else           GLFrameBuffers.bindFrameBuffer(GL30.GL_FRAMEBUFFER, null);
 
-			GL11.glBegin(GL11.GL_TRIANGLES);
-			GL11.glVertex2f(-1, -1);
-			GL11.glVertex2f(1, -1);
-			GL11.glVertex2f(0, 1);
-			GL11.glEnd();
+            GL11.glBegin(GL11.GL_TRIANGLES);
+            GL11.glVertex2f(-1, -1);
+            GL11.glVertex2f(1, -1);
+            GL11.glVertex2f(0, 1);
+            GL11.glEnd();
 
-			window.swapBuffers();
-			GLFWWindows.pollEvents();
-		}
+            window.swapBuffers();
+            GLFWWindows.pollEvents();
+        }
 
-		program.destroy();
-		fragment.destroy();
-		window.destroy();
-		GLFWWindows.terminate();
-	}
+        program.destroy();
+        fragment.destroy();
+        window.destroy();
+        GLFWWindows.terminate();
+    }
 }

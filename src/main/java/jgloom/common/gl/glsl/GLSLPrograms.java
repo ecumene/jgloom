@@ -11,31 +11,31 @@ import jgloom.gl.glsl.GLSLProgram;
  */
 public class GLSLPrograms {
 
-	/**
-	 * @return The currently bound shader program set by {@link GLSLProgramContainer#use()}
+    /**
+     * @return The currently bound shader program set by {@link GLSLProgramContainer#use()}
      */
-	public static synchronized GLSLProgram getCurrentProgram(){
-		return new GLSLProgram() {
-			@Override
-			public int getGLSLProgram() {
-				return GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
-			}
-		};
-	}
+    public static synchronized GLSLProgram getCurrentProgram(){
+        return new GLSLProgram() {
+            @Override
+            public int getGLSLProgram() {
+                return GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
+            }
+        };
+    }
 
-	/**
-	 * Creates an empty GLSL program for attaching shaders to and using for
-	 * rendering
-	 * @return
-	 */
-	public static synchronized GLSLProgram createProgram() {
-		final int program = GL20.glCreateProgram();
-		return new GLSLProgram() {
-			@Override
-			public int getGLSLProgram() {
-				return program;
-			}
-		};
-	}
+    /**
+     * Creates an empty GLSL program for attaching shaders to and using for
+     * rendering
+     * @return
+     */
+    public static synchronized GLSLProgram createProgram() {
+        final int program = GL20.glCreateProgram();
+        return new GLSLProgram() {
+            @Override
+            public int getGLSLProgram() {
+                return program;
+            }
+        };
+    }
 
 }
