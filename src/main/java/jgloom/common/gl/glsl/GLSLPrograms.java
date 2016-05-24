@@ -26,14 +26,13 @@ public class GLSLPrograms {
     /**
      * Creates an empty GLSL program for attaching shaders to and using for
      * rendering
-     * @return
+     * @return A generated GLSL program using glCreateProgram
      */
     public static synchronized GLSLProgram createProgram() {
-        final int program = GL20.glCreateProgram();
         return new GLSLProgram() {
             @Override
             public int getGLSLProgram() {
-                return program;
+                return GL20.glCreateProgram();
             }
         };
     }
