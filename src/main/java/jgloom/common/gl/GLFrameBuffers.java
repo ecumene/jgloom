@@ -4,17 +4,18 @@ import org.lwjgl.opengl.GL30;
 
 import jgloom.gl.GLFrameBuffer;
 
+/**
+ * Contains non-framebuffer-specific methods
+ * @see <a href="https://www.opengl.org/wiki/Framebuffer_Object">The OpenGL definition of FBOs</a>
+ */
 public class GLFrameBuffers {
+    /**
+     * @return A constructed framebuffer with glGenFrameBuffers
+     */
     public static synchronized GLFrameBuffer createFrameBuffer() {
-        int frameBuffer = GL30.glGenFramebuffers();
         return new GLFrameBuffer() {
             @Override
-            public int getFrameBuffer() { return frameBuffer; }
+            public int getFrameBuffer() { return GL30.glGenFramebuffers(); }
         };
-    }
-    
-    public static synchronized void bindFrameBuffer(int target, GLFrameBuffer frameBuffer) {
-        if (frameBuffer == null) GL30.glBindFramebuffer(target, 0);
-        else                     GL30.glBindFramebuffer(target, frameBuffer.getFrameBuffer());
     }
 }

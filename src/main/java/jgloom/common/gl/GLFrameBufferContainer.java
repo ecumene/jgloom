@@ -13,47 +13,107 @@ import jgloom.gl.GLRenderBuffer;
 import jgloom.gl.GLTexture;
 
 /**
- * A shell class containing functions for manipulating a given
- * {@link GLFrameBuffer}
+ * A shell class containing functions for manipulating a given {@link GLFrameBuffer}
  */
 public class GLFrameBufferContainer implements GLFrameBuffer {
     private GLFrameBuffer frameBufferInstance;
-    
+
+    /**
+     * @param frameBufferInstance The framebuffer to track
+     */
     public GLFrameBufferContainer(GLFrameBuffer frameBufferInstance)
     {
         this.frameBufferInstance = frameBufferInstance;
     }
-    
+
+    /**
+     * Attach a level of a texture object as a logical buffer of a framebuffer object
+     * @param target One of 3 values: GL_FRAMEBUFFER, GL_READ_FRAMEBUFFER, or GL_DRAW_FRAMEBUFFER (the one the fbo is
+     *               bound to)
+     * @param attachment Specifies the attachment point of the framebuffer.
+     * @param level Specifies the mipmap level of the texture object to attach.
+     * @param texture Specifies the name of an existing texture object to attach.
+     */
     public void attachTexture(int target, int attachment, int level, GLTexture texture) {
-        // Is this needed? GLTextures.bindTexture(texture); (once added)
-        GLFrameBuffers.bindFrameBuffer(target, this);
         GL32.glFramebufferTexture(target, attachment, texture.getTexture(), level);
     }
-    
-    public void attachRenderBuffer(int target, int attachment, int rbTarget, GLRenderBuffer renderBuffer) {
-        GLFrameBuffers.bindFrameBuffer(target, this);
-        GL30.glFramebufferRenderbuffer(target, attachment, rbTarget, renderBuffer.getRenderBuffer());
+
+    /**
+     * @param target One of 3 values: GL_FRAMEBUFFER, GL_READ_FRAMEBUFFER, or GL_DRAW_FRAMEBUFFER (the one the fbo is
+     *               bound to)
+     * @param attachment Must be one of the following symbolic constants: GL_COLOR_ATTACHMENT0, GL_DEPTH_ATTACHMENT, or
+     *                   GL_STENCIL_ATTACHMENT.
+     * @param renderBuffer Specifies the renderbuffer object that is to be attached. If renderbuffer is not 0, the value
+     *                     of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE for the specified attachment point is set to
+     *                     GL_RENDERBUFFER and the value of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME is set to renderbuffer
+     */
+    public void attachRenderBuffer(int target, int attachment, GLRenderBuffer renderBuffer) {
+        // The 3rd is a symbolic constant (aka they added it to be cheeky)
+        GL30.glFramebufferRenderbuffer(target, attachment, GL30.GL_RENDERBUFFER, renderBuffer.getRenderBuffer());
     }
-    
-    public void setDrawBuffers(int target, IntBuffer attachments) {
-        GLFrameBuffers.bindFrameBuffer(target, this);
-        GL20.glDrawBuffers(attachments);
+
+    /**
+     * @param attachments GL_COLOR_ATTACHMENTi: These are an implementation-dependent number of attachment points.
+     *                    You can query GL_MAX_COLOR_ATTACHMENTS to determine the number of color attachments that an
+     *                    implementation will allow. The minimum value for this is 8, so you are guaranteed to be able
+     *                    to have at least color attachments 0-7. These attachment points can only have images bound to
+     *                    them with color-renderable formats. All compressed image formats are not color-renderable, and
+     *                    thus cannot be attached to an FBO.
+     *
+     *                    GL_DEPTH_ATTACHMENT: This attachment point can only have images with depth formats bound to it
+     *                    . The image attached becomes the Depth Buffer for the FBO. **NOTE** Even if you don't plan on
+     *                    reading from this depth_attachment, an off screen buffer that will be rendered to should have
+     *                    a depth attachment.
+     *
+     *                    GL_STENCIL_ATTACHMENT: This attachment point can only have images with stencil formats bound
+     *                    to it. The image attached becomes the stencil buffer for the FBO.
+     *                    GL_DEPTH_STENCIL_ATTACHMENT: This is shorthand for "both depth and stencil". The image
+     *                    attached becomes both the depth and stencil buffers.
+     *
+     *                    Note: If you use GL_DEPTH_STENCIL_ATTACHMENT, you should use a packed depth-stencil internal
+     *                    format for the texture or renderbuffer you are attaching.
+     */
+    public void setDrawBuffers(IntBuffer attachments) {
+        GL20.glDrawBuffers(attachments); // Yes this is static, no I don't care.
     }
-    
-    public void setDrawBuffers(int target, int ... attachments) {
+
+    /** @param attachments GL_COLOR_ATTACHMENTi: These are an implementation-dependent number of attachment points.
+     *                    You can query GL_MAX_COLOR_ATTACHMENTS to determine the number of color attachments that an
+     *                    implementation will allow. The minimum value for this is 8, so you are guaranteed to be able
+     *                    to have at least color attachments 0-7. These attachment points can only have images bound to
+     *                    them with color-renderable formats. All compressed image formats are not color-renderable, and
+     *                    thus cannot be attached to an FBO.
+     *
+     *                    GL_DEPTH_ATTACHMENT: This attachment point can only have images with depth formats bound to it
+     *                    . The image attached becomes the Depth Buffer for the FBO. **NOTE** Even if you don't plan on
+     *                    reading from this depth_attachment, an off screen buffer that will be rendered to should have
+     *                    a depth attachment.
+     *
+     *                    GL_STENCIL_ATTACHMENT: This attachment point can only have images with stencil formats bound
+     *                    to it. The image attached becomes the stencil buffer for the FBO.
+     *                    GL_DEPTH_STENCIL_ATTACHMENT: This is shorthand for "both depth and stencil". The image
+     *                    attached becomes both the depth and stencil buffers.
+     *
+     *                    Note: If you use GL_DEPTH_STENCIL_ATTACHMENT, you should use a packed depth-stencil internal
+     *                    format for the texture or renderbuffer you are attaching.
+     */
+    public void setDrawBuffers(int ... attachments) {
         IntBuffer drawBuffers = BufferUtils.createIntBuffer(attachments.length);
         drawBuffers.put(attachments);
         drawBuffers.flip();
-        setDrawBuffers(target, drawBuffers);
+        setDrawBuffers(drawBuffers);
     }
-    
-    public void checkCompleteness(int target) {
-        GLFrameBuffers.bindFrameBuffer(target, this);
+
+    /**
+     * Runs through potential errors of the frame buffer, then diagnoses them
+     * @param target One of 3 values: GL_FRAMEBUFFER, GL_READ_FRAMEBUFFER, or GL_DRAW_FRAMEBUFFER (the one the fbo is
+     *               bound to)
+     * @throws GLNativeException When the fbo is invalid
+     */
+    public void checkCompleteness(int target) throws GLNativeException {
         int status = GL30.glCheckFramebufferStatus(target);
         if (status != GL30.GL_FRAMEBUFFER_COMPLETE) {
-            String start = "Frame buffer ";
             String humanReadable = "is not complete";
-            
             switch (status) {
             case GL30.GL_FRAMEBUFFER_UNDEFINED:
                 humanReadable = "is undefined (does not exist)";
@@ -81,11 +141,14 @@ public class GLFrameBufferContainer implements GLFrameBuffer {
                 break;
             }
             
-            throw new GLNativeException(start + humanReadable);
+            throw new GLNativeException("FBO " + humanReadable);
         }
     }
-    
-    public void destroy() {
+
+    /**
+     * Deletes the fbo
+     */
+    public void delete() {
         GL30.glDeleteFramebuffers(frameBufferInstance.getFrameBuffer());
     }
     
@@ -93,7 +156,10 @@ public class GLFrameBufferContainer implements GLFrameBuffer {
     public int getFrameBuffer() {
         return frameBufferInstance.getFrameBuffer();
     }
-    
+
+    /**
+     * @return The framebuffer instance
+     */
     public GLFrameBuffer getFrameBufferInstance()
     {
         return frameBufferInstance;

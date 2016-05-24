@@ -13,7 +13,7 @@ import java.nio.*;
  *
  * Use {@link GLBuffers} to create {@link jgloom.gl.GLBuffer} objects
  */
-public class GLBufferContainer {
+public class GLBufferContainer implements GLBuffer {
     private GLBuffer bufferInstance;
 
     /**
@@ -271,5 +271,17 @@ public class GLBufferContainer {
      */
     public void storage(int target, int size, ByteBuffer buffer, int flags){
         GL44.glBufferStorage(target, size, buffer, flags);
+    }
+
+    @Override
+    public int getBuffer(){
+        return bufferInstance.getBuffer();
+    }
+
+    /**
+     * @return The container's buffer JGLOOm object instance
+     */
+    public GLBuffer getBufferInstance() {
+        return bufferInstance;
     }
 }
