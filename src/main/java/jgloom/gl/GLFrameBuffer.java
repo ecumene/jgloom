@@ -11,15 +11,15 @@ public interface GLFrameBuffer {
     /**The identifier used for binding framebuffer objects using EXT framebuffers and core framebuffers both use
      * integer identifiers.
      * @return The procedural component of the framebuffer object */
-    public int getFrameBuffer();
+    int getFrameBuffer();
 
     /** The OpenGL shader object identifier */
-    public static final int IDENTIFIER = GL30.GL_FRAMEBUFFER;
+    int IDENTIFIER = GL30.GL_FRAMEBUFFER;
 
     /**
      * @return A constructed framebuffer with glGenFrameBuffers
      */
-    public static GLFrameBuffer createFrameBuffer() {
+    static GLFrameBuffer createFrameBuffer() {
         return new GLFrameBuffer() {
             @Override
             public int getFrameBuffer() { return GL30.glGenFramebuffers(); }

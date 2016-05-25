@@ -15,7 +15,7 @@ import java.nio.ByteBuffer;
  */
 public interface GLFWWindow {
     /** @return The GLFW window pointer */
-    public long getGLFWWindow();
+    long getGLFWWindow();
 
     /**
      * This function sets the error callback, which is called with an error code and a human-readable description each
@@ -25,7 +25,7 @@ public interface GLFWWindow {
      * @param callback The new callback, or NULL to remove the currently set callback
      * @return The previously set callback, or NULL if no callback was set.
      */
-    public static GLFWErrorCallback setErrorCallback(GLFWErrorCallback callback){
+    static GLFWErrorCallback setErrorCallback(GLFWErrorCallback callback){
         GLFWErrorCallback oldCallback = GLFW.glfwSetErrorCallback(callback);
         return oldCallback;
     }
@@ -37,7 +37,7 @@ public interface GLFWWindow {
      *<b>This function may be called from any thread.</b>
      * @param window The window whose context to make current, or NULL to detach the current context.
      */
-    public static void makeContextCurrent(GLFWWindow window) {
+    static void makeContextCurrent(GLFWWindow window) {
         GLFW.glfwMakeContextCurrent(window.getGLFWWindow());
     }
 
@@ -46,7 +46,7 @@ public interface GLFWWindow {
      *<b>This function may be called from any thread.</b>
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
      */
-    public static GLFWWindow getCurrentContext() {
+     static GLFWWindow getCurrentContext() {
         //TODO This method will have the same problems as .createWindow (points to GLFW method)
         return new GLFWWindow()
         {
@@ -63,7 +63,7 @@ public interface GLFWWindow {
      * {@link GLFWWindow#terminate()} can be called before {@link GLFWWindow#init()}
      * @return true if successful false if not
      */
-    public static boolean init() {
+    static boolean init() {
         return GLFW.glfwInit() == GL11.GL_TRUE;
     }
 
@@ -74,7 +74,7 @@ public interface GLFWWindow {
      * @param interval The minimum number of screen updates to wait for until the buffers are swapped by
      *                 {@link GLFWWindowContainer#swapBuffers()}
      */
-    public static void setSwapInterval(int interval) {
+    static void setSwapInterval(int interval) {
         GLFW.glfwSwapInterval(interval);
     }
 
@@ -85,7 +85,7 @@ public interface GLFWWindow {
      * <b>May only be called from the main thread.</b>
      * {@link GLFWWindow#terminate()} can be called before {@link GLFWWindow#init()}
      */
-    public static void terminate() {
+    static void terminate() {
         GLFW.glfwTerminate();
     }
 
@@ -98,7 +98,7 @@ public interface GLFWWindow {
      * @return  the major, minor and revision numbers of the GLFW library. It is intended for when you are using GLFW
      *          as a shared library and want to ensure that you are using the minimum required version
      */
-    public static GLFWVersion getVersion(){
+    static GLFWVersion getVersion(){
         // Ugly... But it works!
         final ByteBuffer major = BufferUtils.createByteBuffer(4);
         final ByteBuffer minor = BufferUtils.createByteBuffer(4);
@@ -130,7 +130,7 @@ public interface GLFWWindow {
      * {@link GLFWWindow#getVersionString()} can be called before {@link GLFWWindow#init()}
      * @return The GLFW version string.
      */
-    public static String getVersionString(){
+    static String getVersionString(){
         return GLFW.glfwGetVersionString();
     }
 
@@ -145,7 +145,7 @@ public interface GLFWWindow {
      * @param share   The window whose context to share resources with, or NULL to not share resources.
      * @return The handle of the created window, or NULL if an error occurred.
      */
-    public static GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
+    static GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
         final long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
         return new GLFWWindow()
         {
@@ -162,7 +162,7 @@ public interface GLFWWindow {
      * @param target The window hint to set
      * @param hint   The new value to set
      */
-    public static void hint(int target, int hint) {
+    static void hint(int target, int hint) {
         GLFW.glfwWindowHint(target, hint);
     }
 
@@ -171,7 +171,7 @@ public interface GLFWWindow {
      * http://www.glfw.org/docs/latest/window.html#window_hints_values
      * <b>May only be called from the main thread.</b>
      */
-    public static void defaultWindowHints() {
+    static void defaultWindowHints() {
         GLFW.glfwDefaultWindowHints();
     }
 
@@ -180,7 +180,7 @@ public interface GLFWWindow {
      * Processing events will cause the window and input callbacks associated with those events to be called
      * <b>May only be called from the main thread.</b>
      */
-    public static void pollEvents() {
+    static void pollEvents() {
         GLFW.glfwPollEvents();
     }
 
@@ -188,7 +188,7 @@ public interface GLFWWindow {
      * This function posts an empty event from the current thread to the event queue, causing {@link GLFWWindow#waitEvents()} to return.
      * <b>May only be called from the main thread.</b>
      */
-    public static void postEmptyEvent() {
+    static void postEmptyEvent() {
         GLFW.glfwPostEmptyEvent();
     }
 
@@ -199,7 +199,7 @@ public interface GLFWWindow {
      * input callbacks associated with those events to be called.
      * <b>May only be called from the main thread.</b>
      */
-    public static void waitEvents() {
+    static void waitEvents() {
         GLFW.glfwWaitEvents();
     }
 }

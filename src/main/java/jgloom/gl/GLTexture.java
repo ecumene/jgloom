@@ -8,8 +8,8 @@ import org.lwjgl.opengl.GL11;
  */
 public interface GLTexture {
     /** @return The texture's identifier */
-    public int getTexture();
+    int getTexture();
 
     /** The OpenGL texture object identifier */
-    public static final int IDENTIFIER = GL11.GL_TEXTURE;
+    int IDENTIFIER = GL11.GL_TEXTURE;
 }

@@ -12,17 +12,18 @@ import org.lwjgl.opengl.GL30;
  */
 public interface GLRenderBuffer {
     /** @return The identifier for the renderbuffer */
-    public int getRenderBuffer();
+    int getRenderBuffer();
 
     /** The OpenGL renderbuffer object identifier */
-    public static final int IDENTIFIER = GL30.GL_RENDERBUFFER;
+    int IDENTIFIER = GL30.GL_RENDERBUFFER;
 
     /** @return Renderbuffer object names */
-    public static GLRenderBuffer createRenderBuffer(){
+    static GLRenderBuffer createRenderBuffer(){
+        int renderbuffer = GL30.glGenRenderbuffers();
         return new GLRenderBuffer() {
             @Override
             public int getRenderBuffer() {
-                return GL30.glGenRenderbuffers();
+                return renderbuffer;
             }
         };
     }

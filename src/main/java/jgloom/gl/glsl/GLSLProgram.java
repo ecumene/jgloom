@@ -13,15 +13,15 @@ import org.lwjgl.opengl.GL43;
  */
 public interface GLSLProgram {
     /** @return The GLSL program identifier */
-    public int getGLSLProgram();
+    int getGLSLProgram();
 
     /** The OpenGL shader program object identifier */
-    public static final int IDENTIFIER = GL43.GL_PROGRAM;
+    int IDENTIFIER = GL43.GL_PROGRAM;
 
     /**
      * @return The currently bound shader program set by {@link GLSLProgramContainer#use()}
      */
-    public static GLSLProgram getCurrentProgram(){
+    static GLSLProgram getCurrentProgram(){
         return new GLSLProgram() {
             @Override
             public int getGLSLProgram() {
@@ -35,7 +35,7 @@ public interface GLSLProgram {
      * rendering
      * @return A generated GLSL program using glCreateProgram
      */
-    public static GLSLProgram createProgram() {
+     static GLSLProgram createProgram() {
         int program = GL20.glCreateProgram();
         return new GLSLProgram() {
             @Override
