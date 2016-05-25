@@ -1,5 +1,6 @@
 package jgloom.common.gl.glsl;
 
+import jgloom.GLNativeException;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -31,7 +32,7 @@ public class GLSLShaderContainer implements GLSLShader {
      * @param source The source to replace the old shader with
      */
     public void uploadSource(String source) {
-        GL20.glShaderSource(shaderInstance.getGLSLShader(), source);
+        GL20.glShaderSource(getGLSLShader(), source);
     }
 
     /**
@@ -39,21 +40,20 @@ public class GLSLShaderContainer implements GLSLShader {
      * @throws GLSLCompileException When the shader can not successfully compile (usually GLSL errors)
      */
     public void compileShader() throws GLSLCompileException {
-        GL20.glCompileShader(shaderInstance.getGLSLShader());
-        int compileStatus = GL20.glGetShaderi(shaderInstance.getGLSLShader(), GL20.GL_COMPILE_STATUS);
+        GL20.glCompileShader(getGLSLShader());
 
-        if (compileStatus == GL11.GL_FALSE) {
-            String errorLog = GL20.glGetShaderInfoLog(shaderInstance.getGLSLShader());
-            throw new GLSLCompileException(errorLog);
-        }
+        int len = GL20.glGetShaderi(getGLSLShader(), GL20.GL_INFO_LOG_LENGTH);
+        String err = GL20.glGetShaderInfoLog(getGLSLShader(), len);
+        if (GL20.glGetShaderi(getGLSLShader(), GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE)
+            throw new GLNativeException("Could not compile shader " + err);
     }
 
     /**
      * Frees the memory and invalidates the name associated with the shader object specified by shader. This command
-     * effectively undoes the effects of a call to {@link GLSLShaders#createShader(int)}.
+     * effectively undoes the effects of a call to {@link GLSLShader#createShader(int)}.
      */
-    public void destroy() {
-        GL20.glDeleteShader(shaderInstance.getGLSLShader());
+    public void delete() {
+        GL20.glDeleteShader(getGLSLShader());
     }
 
     @Override

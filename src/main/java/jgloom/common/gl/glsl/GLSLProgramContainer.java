@@ -32,7 +32,7 @@ public class GLSLProgramContainer implements GLSLProgram {
      * {@link GLSLProgramContainer#link()}
      */
     public void use(){
-        GL20.glUseProgram(programInstance.getGLSLProgram());
+        GL20.glUseProgram(getGLSLProgram());
     }
 
     /**
@@ -44,7 +44,7 @@ public class GLSLProgramContainer implements GLSLProgram {
      * @param shader The shader to attach
      */
     public void attachGLSLShader(GLSLShader shader) {
-        GL20.glAttachShader(programInstance.getGLSLProgram(), shader.getGLSLShader());
+        GL20.glAttachShader(getGLSLProgram(), shader.getGLSLShader());
     }
 
     /**
@@ -53,7 +53,14 @@ public class GLSLProgramContainer implements GLSLProgram {
      * @param shader The shader to detach
      */
     public void detachGLSLShader(GLSLShader shader) {
-        GL20.glDetachShader(programInstance.getGLSLProgram(), shader.getGLSLShader());
+        GL20.glDetachShader(getGLSLProgram(), shader.getGLSLShader());
+    }
+
+    /**
+     * Validates the program
+     */
+    public void validate(){
+        GL20.glValidateProgram(getGLSLProgram());
     }
 
     /**
@@ -64,18 +71,24 @@ public class GLSLProgramContainer implements GLSLProgram {
      */
     public void link(){
         GL20.glLinkProgram(getGLSLProgram());
-        int linkStatus = GL20.glGetProgrami(getGLSLProgram(), GL20.GL_LINK_STATUS);
-        if (linkStatus == GL11.GL_FALSE)
-            // I've uploaded a vertex shader as a fragment shader type too many times...
-            throw new GLNativeException("Could not link program, invalid shader types?");
+        String log = "";
+        int comp = GL20.glGetProgrami(getGLSLProgram(), GL20.GL_LINK_STATUS);
+        int len = GL20.glGetProgrami(getGLSLProgram(), GL20.GL_INFO_LOG_LENGTH);
+        String err = GL20.glGetProgramInfoLog(getGLSLProgram(), len);
+        if (err.length() != 0)
+            log = err + "\n" + log;
+        if (!log.equals(""))
+            log = log.trim();
+        if (comp == GL11.GL_FALSE)
+            throw new GLNativeException(log.length()!=0 ? log : "Could not link program (Log is empty)");
     }
 
     /**
      * Frees the memory and invalidates the name associated with the program object specified by program. This command
-     * effectively undoes the effects of a call to {@link GLSLPrograms#createProgram()}.
+     * effectively undoes the effects of a call to {@link GLSLProgram#createProgram()}.
      */
     public void destroy() {
-        GL20.glDeleteProgram(programInstance.getGLSLProgram());
+        GL20.glDeleteProgram(getGLSLProgram());
     }
 
     @Override

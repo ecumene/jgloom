@@ -27,6 +27,14 @@ public class GLFrameBufferContainer implements GLFrameBuffer {
     }
 
     /**
+     * @param target One of 3 values: GL_FRAMEBUFFER, GL_READ_FRAMEBUFFER, or GL_DRAW_FRAMEBUFFER (the one the fbo is
+     *               bound to)
+     */
+    public void bind(int target){
+        GL30.glBindFramebuffer(target, frameBufferInstance.getFrameBuffer());
+    }
+
+    /**
      * Attach a level of a texture object as a logical buffer of a framebuffer object
      * @param target One of 3 values: GL_FRAMEBUFFER, GL_READ_FRAMEBUFFER, or GL_DRAW_FRAMEBUFFER (the one the fbo is
      *               bound to)
