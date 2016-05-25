@@ -68,19 +68,23 @@ public class GLSLProgramContainer implements GLSLProgram {
      * used to create an executable that will run on the programmable vertex processor. A shader object of type
      * GL_FRAGMENT_SHADER attached to program is used to create an executable that will run on the programmable fragment
      * processor.
+     * @throws GLSLLinkException When the link status is false, usually because the program doesn't have a vertex and
+     *                           fragment shader. Can also be because of the OpenGL context not supporting shaders or
+     *                           not being created
      */
-    public void link(){
+    public void link() throws GLSLLinkException {
         GL20.glLinkProgram(getGLSLProgram());
-        String log = "";
-        int comp = GL20.glGetProgrami(getGLSLProgram(), GL20.GL_LINK_STATUS);
-        int len = GL20.glGetProgrami(getGLSLProgram(), GL20.GL_INFO_LOG_LENGTH);
-        String err = GL20.glGetProgramInfoLog(getGLSLProgram(), len);
-        if (err.length() != 0)
-            log = err + "\n" + log;
-        if (!log.equals(""))
-            log = log.trim();
-        if (comp == GL11.GL_FALSE)
-            throw new GLNativeException(log.length()!=0 ? log : "Could not link program (Log is empty)");
+        if(!isLinked()) throw new GLSLLinkException(getLog());
+    }
+
+    /** @return If GL_LINK_STATUS is not false */
+    public boolean isLinked(){
+        return GL20.glGetProgrami(getGLSLProgram(), GL20.GL_LINK_STATUS) != GL11.GL_FALSE;
+    }
+
+    /** @return The program's log from glGetProgramInfoLog */
+    public String getLog(){
+        return GL20.glGetProgramInfoLog(getGLSLProgram(), GL20.glGetProgrami(getGLSLProgram(), GL20.GL_INFO_LOG_LENGTH));
     }
 
     /**

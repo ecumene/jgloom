@@ -9,7 +9,6 @@ import org.lwjgl.opengl.GL20;
 
 import jgloom.common.gl.glsl.GLSLProgramContainer;
 import jgloom.common.gl.glsl.GLSLShaderContainer;
-import jgloom.common.glfw.GLFWWindowContainer;
 
 public class TestGLSLProgram {
     private String fragmentSrc = "varying vec4 vertColor;\n" +

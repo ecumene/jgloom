@@ -41,11 +41,17 @@ public class GLSLShaderContainer implements GLSLShader {
      */
     public void compileShader() throws GLSLCompileException {
         GL20.glCompileShader(getGLSLShader());
+        if(!isCompiled()) throw new GLSLCompileException(getLog());
+    }
 
-        int len = GL20.glGetShaderi(getGLSLShader(), GL20.GL_INFO_LOG_LENGTH);
-        String err = GL20.glGetShaderInfoLog(getGLSLShader(), len);
-        if (GL20.glGetShaderi(getGLSLShader(), GL20.GL_COMPILE_STATUS) == GL11.GL_FALSE)
-            throw new GLNativeException("Could not compile shader " + err);
+    /** @return If GL_COMPILE_STATUS is not false */
+    public boolean isCompiled(){
+        return GL20.glGetShaderi(getGLSLShader(), GL20.GL_COMPILE_STATUS) != GL11.GL_FALSE;
+    }
+
+    /** @return The shader's log from glGetShaderInfoLog */
+    public String getLog(){
+        return GL20.glGetShaderInfoLog(getGLSLShader(), GL20.glGetShaderi(getGLSLShader(), GL20.GL_INFO_LOG_LENGTH));
     }
 
     /**
