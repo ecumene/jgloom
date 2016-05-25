@@ -11,8 +11,9 @@ import java.nio.*;
  * GPU). These can be used to store vertex data, pixel data retrieved from images or the framebuffer, and a variety of
  * other things.
  *
- * Use {@link GLBuffers} to create {@link jgloom.gl.GLBuffer} objects
+ * Use {@link GLBuffer} to create {@link jgloom.gl.GLBuffer} objects
  */
+
 public class GLBufferContainer implements GLBuffer {
     private GLBuffer bufferInstance;
 
@@ -44,6 +45,8 @@ public class GLBufferContainer implements GLBuffer {
     public void delete(){
         GL15.glDeleteBuffers(bufferInstance.getBuffer());
     }
+
+    //TODO: Methods for taking in java primitive arrays and such
 
     /**
      * glBufferData and glNamedBufferData create a new data store for a buffer object. In case of glBufferData, the
