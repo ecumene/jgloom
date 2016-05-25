@@ -7,9 +7,9 @@ import org.lwjgl.opengl.GL11;
  * or inappropriate time.
  */
 public class GLNativeException extends IllegalStateException {
-	private static final long serialVersionUID = -4526854477334203279L;
+    private static final long serialVersionUID = -4526854477334203279L;
 
-	/**
+    /**
      * Throw an OpenGL error with the description given
      * @param desc The description
      */
