@@ -1,5 +1,6 @@
 package jgloom.gl;
 
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL43;
 
 /**
@@ -10,8 +11,20 @@ import org.lwjgl.opengl.GL43;
  */
 public interface GLBuffer {
     /** @return The identifier for the buffer object */
-    public int getBuffer();
+    int getBuffer();
 
     /** The OpenGL framebuffer object identifier */
-    public static final int IDENTIFIER = GL43.GL_BUFFER;
+    int IDENTIFIER = GL43.GL_BUFFER;
+
+    /**
+     * Constructs a {@link GLBuffer} object with {@link GL15#glGenBuffers()}.
+     */
+    static GLBuffer createBuffer(){
+        return new GLBuffer(){
+            @Override
+            public int getBuffer() {
+                return GL15.glGenBuffers();
+            }
+        };
+    }
 }

@@ -8,9 +8,9 @@ import jgloom.gl.glsl.GLSLShader;
  * usually an error in the GLSL syntax
  */
 public class GLSLCompileException extends GLNativeException {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public GLSLCompileException(String desc) {
-		super(desc);
-	}
+    public GLSLCompileException(String desc) {
+        super(desc);
+    }
 }
