@@ -19,11 +19,13 @@ public interface GLBuffer {
     /**
      * Constructs a {@link GLBuffer} object with {@link GL15#glGenBuffers()}.
      */
-    static GLBuffer createBuffer(){
-        return new GLBuffer(){
+    static GLBuffer createBuffer() {
+        return new GLBuffer() {
+            int buffer = GL15.glGenBuffers();
+
             @Override
             public int getBuffer() {
-                return GL15.glGenBuffers();
+                return buffer;
             }
         };
     }

@@ -25,7 +25,7 @@ public interface GLFWWindow {
      * @param callback The new callback, or NULL to remove the currently set callback
      * @return The previously set callback, or NULL if no callback was set.
      */
-    static GLFWErrorCallback setErrorCallback(GLFWErrorCallback callback){
+    static GLFWErrorCallback setErrorCallback(GLFWErrorCallback callback) {
         GLFWErrorCallback oldCallback = GLFW.glfwSetErrorCallback(callback);
         return oldCallback;
     }
@@ -46,12 +46,13 @@ public interface GLFWWindow {
      *<b>This function may be called from any thread.</b>
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
      */
-     static GLFWWindow getCurrentContext() {
-        //TODO This method will have the same problems as .createWindow (points to GLFW method)
-        return new GLFWWindow()
-        {
+    static GLFWWindow getCurrentContext() {
+        long current = GLFW.glfwGetCurrentContext();
+        return new GLFWWindow() {
             @Override
-            public long getGLFWWindow() { return GLFW.glfwGetCurrentContext(); }
+            public long getGLFWWindow() {
+                return current;
+            }
         };
     }
 
@@ -98,7 +99,7 @@ public interface GLFWWindow {
      * @return  the major, minor and revision numbers of the GLFW library. It is intended for when you are using GLFW
      *          as a shared library and want to ensure that you are using the minimum required version
      */
-    static GLFWVersion getVersion(){
+    static GLFWVersion getVersion() {
         // Ugly... But it works!
         final ByteBuffer major = BufferUtils.createByteBuffer(4);
         final ByteBuffer minor = BufferUtils.createByteBuffer(4);
@@ -130,7 +131,7 @@ public interface GLFWWindow {
      * {@link GLFWWindow#getVersionString()} can be called before {@link GLFWWindow#init()}
      * @return The GLFW version string.
      */
-    static String getVersionString(){
+    static String getVersionString() {
         return GLFW.glfwGetVersionString();
     }
 
@@ -147,10 +148,11 @@ public interface GLFWWindow {
      */
     static GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
         final long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
-        return new GLFWWindow()
-        {
+        return new GLFWWindow() {
             @Override
-            public long getGLFWWindow() { return window; }
+            public long getGLFWWindow() {
+                return window;
+            }
         };
     }
 
