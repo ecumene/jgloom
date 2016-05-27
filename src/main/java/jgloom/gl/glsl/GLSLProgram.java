@@ -23,12 +23,7 @@ public interface GLSLProgram {
      */
     static GLSLProgram getCurrentProgram() {
         int current = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
-        return new GLSLProgram() {
-            @Override
-            public int getGLSLProgram() {
-                return current;
-            }
-        };
+        return () -> current;
     }
 
     /**
@@ -38,12 +33,7 @@ public interface GLSLProgram {
      */
     static GLSLProgram createProgram() {
         int program = GL20.glCreateProgram();
-        return new GLSLProgram() {
-            @Override
-            public int getGLSLProgram() {
-                return program;
-            }
-        };
+        return () -> program;
     }
 
 }

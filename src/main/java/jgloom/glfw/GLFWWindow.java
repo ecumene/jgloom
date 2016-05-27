@@ -48,12 +48,7 @@ public interface GLFWWindow {
      */
     static GLFWWindow getCurrentContext() {
         long current = GLFW.glfwGetCurrentContext();
-        return new GLFWWindow() {
-            @Override
-            public long getGLFWWindow() {
-                return current;
-            }
-        };
+        return () -> current;
     }
 
     /**
@@ -147,13 +142,8 @@ public interface GLFWWindow {
      * @return The handle of the created window, or NULL if an error occurred.
      */
     static GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
-        final long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
-        return new GLFWWindow() {
-            @Override
-            public long getGLFWWindow() {
-                return window;
-            }
-        };
+        long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
+        return () -> window;
     }
 
     /**

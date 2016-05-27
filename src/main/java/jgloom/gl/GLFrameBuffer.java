@@ -21,11 +21,6 @@ public interface GLFrameBuffer {
      */
     static GLFrameBuffer createFrameBuffer() {
         int frameBuffer = GL30.glGenFramebuffers();
-        return new GLFrameBuffer() {
-            @Override
-            public int getFrameBuffer() {
-                return frameBuffer;
-            }
-        };
+        return () -> frameBuffer;
     }
 }
