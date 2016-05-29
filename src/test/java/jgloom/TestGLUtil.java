@@ -5,8 +5,8 @@ import jgloom.common.glfw.GLFWWindowContainer;
 import jgloom.glfw.GLFWWindow;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLContext;
 
 public class TestGLUtil {
     private static GLFWWindowContainer window;
@@ -32,7 +32,7 @@ public class TestGLUtil {
             }
         });
 
-        GLContext.createFromCurrent();
+        GL.createCapabilities();
     }
 
     public static void closeContext(){

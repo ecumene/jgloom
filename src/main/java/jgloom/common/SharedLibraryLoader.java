@@ -72,15 +72,21 @@ public class SharedLibraryLoader {
         try {
             if (SharedLibraryLoader.isWindows) {
                 nativesDir = loader.extractFile(SharedLibraryLoader.is64Bit ? "lwjgl.dll" : "lwjgl32.dll", null).getParentFile();
+                loader.extractFile(SharedLibraryLoader.is64Bit ? "glfw.dll" : "glfw32.dll", nativesDir.getName());
+                loader.extractFile(SharedLibraryLoader.is64Bit ? "jemalloc.dll" : "jemalloc32.dll", nativesDir.getName());
                 if (!disableOpenAL)
                     loader.extractFile(SharedLibraryLoader.is64Bit ? "OpenAL.dll" : "OpenAL32.dll", nativesDir.getName());
             } else if (SharedLibraryLoader.isMac) {
                 nativesDir = loader.extractFile("liblwjgl.dylib", null).getParentFile();
+                loader.extractFile("libglfw.dylib", nativesDir.getName());
+                loader.extractFile("libjemalloc.dylib", nativesDir.getName());
                 if (!disableOpenAL) loader.extractFile("libopenal.dylib", nativesDir.getName());
             } else if (SharedLibraryLoader.isLinux) {
                 nativesDir = loader.extractFile(SharedLibraryLoader.is64Bit ? "liblwjgl.so" : "liblwjgl32.so", null).getParentFile();
+                loader.extractFile("libglfw.so", nativesDir.getName());
+                loader.extractFile("libjemalloc.so", nativesDir.getName());
                 if (!disableOpenAL)
-                    loader.extractFile(SharedLibraryLoader.is64Bit ? "libopenal.so" : "libopenal32.so", nativesDir.getName());
+                    loader.extractFile("libopenal.so", nativesDir.getName());
             }
         } catch (Throwable ex) {
             throw new IllegalArgumentException("Unable to extract LWJGL natives.", ex);

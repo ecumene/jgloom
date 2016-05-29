@@ -147,23 +147,6 @@ public class GLBufferContainer implements GLBuffer {
     }
 
     /**
-     * @see GLBufferContainer#data(int, long, int)
-     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
-     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
-     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
-     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
-     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
-     * @param buffer The buffer to upload
-     * @param size Specifies the size in bytes of the buffer object's new data.
-     * @param usage Specifies the expected usage pattern of the data store. The symbolic constant must be
-     *              GL_STREAM_DRAW, GL_STREAM_READ, GL_STREAM_COPY, GL_STATIC_DRAW, GL_STATIC_READ, GL_STATIC_COPY,
-     *              GL_DYNAMIC_DRAW, GL_DYNAMIC_READ, or GL_DYNAMIC_COPY.
-     */
-    public void data(int target, long size, ByteBuffer buffer, int usage){
-        GL15.glBufferData(target, size, buffer, usage);
-    }
-
-    /**
      * Creates and initializes a buffer object's immutable data store
      * @param flags Specifies the intended usage of the buffer's data store. Must be a bitwise combination of the
      *              following flags. GL_DYNAMIC_STORAGE_BIT, GL_MAP_READ_BIT, GL_MAP_WRITE_BIT, GL_MAP_PERSISTENT_BIT,
@@ -257,23 +240,6 @@ public class GLBufferContainer implements GLBuffer {
      */
     public void storage(int target, DoubleBuffer buffer, int flags){
         GL44.glBufferStorage(target, buffer, flags);
-    }
-
-    /**
-     * Creates and initializes a buffer object's immutable data store
-     * @param flags Specifies the intended usage of the buffer's data store. Must be a bitwise combination of the
-     *              following flags. GL_DYNAMIC_STORAGE_BIT, GL_MAP_READ_BIT, GL_MAP_WRITE_BIT, GL_MAP_PERSISTENT_BIT,
-     *              GL_MAP_COHERENT_BIT, and GL_CLIENT_STORAGE_BIT.
-     * @param buffer The buffer to put in the storage's space
-     * @param size Specifies the size in bytes of the buffer object's new data.
-     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
-     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
-     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
-     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
-     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
-     */
-    public void storage(int target, int size, ByteBuffer buffer, int flags){
-        GL44.glBufferStorage(target, size, buffer, flags);
     }
 
     @Override

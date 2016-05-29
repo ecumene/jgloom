@@ -6,9 +6,7 @@ import jgloom.common.glfw.GLFWWindowContainer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.opengl.GL11;
-
-import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 
 /**
  * Represents a single GLFW window object
@@ -60,7 +58,7 @@ public interface GLFWWindow {
      * @return true if successful false if not
      */
     static boolean init() {
-        return GLFW.glfwInit() == GL11.GL_TRUE;
+        return GLFW.glfwInit();
     }
 
     /**
@@ -96,26 +94,26 @@ public interface GLFWWindow {
      */
     static GLFWVersion getVersion() {
         // Ugly... But it works!
-        final ByteBuffer major = BufferUtils.createByteBuffer(4);
-        final ByteBuffer minor = BufferUtils.createByteBuffer(4);
-        final ByteBuffer patch = BufferUtils.createByteBuffer(4);
+        final IntBuffer major = BufferUtils.createIntBuffer(1);
+        final IntBuffer minor = BufferUtils.createIntBuffer(1);
+        final IntBuffer patch = BufferUtils.createIntBuffer(1);
         GLFW.glfwGetVersion(major, minor, patch);
         GLNativeException.checkOGL();
 
         return new GLFWVersion() {
             @Override
             public int getMajorVersion() {
-                return major.getInt(0);
+                return major.get(0);
             }
 
             @Override
             public int getMinorVersion() {
-                return minor.getInt(0);
+                return minor.get(0);
             }
 
             @Override
             public int getPatchVersion() {
-                return patch.getInt(0);
+                return patch.get(0);
             }
         };
     }
