@@ -21,5 +21,5 @@ Model formats
 - [ ] MD5 - Animations and all
 - [ ] OBJ 
 - [ ] FBX 
-- [ ] Collida - We intend to use [JCollida](http://javacollada.sourceforge.net/)
+- [ ] Collada - We intend to use [JCollada](http://javacollada.sourceforge.net/)
 - [ ] Blend - In the very far future, as a tech demo (it would be very hard) 
