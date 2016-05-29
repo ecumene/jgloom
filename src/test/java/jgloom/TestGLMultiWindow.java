@@ -7,6 +7,8 @@ import jgloom.glfw.GLFWWindow;
 import jgloom.common.glfw.GLFWWindowContainer;
 
 import org.junit.Test;
+import org.lwjgl.glfw.GLFW;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
 public class TestGLMultiWindow {
@@ -17,6 +19,7 @@ public class TestGLMultiWindow {
     public void testGLMultiWindow() {
         SharedLibraryLoader.load();
         GLFWWindow.init();
+        GLFWWindow.hint(GLFW.GLFW_VISIBLE, GL11.GL_FALSE);
         window1 = new GLFWWindowContainer(GLFWWindow.createWindow(800, 450, "Window 1", 0L, 0L));
         GLFWWindow.makeContextCurrent(window1);
         GLContext.createFromCurrent();
