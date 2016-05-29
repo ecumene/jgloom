@@ -11,7 +11,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GLContext;
 
-public class TestGLMultiWindow {
+public class TestMultiWindow {
     public GLFWWindow window1;
     public GLFWWindow window2;
 

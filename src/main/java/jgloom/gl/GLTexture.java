@@ -1,6 +1,7 @@
 package jgloom.gl;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL30;
 
 /**
  * A texture is an OpenGL Object that contains one or more images that all have the same image format. A texture can be
@@ -12,4 +13,12 @@ public interface GLTexture {
 
     /** The OpenGL texture object identifier */
     int IDENTIFIER = GL11.GL_TEXTURE;
+
+    /**
+     * @return A constructed texture with glGenTextures
+     */
+    static GLTexture createTexture() {
+        int texture = GL11.glGenTextures();
+        return () -> texture;
+    }
 }

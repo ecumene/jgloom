@@ -14,6 +14,7 @@ public class TestGLUtil {
     public static void openContext(){
         SharedLibraryLoader.load();
         GLFWWindow.init();
+        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_FALSE);
         window = new GLFWWindowContainer(GLFWWindow.createWindow(640, 480, "GLFW Window", 0L, 0L));
 
         GLFWWindow.defaultWindowHints();
@@ -21,7 +22,6 @@ public class TestGLUtil {
         GLFWWindow.hint(GLFW.GLFW_CONTEXT_VERSION_MAJOR, 3);
         GLFWWindow.hint(GLFW.GLFW_CONTEXT_VERSION_MINOR, 2);
         GLFWWindow.hint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, GL11.GL_TRUE);
-        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_FALSE);
         GLFWWindow.hint(GLFW.GLFW_OPENGL_PROFILE,        GLFW.GLFW_OPENGL_CORE_PROFILE);
         GLFWWindow.hint(GLFW.GLFW_RESIZABLE,             GL11.GL_FALSE);
         GLFWWindow.makeContextCurrent(window);
