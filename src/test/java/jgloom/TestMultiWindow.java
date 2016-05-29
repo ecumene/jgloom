@@ -39,6 +39,7 @@ public class TestMultiWindow {
 
         ((GLFWWindowContainer) window1).destroy();
         ((GLFWWindowContainer) window2).destroy();
+
         GLFWWindow.terminate();
     }
 }

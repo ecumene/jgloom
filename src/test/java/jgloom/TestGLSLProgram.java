@@ -54,6 +54,7 @@ public class TestGLSLProgram {
 
 
         program.destroy();
+
         TestGLUtil.closeContext();
     }
 }

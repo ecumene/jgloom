@@ -36,6 +36,7 @@ public class TestGLUtil {
     }
 
     public static void closeContext(){
+        GLNativeException.checkOGL();
         window.destroy();
         GLFWWindow.terminate();
     }

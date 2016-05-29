@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL30;
 
 public class TestOffscreenFramebuffer {
     @Test
-    public void testGLSLProgram() {
+    public void testOffscreenFramebuffer() {
         TestGLUtil.openContext();
         GLTextureContainer      colorBufferContainer = new GLTextureContainer(GLTexture.createTexture());
         GLFrameBufferContainer  frameBufferContainer = new GLFrameBufferContainer(GLFrameBuffer.createFrameBuffer());
