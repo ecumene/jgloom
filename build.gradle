@@ -1,7 +1,7 @@
 apply plugin: 'java'
 
 project.ext.jomlVersion = "1.7.0"
-project.ext.joglVersion = "3.0.0a"
+project.ext.joglVersion = "3.0.0-SNAPSHOT"
 project.ext.juntVersion = "4.12"
 
 repositories {

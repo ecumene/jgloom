@@ -6,9 +6,7 @@ import jgloom.common.glfw.GLFWWindowContainer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.opengl.GL11;
-
-import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 
 /**
  * Represents a single GLFW window object
@@ -25,7 +23,7 @@ public interface GLFWWindow {
      * @param callback The new callback, or NULL to remove the currently set callback
      * @return The previously set callback, or NULL if no callback was set.
      */
-    static GLFWErrorCallback setErrorCallback(GLFWErrorCallback callback){
+    static GLFWErrorCallback setErrorCallback(GLFWErrorCallback callback) {
         GLFWErrorCallback oldCallback = GLFW.glfwSetErrorCallback(callback);
         return oldCallback;
     }
@@ -46,13 +44,9 @@ public interface GLFWWindow {
      *<b>This function may be called from any thread.</b>
      * @return the window whose OpenGL or OpenGL ES context is current on the calling thread.
      */
-     static GLFWWindow getCurrentContext() {
-        //TODO This method will have the same problems as .createWindow (points to GLFW method)
-        return new GLFWWindow()
-        {
-            @Override
-            public long getGLFWWindow() { return GLFW.glfwGetCurrentContext(); }
-        };
+    static GLFWWindow getCurrentContext() {
+        long current = GLFW.glfwGetCurrentContext();
+        return () -> current;
     }
 
     /**
@@ -64,7 +58,7 @@ public interface GLFWWindow {
      * @return true if successful false if not
      */
     static boolean init() {
-        return GLFW.glfwInit() == GL11.GL_TRUE;
+        return GLFW.glfwInit();
     }
 
     /**
@@ -98,28 +92,28 @@ public interface GLFWWindow {
      * @return  the major, minor and revision numbers of the GLFW library. It is intended for when you are using GLFW
      *          as a shared library and want to ensure that you are using the minimum required version
      */
-    static GLFWVersion getVersion(){
+    static GLFWVersion getVersion() {
         // Ugly... But it works!
-        final ByteBuffer major = BufferUtils.createByteBuffer(4);
-        final ByteBuffer minor = BufferUtils.createByteBuffer(4);
-        final ByteBuffer patch = BufferUtils.createByteBuffer(4);
+        final IntBuffer major = BufferUtils.createIntBuffer(1);
+        final IntBuffer minor = BufferUtils.createIntBuffer(1);
+        final IntBuffer patch = BufferUtils.createIntBuffer(1);
         GLFW.glfwGetVersion(major, minor, patch);
         GLNativeException.checkOGL();
 
         return new GLFWVersion() {
             @Override
             public int getMajorVersion() {
-                return major.getInt(0);
+                return major.get(0);
             }
 
             @Override
             public int getMinorVersion() {
-                return minor.getInt(0);
+                return minor.get(0);
             }
 
             @Override
             public int getPatchVersion() {
-                return patch.getInt(0);
+                return patch.get(0);
             }
         };
     }
@@ -130,7 +124,7 @@ public interface GLFWWindow {
      * {@link GLFWWindow#getVersionString()} can be called before {@link GLFWWindow#init()}
      * @return The GLFW version string.
      */
-    static String getVersionString(){
+    static String getVersionString() {
         return GLFW.glfwGetVersionString();
     }
 
@@ -146,12 +140,8 @@ public interface GLFWWindow {
      * @return The handle of the created window, or NULL if an error occurred.
      */
     static GLFWWindow createWindow(int width, int height, String title, long monitor, long share) {
-        final long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
-        return new GLFWWindow()
-        {
-            @Override
-            public long getGLFWWindow() { return window; }
-        };
+        long window = GLFW.glfwCreateWindow(width, height, title, monitor, share);
+        return () -> window;
     }
 
     /**

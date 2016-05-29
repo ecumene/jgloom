@@ -12,4 +12,12 @@ public interface GLTexture {
 
     /** The OpenGL texture object identifier */
     int IDENTIFIER = GL11.GL_TEXTURE;
+
+    /**
+     * @return A constructed texture with glGenTextures
+     */
+    static GLTexture createTexture() {
+        int texture = GL11.glGenTextures();
+        return () -> texture;
+    }
 }

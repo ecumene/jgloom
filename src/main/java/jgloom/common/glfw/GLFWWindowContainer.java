@@ -3,9 +3,7 @@ package jgloom.common.glfw;
 import jgloom.glfw.GLFWWindow;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
-
-import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 
 /**
  * A shell class containing functions for manipulating a given {@link GLFWWindow}
@@ -43,13 +41,13 @@ public class GLFWWindowContainer implements GLFWWindow {
      *         windows dimensions. If you wish to get the window dimensions check
      *         {@link GLFWWindowContainer#getSize()}
      */
-    public ByteBuffer[] getFramebufferSize() {
+    public IntBuffer[] getFramebufferSize() {
         // sizes of the window are not constant and the best way to retrieve them without
         // disturbing a callback is to query the API
-        ByteBuffer width  = BufferUtils.createByteBuffer(4);
-        ByteBuffer height = BufferUtils.createByteBuffer(4);
+        IntBuffer width  = BufferUtils.createIntBuffer(1);
+        IntBuffer height = BufferUtils.createIntBuffer(1);
         GLFW.glfwGetWindowSize(windowInstance.getGLFWWindow(), width, height);
-        return new ByteBuffer[]{width, height};
+        return new IntBuffer[]{width, height};
     }
 
     /**
@@ -64,15 +62,15 @@ public class GLFWWindowContainer implements GLFWWindow {
      *         the title bar, if the window has one. The size of the frame may vary depending on the window-related
      *         hints used to create it.
      */
-    public ByteBuffer[] getFrameSize() {
+    public IntBuffer[] getFrameSize() {
         // sizes of the window are not constant and the best way to retrieve them without
         // disturbing a callback is to query the API
-        ByteBuffer left   = BufferUtils.createByteBuffer(4);
-        ByteBuffer top    = BufferUtils.createByteBuffer(4);
-        ByteBuffer right  = BufferUtils.createByteBuffer(4);
-        ByteBuffer bottom = BufferUtils.createByteBuffer(4);
+        IntBuffer left   = BufferUtils.createIntBuffer(1);
+        IntBuffer top    = BufferUtils.createIntBuffer(1);
+        IntBuffer right  = BufferUtils.createIntBuffer(1);
+        IntBuffer bottom = BufferUtils.createIntBuffer(1);
         GLFW.glfwGetWindowFrameSize(windowInstance.getGLFWWindow(), left, top, right, bottom);
-        return new ByteBuffer[]{left, top, right, bottom};
+        return new IntBuffer[]{left, top, right, bottom};
     }
 
     /**
@@ -81,24 +79,24 @@ public class GLFWWindowContainer implements GLFWWindow {
      * <b>May only be called from the main thread.</b>
      * @return The size, in screen coordinates, of the client area of the specified window.
      */
-    public ByteBuffer[] getSize() {
+    public IntBuffer[] getSize() {
         // sizes of the window are not constant and the best way to retrieve them without
         // disturbing a callback is to query the API
-        ByteBuffer width  = BufferUtils.createByteBuffer(4);
-        ByteBuffer height = BufferUtils.createByteBuffer(4);
+        IntBuffer width  = BufferUtils.createIntBuffer(1);
+        IntBuffer height = BufferUtils.createIntBuffer(1);
         GLFW.glfwGetWindowSize(windowInstance.getGLFWWindow(), width, height);
-        return new ByteBuffer[]{width, height};
+        return new IntBuffer[]{width, height};
     }
 
     /**
      * <b>May only be called from the main thread.</b>
      * @return the position, in screen coordinates, of the upper-left corner of the client area of the specified window.
      */
-    public ByteBuffer[] getPosition() {
-        ByteBuffer x = BufferUtils.createByteBuffer(4);
-        ByteBuffer y = BufferUtils.createByteBuffer(4);
+    public IntBuffer[] getPosition() {
+        IntBuffer x = BufferUtils.createIntBuffer(1);
+        IntBuffer y = BufferUtils.createIntBuffer(1);
         GLFW.glfwGetWindowPos(windowInstance.getGLFWWindow(), x, y);
-        return new ByteBuffer[]{x, y};
+        return new IntBuffer[]{x, y};
     }
 
     /**
@@ -114,9 +112,9 @@ public class GLFWWindowContainer implements GLFWWindow {
      * This function sets the value of the close flag of the specified window. This can be used to override the user's
      * attempt to close the window, or to signal that it should be closed.
      * <b>This function may be called from any thread. Access is not synchronized, but the API call is.</b>
-     * @param closeFlag The new value. (GL_TRUE / GL_FALSE)
+     * @param closeFlag The new value.
      */
-    public synchronized void setShouldClose(int closeFlag)  {
+    public synchronized void setShouldClose(boolean closeFlag)  {
         GLFW.glfwSetWindowShouldClose(windowInstance.getGLFWWindow(), closeFlag);
     }
 
@@ -124,8 +122,8 @@ public class GLFWWindowContainer implements GLFWWindow {
      * @return If the GLFW Window is closing of not.
      */
     public boolean shouldClose() {
-        int closeFlag = GLFW.glfwWindowShouldClose(windowInstance.getGLFWWindow());
-        return closeFlag != GL11.GL_FALSE;
+        boolean closeFlag = GLFW.glfwWindowShouldClose(windowInstance.getGLFWWindow());
+        return closeFlag;
     }
 
     /**

@@ -202,6 +202,7 @@ public class GLTextureContainer implements GLTexture {
 
     /** IntBuffer version of: {@link #image2D(int, int, int, int, int, int, int, int, ByteBuffer)} */
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, IntBuffer pixels){
+
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 

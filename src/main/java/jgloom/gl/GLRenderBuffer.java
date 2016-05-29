@@ -18,13 +18,8 @@ public interface GLRenderBuffer {
     int IDENTIFIER = GL30.GL_RENDERBUFFER;
 
     /** @return Renderbuffer object names */
-    static GLRenderBuffer createRenderBuffer(){
-        int renderbuffer = GL30.glGenRenderbuffers();
-        return new GLRenderBuffer() {
-            @Override
-            public int getRenderBuffer() {
-                return renderbuffer;
-            }
-        };
+    static GLRenderBuffer createRenderBuffer() {
+        int renderBuffer = GL30.glGenRenderbuffers();
+        return () -> renderBuffer;
     }
 }

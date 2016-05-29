@@ -22,12 +22,7 @@ public interface GLSLShader {
      */
     static GLSLShader createShader(int type) {
         int shader = GL20.glCreateShader(type);
-        return new GLSLShader() {
-            @Override
-            public int getGLSLShader() {
-                return shader;
-            }
-        };
+        return () -> shader;
     }
 
 }

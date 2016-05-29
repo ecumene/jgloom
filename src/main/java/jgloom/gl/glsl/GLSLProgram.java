@@ -21,13 +21,9 @@ public interface GLSLProgram {
     /**
      * @return The currently bound shader program set by {@link GLSLProgramContainer#use()}
      */
-    static GLSLProgram getCurrentProgram(){
-        return new GLSLProgram() {
-            @Override
-            public int getGLSLProgram() {
-                return GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
-            }
-        };
+    static GLSLProgram getCurrentProgram() {
+        int current = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
+        return () -> current;
     }
 
     /**
@@ -35,14 +31,9 @@ public interface GLSLProgram {
      * rendering
      * @return A generated GLSL program using glCreateProgram
      */
-     static GLSLProgram createProgram() {
+    static GLSLProgram createProgram() {
         int program = GL20.glCreateProgram();
-        return new GLSLProgram() {
-            @Override
-            public int getGLSLProgram() {
-                return program;
-            }
-        };
+        return () -> program;
     }
 
 }

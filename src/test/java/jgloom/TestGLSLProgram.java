@@ -2,7 +2,6 @@ package jgloom;
 
 import jgloom.gl.glsl.GLSLProgram;
 import jgloom.gl.glsl.GLSLShader;
-import jgloom.glfw.GLFWWindow;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -55,6 +54,7 @@ public class TestGLSLProgram {
 
 
         program.destroy();
+
         TestGLUtil.closeContext();
     }
 }
