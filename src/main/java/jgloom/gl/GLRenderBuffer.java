@@ -22,4 +22,12 @@ public interface GLRenderBuffer {
         int renderBuffer = GL30.glGenRenderbuffers();
         return () -> renderBuffer;
     }
+
+    /**
+     * @param rb
+     * @return if an integer corresponds to an OpenGL renderbuffer object
+     */
+    static boolean isRenderBuffer(int rb){
+        return GL30.glIsRenderbuffer(rb);
+    }
 }

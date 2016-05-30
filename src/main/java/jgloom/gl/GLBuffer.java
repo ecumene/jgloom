@@ -23,4 +23,12 @@ public interface GLBuffer {
         int buffer = GL15.glGenBuffers();
         return () -> buffer;
     }
+
+    /**
+     * @param buffer
+     * @return If an integer corresponds to an OpenGL buffer object
+     */
+    static boolean isBuffer(int buffer){
+        return GL15.glIsBuffer(buffer);
+    }
 }

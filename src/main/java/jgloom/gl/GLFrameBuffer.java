@@ -1,5 +1,6 @@
 package jgloom.gl;
 
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
 
 /**
@@ -22,5 +23,13 @@ public interface GLFrameBuffer {
     static GLFrameBuffer createFrameBuffer() {
         int frameBuffer = GL30.glGenFramebuffers();
         return () -> frameBuffer;
+    }
+
+    /**
+     * @param fb
+     * @return if an integer corresponds to an OpenGL buffer object
+     */
+    static boolean isFrameBuffer(int fb){
+        return GL30.glIsFramebuffer(fb);
     }
 }
