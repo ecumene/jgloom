@@ -321,10 +321,86 @@ public class GLBufferContainer implements GLBuffer {
         storage(target, buffer, flags);
     }
 
+    /**
+     * glBufferSubData redefines some or all of the data store for the buffer object currently bound to target. Data
+     * starting at byte offset offset and extending for size bytes is copied to the data store from the memory pointed
+     * to by data. An error is thrown if offset and size together define a range beyond the bounds of the buffer
+     * objects's data store.
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER, or GL_PIXEL_UNPACK_BUFFER
+     * @param offset Specifies the offset into the buffer object's data store where data replacement will begin,
+     *               measured in bytes
+     * @param size Specifies the size in bytes of the data store region being replaced
+     * @param data Specifies a pointer to the new data that will be copied into the data store
+     */
     public void sub(int target, int offset, long size, ByteBuffer data){
         GL15.glBufferSubData(target, offset, size, data);
     }
 
+    /** ByteBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)} (without the size param)*/
+    public void sub(int target, int offset, ByteBuffer data){
+        GL15.glBufferSubData(target, offset, data);
+    }
+
+    /** Convenience version of GLBufferContainer{@link #sub(int, int, ByteBuffer)}*/
+    public void sub(int target, int offset, byte[] data){
+        ByteBuffer buffer = BufferUtils.createByteBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        GL15.glBufferSubData(target, offset, buffer);
+    }
+
+    /** ShortBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    public void sub(int target, int offset, ShortBuffer data){
+        GL15.glBufferSubData(target, offset, data);
+    }
+
+    /** Convenience version of GLBufferContainer{@link #sub(int, int, ShortBuffer)} */
+    public void sub(int target, int offset, short[] data){
+        ShortBuffer buffer = BufferUtils.createShortBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        GL15.glBufferSubData(target, offset, buffer);
+    }
+
+    /** FloatBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    public void sub(int target, int offset, FloatBuffer data){
+        GL15.glBufferSubData(target, offset, data);
+    }
+
+    /** Convenience version of GLBufferContainer{@link #sub(int, int, FloatBuffer)} */
+    public void sub(int target, int offset, float[] data){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        GL15.glBufferSubData(target, offset, buffer);
+    }
+
+    /** IntBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    public void sub(int target, int offset, IntBuffer data){
+        GL15.glBufferSubData(target, offset, data);
+    }
+
+    /** Convenience version of GLBufferContainer{@link #sub(int, int, IntBuffer)} */
+    public void sub(int target, int offset, int[] data){
+        IntBuffer buffer = BufferUtils.createIntBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        GL15.glBufferSubData(target, offset, buffer);
+    }
+
+    /** DoubleBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    public void sub(int target, int offset, DoubleBuffer data){
+        GL15.glBufferSubData(target, offset, data);
+    }
+
+    /** Convenience version of GLBufferContainer{@link #sub(int, int, DoubleBuffer)} */
+    public void sub(int target, int offset, double[] data){
+        DoubleBuffer buffer = BufferUtils.createDoubleBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        GL15.glBufferSubData(target, offset, buffer);
+    }
 
     @Override
     public int getBuffer(){
