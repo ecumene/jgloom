@@ -2,8 +2,7 @@ package jgloom.common.gl;
 
 import jgloom.gl.GLBuffer;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL44;
+import org.lwjgl.opengl.*;
 
 import java.nio.*;
 
@@ -319,6 +318,109 @@ public class GLBufferContainer implements GLBuffer {
         buffer.put(doubles);
         buffer.flip();
         storage(target, buffer, flags);
+    }
+
+    /**
+     * Returns a subset of a buffer object's data store.
+     *
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
+     * @param size   the size in bytes of the data store region being returned
+     * @return The buffer
+     */
+    public ByteBuffer getSubByte(int target, long offset, long size){
+        ByteBuffer buffer = null;
+        GL15.glGetBufferSubData(target, offset, size, buffer);
+        return buffer;
+    }
+
+    /**
+     * Returns a subset of a buffer object's data store.
+     *
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
+     * @return The buffer
+     */
+    public ByteBuffer getSubByte(int target, long offset){
+        ByteBuffer buffer = null;
+        GL15.glGetBufferSubData(target, offset, buffer);
+        return buffer;
+    }
+
+    /**
+     * Returns a subset of a buffer object's data store.
+     *
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
+     * @return The buffer
+     */
+    public FloatBuffer getSubFloat(int target, long offset){
+        FloatBuffer buffer = null;
+        GL15.glGetBufferSubData(target, offset, buffer);
+        return buffer;
+    }
+
+    /**
+     * Returns a subset of a buffer object's data store.
+     *
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
+     * @return The buffer
+     */
+    public ShortBuffer getSubShort(int target, long offset){
+        ShortBuffer buffer = null;
+        GL15.glGetBufferSubData(target, offset, buffer);
+        return buffer;
+    }
+
+    /**
+     * Returns a subset of a buffer object's data store.
+     *
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
+     * @return The buffer
+     */
+    public DoubleBuffer getSubDouble(int target, long offset){
+        DoubleBuffer buffer = null;
+        GL15.glGetBufferSubData(target, offset, buffer);
+        return buffer;
+    }
+
+    /**
+     * Returns a subset of a buffer object's data store.
+     *
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
+     * @return The buffer
+     */
+    public IntBuffer getSubInt(int target, long offset){
+        IntBuffer buffer = null;
+        GL15.glGetBufferSubData(target, offset, buffer);
+        return buffer;
     }
 
     /**
