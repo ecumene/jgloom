@@ -1,6 +1,7 @@
 package jgloom.common.gl;
 
 import jgloom.gl.GLBuffer;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL44;
 
@@ -144,6 +145,47 @@ public class GLBufferContainer implements GLBuffer {
      */
     public void data(int target, IntBuffer buffer, int usage){
         GL15.glBufferData(target, buffer, usage);
+    }
+
+    /** @see GLBufferContainer#data(int, ByteBuffer, int)  */
+    public void data(int target, byte[] bytes, int usage){
+        ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);
+        buffer.put(bytes);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
+
+    /** @see GLBufferContainer#data(int, FloatBuffer, int)  */
+    public void data(int target, float[] floats, int usage){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(floats.length);
+        buffer.put(floats);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
+    /** @see GLBufferContainer#data(int, ShortBuffer, int)  */
+    public void data(int target, short[] shorts, int usage){
+        ShortBuffer buffer = BufferUtils.createShortBuffer(shorts.length);
+        buffer.put(shorts);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
+    /** @see GLBufferContainer#data(int, DoubleBuffer, int)  */
+    public void data(int target, double[] doubles, int usage){
+        DoubleBuffer buffer = BufferUtils.createDoubleBuffer(doubles.length);
+        buffer.put(buffer);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
+    /** @see GLBufferContainer#data(int, IntBuffer, int)  */
+    public void data(int target, int[] ints, int usage){
+        IntBuffer buffer = BufferUtils.createIntBuffer(ints.length);
+        buffer.put(ints);
+        buffer.flip();
+        data(target, buffer, usage);
     }
 
     /**
