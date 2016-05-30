@@ -47,8 +47,6 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glDeleteBuffers(bufferInstance.getBuffer());
     }
 
-    //TODO: Methods for taking in java primitive arrays and such
-
     /**
      * glBufferData and glNamedBufferData create a new data store for a buffer object. In case of glBufferData, the
      * buffer object currently bound to target is used. For glNamedBufferData, a buffer object associated with ID
@@ -283,6 +281,47 @@ public class GLBufferContainer implements GLBuffer {
     public void storage(int target, DoubleBuffer buffer, int flags){
         GL44.glBufferStorage(target, buffer, flags);
     }
+
+    /** @see GLBufferContainer#storage(int, ByteBuffer, int) */
+    public void storage(int target, byte[] bytes, int flags){
+        ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);
+        buffer.put(bytes);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
+    /** @see GLBufferContainer#storage(int, ShortBuffer, int) */
+    public void storage(int target, short[] shorts, int flags){
+        ShortBuffer buffer = BufferUtils.createShortBuffer(shorts.length);
+        buffer.put(shorts);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
+    /** @see GLBufferContainer#storage(int, FloatBuffer, int) */
+    public void storage(int target, float[] floats, int flags){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(floats.length);
+        buffer.put(floats);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
+    /** @see GLBufferContainer#storage(int, DoubleBuffer, int) */
+    public void storage(int target, double[] doubles, int flags){
+        DoubleBuffer buffer = BufferUtils.createDoubleBuffer(doubles.length);
+        buffer.put(doubles);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
+    /** @see GLBufferContainer#storage(int, IntBuffer, int) */
+    public void storage(int target, int[] ints, int flags){
+        IntBuffer buffer = BufferUtils.createIntBuffer(ints.length);
+        buffer.put(ints);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
 
     @Override
     public int getBuffer(){
