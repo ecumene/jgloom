@@ -81,6 +81,14 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferData(target, buffer, usage);
     }
 
+    /** @see GLBufferContainer#data(int, ByteBuffer, int)  */
+    public void data(int target, byte[] bytes, int usage){
+        ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);
+        buffer.put(bytes);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
     /**
      * @see GLBufferContainer#data(int, long, int)
      * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
@@ -95,6 +103,14 @@ public class GLBufferContainer implements GLBuffer {
      */
     public void data(int target, FloatBuffer buffer, int usage){
         GL15.glBufferData(target, buffer, usage);
+    }
+
+    /** @see GLBufferContainer#data(int, FloatBuffer, int)  */
+    public void data(int target, float[] floats, int usage){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(floats.length);
+        buffer.put(floats);
+        buffer.flip();
+        data(target, buffer, usage);
     }
 
     /**
@@ -113,6 +129,14 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferData(target, buffer, usage);
     }
 
+    /** @see GLBufferContainer#data(int, ShortBuffer, int)  */
+    public void data(int target, short[] shorts, int usage){
+        ShortBuffer buffer = BufferUtils.createShortBuffer(shorts.length);
+        buffer.put(shorts);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
     /**
      * @see GLBufferContainer#data(int, long, int)
      * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
@@ -129,6 +153,14 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferData(target, buffer, usage);
     }
 
+    /** @see GLBufferContainer#data(int, DoubleBuffer, int)  */
+    public void data(int target, double[] doubles, int usage){
+        DoubleBuffer buffer = BufferUtils.createDoubleBuffer(doubles.length);
+        buffer.put(buffer);
+        buffer.flip();
+        data(target, buffer, usage);
+    }
+
     /**
      * @see GLBufferContainer#data(int, long, int)
      * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
@@ -143,39 +175,6 @@ public class GLBufferContainer implements GLBuffer {
      */
     public void data(int target, IntBuffer buffer, int usage){
         GL15.glBufferData(target, buffer, usage);
-    }
-
-    /** @see GLBufferContainer#data(int, ByteBuffer, int)  */
-    public void data(int target, byte[] bytes, int usage){
-        ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);
-        buffer.put(bytes);
-        buffer.flip();
-        data(target, buffer, usage);
-    }
-
-
-    /** @see GLBufferContainer#data(int, FloatBuffer, int)  */
-    public void data(int target, float[] floats, int usage){
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(floats.length);
-        buffer.put(floats);
-        buffer.flip();
-        data(target, buffer, usage);
-    }
-
-    /** @see GLBufferContainer#data(int, ShortBuffer, int)  */
-    public void data(int target, short[] shorts, int usage){
-        ShortBuffer buffer = BufferUtils.createShortBuffer(shorts.length);
-        buffer.put(shorts);
-        buffer.flip();
-        data(target, buffer, usage);
-    }
-
-    /** @see GLBufferContainer#data(int, DoubleBuffer, int)  */
-    public void data(int target, double[] doubles, int usage){
-        DoubleBuffer buffer = BufferUtils.createDoubleBuffer(doubles.length);
-        buffer.put(buffer);
-        buffer.flip();
-        data(target, buffer, usage);
     }
 
     /** @see GLBufferContainer#data(int, IntBuffer, int)  */
@@ -218,6 +217,14 @@ public class GLBufferContainer implements GLBuffer {
         GL44.glBufferStorage(target, buffer, flags);
     }
 
+    /** @see GLBufferContainer#storage(int, ByteBuffer, int) */
+    public void storage(int target, byte[] bytes, int flags){
+        ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);
+        buffer.put(bytes);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
     /**
      * Creates and initializes a buffer object's immutable data store
      * @param flags Specifies the intended usage of the buffer's data store. Must be a bitwise combination of the
@@ -232,6 +239,14 @@ public class GLBufferContainer implements GLBuffer {
      */
     public void storage(int target, ShortBuffer buffer, int flags){
         GL44.glBufferStorage(target, buffer, flags);
+    }
+
+    /** @see GLBufferContainer#storage(int, ShortBuffer, int) */
+    public void storage(int target, short[] shorts, int flags){
+        ShortBuffer buffer = BufferUtils.createShortBuffer(shorts.length);
+        buffer.put(shorts);
+        buffer.flip();
+        storage(target, buffer, flags);
     }
 
     /**
@@ -250,6 +265,14 @@ public class GLBufferContainer implements GLBuffer {
         GL44.glBufferStorage(target, buffer, flags);
     }
 
+    /** @see GLBufferContainer#storage(int, FloatBuffer, int) */
+    public void storage(int target, float[] floats, int flags){
+        FloatBuffer buffer = BufferUtils.createFloatBuffer(floats.length);
+        buffer.put(floats);
+        buffer.flip();
+        storage(target, buffer, flags);
+    }
+
     /**
      * Creates and initializes a buffer object's immutable data store
      * @param flags Specifies the intended usage of the buffer's data store. Must be a bitwise combination of the
@@ -264,6 +287,14 @@ public class GLBufferContainer implements GLBuffer {
      */
     public void storage(int target, IntBuffer buffer, int flags){
         GL44.glBufferStorage(target, buffer, flags);
+    }
+
+    /** @see GLBufferContainer#storage(int, IntBuffer, int) */
+    public void storage(int target, int[] ints, int flags){
+        IntBuffer buffer = BufferUtils.createIntBuffer(ints.length);
+        buffer.put(ints);
+        buffer.flip();
+        storage(target, buffer, flags);
     }
 
     /**
@@ -282,30 +313,6 @@ public class GLBufferContainer implements GLBuffer {
         GL44.glBufferStorage(target, buffer, flags);
     }
 
-    /** @see GLBufferContainer#storage(int, ByteBuffer, int) */
-    public void storage(int target, byte[] bytes, int flags){
-        ByteBuffer buffer = BufferUtils.createByteBuffer(bytes.length);
-        buffer.put(bytes);
-        buffer.flip();
-        storage(target, buffer, flags);
-    }
-
-    /** @see GLBufferContainer#storage(int, ShortBuffer, int) */
-    public void storage(int target, short[] shorts, int flags){
-        ShortBuffer buffer = BufferUtils.createShortBuffer(shorts.length);
-        buffer.put(shorts);
-        buffer.flip();
-        storage(target, buffer, flags);
-    }
-
-    /** @see GLBufferContainer#storage(int, FloatBuffer, int) */
-    public void storage(int target, float[] floats, int flags){
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(floats.length);
-        buffer.put(floats);
-        buffer.flip();
-        storage(target, buffer, flags);
-    }
-
     /** @see GLBufferContainer#storage(int, DoubleBuffer, int) */
     public void storage(int target, double[] doubles, int flags){
         DoubleBuffer buffer = BufferUtils.createDoubleBuffer(doubles.length);
@@ -314,12 +321,8 @@ public class GLBufferContainer implements GLBuffer {
         storage(target, buffer, flags);
     }
 
-    /** @see GLBufferContainer#storage(int, IntBuffer, int) */
-    public void storage(int target, int[] ints, int flags){
-        IntBuffer buffer = BufferUtils.createIntBuffer(ints.length);
-        buffer.put(ints);
-        buffer.flip();
-        storage(target, buffer, flags);
+    public void sub(int target, int offset, long size, ByteBuffer data){
+        GL15.glBufferSubData(target, offset, size, data);
     }
 
 

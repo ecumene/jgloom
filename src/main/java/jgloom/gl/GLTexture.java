@@ -24,7 +24,7 @@ public interface GLTexture {
 
     /**
      * @param texture
-     * @return if an integer corresponds to an OpenGL texture buffer object
+     * @return if an integer corresponds to an OpenGL texture object
      */
     static boolean isTexture(int texture){
         return GL11.glIsTexture(texture);
