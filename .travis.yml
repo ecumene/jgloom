@@ -24,5 +24,5 @@ before_install:
 - export CPLUS_INCLUDE_PATH=$(pwd)/gcc/include/c++/4.9.2:$CPLUS_INCLUDE_PATH
 script:
 - export LWJGL_BUILD_TYPE=nightly
-- gradle assemble
-- gradle build
+- gradle assemble --stacktrace --info
+- gradle check --stacktrace --info
