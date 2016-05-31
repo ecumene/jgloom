@@ -45,6 +45,14 @@ public class GLRenderBufferContainer implements GLRenderBuffer {
         GL30.glRenderbufferStorageMultisample(GL30.GL_RENDERBUFFER, samples, internalformat, width, height);
     }
 
+    /**
+     * @param pname The pname
+     * @return the renderbuffer's parameter value
+     */
+    public int getParameter(int pname){
+        return GL30.glGetRenderbufferParameteri(GL30.GL_RENDERBUFFER, pname);
+    }
+
     @Override
     public int getRenderBuffer() {
         return renderBufferInstance.getRenderBuffer();

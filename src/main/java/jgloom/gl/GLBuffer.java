@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL43;
  * of other things.
  * @see <a href=https://www.opengl.org/wiki/Buffer_Object>opengl.org - Buffer Objects</a>
  */
+@FunctionalInterface
 public interface GLBuffer {
     /** @return The identifier for the buffer object */
     int getBuffer();

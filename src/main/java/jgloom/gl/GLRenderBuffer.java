@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL30;
  * Multisampling (MSAA).
  * @see <a href="https://www.opengl.org/wiki/Renderbuffer_Object">opengl.org - framebuffer object</a>
  */
+@FunctionalInterface
 public interface GLRenderBuffer {
     /** @return The identifier for the renderbuffer */
     int getRenderBuffer();

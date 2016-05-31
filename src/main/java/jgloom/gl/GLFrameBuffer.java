@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL30;
  * can render to non-Default Framebuffer locations, and thus render without disturbing the main screen.
  * @see <a href="https://www.opengl.org/wiki/Framebuffer_Object">opengl.org - framebuffer object</a>
  */
+@FunctionalInterface
 public interface GLFrameBuffer {
     /**The identifier used for binding framebuffer objects using EXT framebuffers and core framebuffers both use
      * integer identifiers.
