@@ -47,6 +47,44 @@ public class GLBufferContainer implements GLBuffer {
     }
 
     /**
+     * Map a buffer object's data store
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param access
+     */
+    public void map(int target, int access){
+        GL15.glMapBuffer(target, access);
+    }
+
+    /**
+     * @see #map(int, int)
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     */
+    public void unmap(int target){
+        GL15.glUnmapBuffer(target);
+    }
+
+    /**
+     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
+     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
+     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
+     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
+     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
+     * @param pname The parameter name
+     * @return The parameter currently set to that name
+     */
+    public int getParameter(int target, int pname){
+        return GL15.glGetBufferParameteri(target, pname);
+    }
+
+    /**
      * glBufferData and glNamedBufferData create a new data store for a buffer object. In case of glBufferData, the
      * buffer object currently bound to target is used. For glNamedBufferData, a buffer object associated with ID
      * specified by the caller in buffer will be used instead.
