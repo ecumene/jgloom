@@ -11,12 +11,10 @@ import jgloom.common.gl.glsl.GLSLShaderContainer;
 
 public class TestGLSLProgram {
     private String fragmentSrc = "varying vec4 vertColor;\n" +
-                                 "\n" +
                                  "void main(){\n" +
                                  "    gl_FragColor = vertColor;\n" +
                                  "}";
     private String vertexSrc = "varying vec4 vertColor;\n" +
-                                "\n" +
                                 "void main(){\n" +
                                 "    gl_Position = gl_ModelViewProjectionMatrix*gl_Vertex;\n" +
                                 "    vertColor = vec4(0.6, 0.3, 0.4, 1.0);\n" +

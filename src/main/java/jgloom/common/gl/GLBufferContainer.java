@@ -367,24 +367,6 @@ public class GLBufferContainer implements GLBuffer {
      *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
      *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
      * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
-     * @param size   the size in bytes of the data store region being returned
-     * @return The buffer
-     */
-    public ByteBuffer getSubByte(int target, long offset, long size){
-        ByteBuffer buffer = null;
-        GL15.glGetBufferSubData(target, offset, size, buffer);
-        return buffer;
-    }
-
-    /**
-     * Returns a subset of a buffer object's data store.
-     *
-     * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER,
-     *               GL_ATOMIC_COUNTER_BUFFER, GL_COPY_READ_BUFFER, GL_COPY_WRITE_BUFFER, GL_DRAW_INDIRECT_BUFFER,
-     *               GL_DISPATCH_INDIRECT_BUFFER, GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER,
-     *               GL_PIXEL_UNPACK_BUFFER, GL_QUERY_BUFFER, GL_SHADER_STORAGE_BUFFER, GL_TEXTURE_BUFFER,
-     *               GL_TRANSFORM_FEEDBACK_BUFFER, or GL_UNIFORM_BUFFER.
-     * @param offset the offset into the buffer object's data store from which data will be returned, measured in bytes
      * @return The buffer
      */
     public ByteBuffer getSubByte(int target, long offset){
@@ -470,14 +452,8 @@ public class GLBufferContainer implements GLBuffer {
      *               GL_ELEMENT_ARRAY_BUFFER, GL_PIXEL_PACK_BUFFER, or GL_PIXEL_UNPACK_BUFFER
      * @param offset Specifies the offset into the buffer object's data store where data replacement will begin,
      *               measured in bytes
-     * @param size Specifies the size in bytes of the data store region being replaced
      * @param data Specifies a pointer to the new data that will be copied into the data store
      */
-    public void sub(int target, int offset, long size, ByteBuffer data){
-        GL15.glBufferSubData(target, offset, size, data);
-    }
-
-    /** ByteBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)} (without the size param)*/
     public void sub(int target, int offset, ByteBuffer data){
         GL15.glBufferSubData(target, offset, data);
     }
@@ -490,7 +466,7 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferSubData(target, offset, buffer);
     }
 
-    /** ShortBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    /** ShortBuffer version of GLBufferContainer{@link #sub(int, int, ByteBuffer)}*/
     public void sub(int target, int offset, ShortBuffer data){
         GL15.glBufferSubData(target, offset, data);
     }
@@ -503,7 +479,7 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferSubData(target, offset, buffer);
     }
 
-    /** FloatBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    /** FloatBuffer version of GLBufferContainer{@link #sub(int, int, ByteBuffer)}*/
     public void sub(int target, int offset, FloatBuffer data){
         GL15.glBufferSubData(target, offset, data);
     }
@@ -516,7 +492,7 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferSubData(target, offset, buffer);
     }
 
-    /** IntBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    /** IntBuffer version of GLBufferContainer{@link #sub(int, int, ByteBuffer)}*/
     public void sub(int target, int offset, IntBuffer data){
         GL15.glBufferSubData(target, offset, data);
     }
@@ -529,7 +505,7 @@ public class GLBufferContainer implements GLBuffer {
         GL15.glBufferSubData(target, offset, buffer);
     }
 
-    /** DoubleBuffer version of GLBufferContainer{@link #sub(int, int, long, ByteBuffer)}*/
+    /** DoubleBuffer version of GLBufferContainer{@link #sub(int, int, ByteBuffer)}*/
     public void sub(int target, int offset, DoubleBuffer data){
         GL15.glBufferSubData(target, offset, data);
     }
