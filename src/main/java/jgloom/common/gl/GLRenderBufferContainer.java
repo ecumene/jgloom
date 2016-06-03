@@ -53,6 +53,13 @@ public class GLRenderBufferContainer implements GLRenderBuffer {
         return GL30.glGetRenderbufferParameteri(GL30.GL_RENDERBUFFER, pname);
     }
 
+    /**
+     * Deletes the renderbuffer using glDeleteRenderbuffers
+     */
+    public void delete(){
+        GL30.glDeleteRenderbuffers(getRenderBuffer());
+    }
+
     @Override
     public int getRenderBuffer() {
         return renderBufferInstance.getRenderBuffer();
