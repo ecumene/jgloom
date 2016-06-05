@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL30;
  */
 @FunctionalInterface
 public interface GLFrameBuffer {
-    /**The identifier used for binding framebuffer objects using EXT framebuffers and core framebuffers both use
+    /**The identifier used for binding framebuffer objects using EXT framebuffers and core framebuffers both enable
      * integer identifiers.
      * @return The procedural component of the framebuffer object */
     int getFrameBuffer();

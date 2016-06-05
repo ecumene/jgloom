@@ -14,7 +14,7 @@ public class TestGLUtil {
     public static void openContext(){
         SharedLibraryLoader.load();
         GLFWWindow.init();
-        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_FALSE);
+        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_TRUE);
         window = new GLFWWindowContainer(GLFWWindow.createWindow(640, 480, "GLFW Window", 0L, 0L));
 
         GLFWWindow.defaultWindowHints();
@@ -33,6 +33,10 @@ public class TestGLUtil {
         });
 
         GL.createCapabilities();
+    }
+
+    public static GLFWWindowContainer getWindow() {
+        return window;
     }
 
     public static void closeContext(){
