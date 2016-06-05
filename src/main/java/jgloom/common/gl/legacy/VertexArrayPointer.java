@@ -1,12 +1,11 @@
 package jgloom.common.gl.legacy;
 
-import jgloom.common.gl.VertexArray;
 import org.lwjgl.opengl.GL11;
 
 /**
  * Uses {@link GL11#glVertexPointer(int, int, int, long)} (legacy opengl) to define an array of vertex data
  */
-public class VertexArrayPointer implements VertexArray {
+public class VertexArrayPointer implements jgloom.common.gl.VertexArrayPointer {
 
     // Mutable because it doesn't really matter... :/
     public int size, type, stride;

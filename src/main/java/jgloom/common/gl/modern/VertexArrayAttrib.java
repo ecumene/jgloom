@@ -1,13 +1,13 @@
 package jgloom.common.gl.modern;
 
-import jgloom.common.gl.VertexArray;
+import jgloom.common.gl.VertexArrayPointer;
 import org.lwjgl.opengl.GL20;
 
 /**
  * Uses {@link GL20#glVertexAttribPointer(int, int, int, boolean, int, long)}  (modern opengl) to define an array of
  * vertex data
  */
-public class VertexArrayAttrib implements VertexArray {
+public class VertexArrayAttrib implements VertexArrayPointer {
     public int     index, size, type, stride;
     public long    pointer;
     public boolean normalized;
