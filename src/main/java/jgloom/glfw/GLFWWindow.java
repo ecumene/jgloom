@@ -75,7 +75,7 @@ public interface GLFWWindow {
     /**
      * This function destroys all remaining windows and cursors, restores any modified gamma ramps and frees any other
      * allocated resources. Once this function is called, you must again call {@link GLFWWindow#init()} successfully \
-     * before you will be able to use most GLFW functions.
+     * before you will be able to enable most GLFW functions.
      * <b>May only be called from the main thread.</b>
      * {@link GLFWWindow#terminate()} can be called before {@link GLFWWindow#init()}
      */
@@ -135,7 +135,7 @@ public interface GLFWWindow {
      * @param width   The desired width, in screen coordinates, of the window. This must be greater than zero.
      * @param height  The desired height, in screen coordinates, of the window. This must be greater than zero.
      * @param title   The initial, UTF-8 encoded window title.
-     * @param monitor The monitor to use for full screen mode, or NULL to use windowed mode.
+     * @param monitor The monitor to enable for full screen mode, or NULL to enable windowed mode.
      * @param share   The window whose context to share resources with, or NULL to not share resources.
      * @return The handle of the created window, or NULL if an error occurred.
      */

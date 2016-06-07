@@ -78,7 +78,7 @@ public class GLFrameBufferContainer implements GLFrameBuffer {
      *                    GL_DEPTH_STENCIL_ATTACHMENT: This is shorthand for "both depth and stencil". The image
      *                    attached becomes both the depth and stencil buffers.
      *
-     *                    Note: If you use GL_DEPTH_STENCIL_ATTACHMENT, you should use a packed depth-stencil internal
+     *                    Note: If you enable GL_DEPTH_STENCIL_ATTACHMENT, you should enable a packed depth-stencil internal
      *                    format for the texture or renderbuffer you are attaching.
      */
     public void setDrawBuffers(IntBuffer attachments) {
@@ -102,7 +102,7 @@ public class GLFrameBufferContainer implements GLFrameBuffer {
      *                    GL_DEPTH_STENCIL_ATTACHMENT: This is shorthand for "both depth and stencil". The image
      *                    attached becomes both the depth and stencil buffers.
      *
-     *                    Note: If you use GL_DEPTH_STENCIL_ATTACHMENT, you should use a packed depth-stencil internal
+     *                    Note: If you enable GL_DEPTH_STENCIL_ATTACHMENT, you should enable a packed depth-stencil internal
      *                    format for the texture or renderbuffer you are attaching.
      */
     public void setDrawBuffers(int ... attachments) {

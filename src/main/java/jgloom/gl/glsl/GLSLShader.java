@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL43;
  * one of the programmable stages of the rendering pipeline.
  * @see <a href=https://www.opengl.org/wiki/Shader>opengl.org - GLSL Shader Objects</a>
  */
+@FunctionalInterface
 public interface GLSLShader {
     /** @return The shader identifier */
     int getGLSLShader();
