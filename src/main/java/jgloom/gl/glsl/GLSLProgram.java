@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL43;
  * called "objects", most of them do not fit within the OpenGL Object paradigm.
  * @see <a href=https://www.opengl.org/wiki/GLSL_Object>opengl.org - GLSL Objects</a>
  */
+@FunctionalInterface
 public interface GLSLProgram {
     /** @return The GLSL program identifier */
     int getGLSLProgram();

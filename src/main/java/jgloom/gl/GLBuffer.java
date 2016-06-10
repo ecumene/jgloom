@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL43;
  * of other things.
  * @see <a href=https://www.opengl.org/wiki/Buffer_Object>opengl.org - Buffer Objects</a>
  */
+@FunctionalInterface
 public interface GLBuffer {
     /** @return The identifier for the buffer object */
     int getBuffer();
@@ -22,5 +23,13 @@ public interface GLBuffer {
     static GLBuffer createBuffer() {
         int buffer = GL15.glGenBuffers();
         return () -> buffer;
+    }
+
+    /**
+     * @param buffer
+     * @return If an integer corresponds to an OpenGL buffer object
+     */
+    static boolean isBuffer(int buffer){
+        return GL15.glIsBuffer(buffer);
     }
 }

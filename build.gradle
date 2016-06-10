@@ -1,8 +1,9 @@
 apply plugin: 'java'
 
 project.ext.jomlVersion = "1.7.0"
-project.ext.joglVersion = "3.0.0-SNAPSHOT"
+project.ext.joglVersion = "3.0.0"
 project.ext.juntVersion = "4.12"
+project.ext.jaclVersion = "3.4"
 
 repositories {
     mavenCentral();
@@ -17,6 +18,8 @@ dependencies {
     compile "org.lwjgl:lwjgl-platform:${joglVersion}:natives-windows"
     compile "org.lwjgl:lwjgl-platform:${joglVersion}:natives-linux"
     compile "org.lwjgl:lwjgl-platform:${joglVersion}:natives-osx"
+
+    compile "org.apache.commons:commons-lang3:${jaclVersion}"
 }
 
 apply plugin: 'idea'; apply plugin: 'eclipse'
