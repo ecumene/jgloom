@@ -1,8 +1,6 @@
 package jgloom.common.glfw;
 
-import jgloom.common.glfw.common.AbstractGLFWMonitor;
 import jgloom.glfw.GLFWMonitor;
-import jgloom.glfw.GLFWWindow;
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWGammaRamp;
