@@ -48,6 +48,10 @@ public class TestOffscreenFramebuffer {
         GL11.glVertex2f(-1,  1); GL11.glTexCoord2f(0, 1);
         GL11.glEnd();
 
+        colorBufferContainer.delete();
+        frameBufferContainer.delete();
+        depthBufferContainer.delete();
+
         TestGLUtil.closeContext();
     }
 }
