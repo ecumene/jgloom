@@ -31,11 +31,6 @@ public class GLBufferContainer extends AbstractGLBuffer {
     }
 
     @Override
-    public boolean isBuffer() {
-        return GL15.glIsBuffer(getBuffer());
-    }
-
-    @Override
     public void data(int target, long size, int usage) {
         GL15.glBufferData(target, size, usage);
     }

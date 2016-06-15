@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL30;
  * reading depth back in a second shader pass), enable Textures instead. Renderbuffer objects also natively accommodate
  * Multisampling (MSAA).
  */
-public class GLRenderBufferContainer implements GLRenderBuffer {
+public class GLRenderBufferContainer extends AbstractGLRenderBuffer {
     private GLRenderBuffer renderBufferInstance;
 
     /**
@@ -18,55 +18,31 @@ public class GLRenderBufferContainer implements GLRenderBuffer {
      * @param renderBufferInstance The renderbuffer to contain
      */
     public GLRenderBufferContainer(GLRenderBuffer renderBufferInstance){
-        this.renderBufferInstance = renderBufferInstance;
+        super(renderBufferInstance);
     }
 
-    /**
-     * Bind a renderbuffer to a renderbuffer target
-     */
+    @Override
     public void bind(){
         GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, renderBufferInstance.getRenderBuffer());
     }
 
-    /**
-     * Establish data storage, format and dimensions of a renderbuffer object's image
-     * @param internalformat Specifies the internal format to enable for the renderbuffer object's image.
-     * @param width          Specifies the width of the renderbuffer, in pixels.
-     * @param height         Specifies the height of the renderbuffer, in pixels.
-     */
+    @Override
     public void storage(int internalformat, int width, int height){
         GL30.glRenderbufferStorage(GL30.GL_RENDERBUFFER, internalformat, width, height);
     }
 
-    /**
-     * Establish data storage, format, dimensions and sample count of a renderbuffer object's image
-     */
+    @Override
     public void storageMultisample(int samples, int internalformat, int width, int height){
         GL30.glRenderbufferStorageMultisample(GL30.GL_RENDERBUFFER, samples, internalformat, width, height);
     }
 
-    /**
-     * @param pname The pname
-     * @return the renderbuffer's parameter value
-     */
+    @Override
     public int getParameter(int pname){
         return GL30.glGetRenderbufferParameteri(GL30.GL_RENDERBUFFER, pname);
     }
 
-    /**
-     * Deletes the renderbuffer using glDeleteRenderbuffers
-     */
+    @Override
     public void delete(){
         GL30.glDeleteRenderbuffers(getRenderBuffer());
-    }
-
-    @Override
-    public int getRenderBuffer() {
-        return renderBufferInstance.getRenderBuffer();
-    }
-
-    /** @return The renderbuffer instance contained  */
-    public GLRenderBuffer getRenderBufferInstance() {
-        return renderBufferInstance;
     }
 }

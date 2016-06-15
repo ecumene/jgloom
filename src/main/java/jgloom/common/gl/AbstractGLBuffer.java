@@ -31,8 +31,6 @@ public abstract class AbstractGLBuffer implements GLBuffer {
     public abstract void bind(int target);
     /** Delete the buffer and free it's data store */
     public abstract void delete();
-    /** @return If this pointer is considered a buffer */
-    public abstract boolean isBuffer();
 
     /**
      *
