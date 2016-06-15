@@ -11,38 +11,24 @@ import org.lwjgl.opengl.GL30;
  *
  * Note: VAOs cannot be shared between OpenGL contexts.
  */
-public class GLVertexArrayContainer implements GLVertexArray {
-    private GLVertexArray vertexArrayInstance;
+public class GLVertexArrayContainer extends AbstractGLVertexArray {
 
     /**
      * Constructs the array container given a pre-computed vertex array object
-     * @param array The object to track
+     * @param vertexArrayInstance The object to track
      */
-    public GLVertexArrayContainer(GLVertexArray array){
-        this.vertexArrayInstance = array;
+    public GLVertexArrayContainer(GLVertexArray vertexArrayInstance){
+        super(vertexArrayInstance);
     }
 
-    /**
-     * Bind a vertex array object
-     */
+    @Override
     public void bind(){
         GL30.glBindVertexArray(getVertexArray());
     }
 
-    /**
-     * Deletes the vertexarray using glDeleteVertexArrays
-     */
+    @Override
     public void delete(){
         GL30.glDeleteVertexArrays(getVertexArray());
     }
 
-    /** @return The container's instance of the vertex array*/
-    public GLVertexArray getVertexArrayInstance() {
-        return vertexArrayInstance;
-    }
-
-    @Override
-    public int getVertexArray() {
-        return vertexArrayInstance.getVertexArray();
-    }
 }
