@@ -1,8 +1,7 @@
 package jgloom.common.gl;
 
-import jgloom.GLNativeException;
-import jgloom.gl.GLFrameBuffer;
-import jgloom.gl.GLRenderBuffer;
+import jgloom.gl.GLFramebuffer;
+import jgloom.gl.GLRenderbuffer;
 import jgloom.gl.GLTexture;
 
 import java.nio.IntBuffer;
@@ -11,18 +10,18 @@ import java.nio.IntBuffer;
  * Framebuffer Objects are OpenGL Objects, which allow for the creation of user-defined Framebuffers. With them, one
  * can render to non-Default Framebuffer locations, and thus render without disturbing the main screen.
  *
- * Use {@link jgloom.gl.GLFrameBuffer} to create {@link jgloom.gl.GLFrameBuffer}s
+ * Use {@link GLFramebuffer} to create {@link GLFramebuffer}s
  * @see <a href="https://www.opengl.org/wiki/Framebuffer_Object">opengl.org - framebuffer object</a>
  */
-public abstract class AbstractGLFrameBuffer implements GLFrameBuffer {
-    private GLFrameBuffer frameBufferInstance;
+public abstract class AbstractGLFramebuffer implements GLFramebuffer {
+    private GLFramebuffer framebufferInstance;
 
     /**
      *
-     * @param frameBufferInstance The framebuffer to track
+     * @param framebufferInstance The framebuffer to track
      */
-    public AbstractGLFrameBuffer(GLFrameBuffer frameBufferInstance){
-        this.frameBufferInstance = frameBufferInstance;
+    public AbstractGLFramebuffer(GLFramebuffer framebufferInstance){
+        this.framebufferInstance = framebufferInstance;
     }
 
     /**
@@ -48,7 +47,7 @@ public abstract class AbstractGLFrameBuffer implements GLFrameBuffer {
      *                     of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE for the specified attachment point is set to
      *                     GL_RENDERBUFFER and the value of GL_FRAMEBUFFER_ATTACHMENT_OBJECT_NAME is set to renderbuffer
      */
-    public abstract void attachRenderBuffer(int target, int attachment, GLRenderBuffer renderBuffer);
+    public abstract void attachRenderBuffer(int target, int attachment, GLRenderbuffer renderBuffer);
     /**
      * @param attachments GL_COLOR_ATTACHMENTi: These are an implementation-dependent number of attachment points.
      *                    You can query GL_MAX_COLOR_ATTACHMENTS to determine the number of color attachments that an
@@ -86,14 +85,14 @@ public abstract class AbstractGLFrameBuffer implements GLFrameBuffer {
 
     @Override
     public int getFrameBuffer() {
-        return frameBufferInstance.getFrameBuffer();
+        return framebufferInstance.getFrameBuffer();
     }
 
     /**
      * @return The framebuffer instance
      */
-    public GLFrameBuffer getFrameBufferInstance()
+    public GLFramebuffer getFrameBufferInstance()
     {
-        return frameBufferInstance;
+        return framebufferInstance;
     }
 }

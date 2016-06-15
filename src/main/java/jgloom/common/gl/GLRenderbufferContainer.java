@@ -1,6 +1,6 @@
 package jgloom.common.gl;
 
-import jgloom.gl.GLRenderBuffer;
+import jgloom.gl.GLRenderbuffer;
 import org.lwjgl.opengl.GL30;
 
 /**
@@ -10,20 +10,20 @@ import org.lwjgl.opengl.GL30;
  * reading depth back in a second shader pass), enable Textures instead. Renderbuffer objects also natively accommodate
  * Multisampling (MSAA).
  */
-public class GLRenderBufferContainer extends AbstractGLRenderBuffer {
-    private GLRenderBuffer renderBufferInstance;
+public class GLRenderbufferContainer extends AbstractGLRenderbuffer {
+    private GLRenderbuffer renderbufferInstance;
 
     /**
      * Contains a single renderbuffer
-     * @param renderBufferInstance The renderbuffer to contain
+     * @param renderbufferInstance The renderbuffer to contain
      */
-    public GLRenderBufferContainer(GLRenderBuffer renderBufferInstance){
-        super(renderBufferInstance);
+    public GLRenderbufferContainer(GLRenderbuffer renderbufferInstance){
+        super(renderbufferInstance);
     }
 
     @Override
     public void bind(){
-        GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, renderBufferInstance.getRenderBuffer());
+        GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, renderbufferInstance.getRenderBuffer());
     }
 
     @Override

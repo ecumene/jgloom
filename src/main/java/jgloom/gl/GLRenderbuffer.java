@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL30;
  * @see <a href="https://www.opengl.org/wiki/Renderbuffer_Object">opengl.org - framebuffer object</a>
  */
 @FunctionalInterface
-public interface GLRenderBuffer {
+public interface GLRenderbuffer {
     /** @return The identifier for the renderbuffer */
     int getRenderBuffer();
 
@@ -19,7 +19,7 @@ public interface GLRenderBuffer {
     int IDENTIFIER = GL30.GL_RENDERBUFFER;
 
     /** @return Renderbuffer object names */
-    static GLRenderBuffer createRenderBuffer() {
+    static GLRenderbuffer createRenderBuffer() {
         int renderBuffer = GL30.glGenRenderbuffers();
         return () -> renderBuffer;
     }

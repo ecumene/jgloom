@@ -7,19 +7,19 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.opengl.GL32;
 
-import jgloom.gl.GLFrameBuffer;
-import jgloom.gl.GLRenderBuffer;
+import jgloom.gl.GLFramebuffer;
+import jgloom.gl.GLRenderbuffer;
 import jgloom.gl.GLTexture;
 
 /**
- * A shell class containing functions for manipulating a given {@link GLFrameBuffer}
+ * A shell class containing functions for manipulating a given {@link GLFramebuffer}
  */
-public class GLFrameBufferContainer extends AbstractGLFrameBuffer {
+public class GLFramebufferContainer extends AbstractGLFramebuffer {
 
     /**
      * @param frameBufferInstance The framebuffer to track
      */
-    public GLFrameBufferContainer(GLFrameBuffer frameBufferInstance)
+    public GLFramebufferContainer(GLFramebuffer frameBufferInstance)
     {
         super(frameBufferInstance);
     }
@@ -35,7 +35,7 @@ public class GLFrameBufferContainer extends AbstractGLFrameBuffer {
     }
 
     @Override
-    public void attachRenderBuffer(int target, int attachment, GLRenderBuffer renderBuffer) {
+    public void attachRenderBuffer(int target, int attachment, GLRenderbuffer renderBuffer) {
         // The 3rd is a symbolic constant (aka they added it to be cheeky)
         GL30.glFramebufferRenderbuffer(target, attachment, GL30.GL_RENDERBUFFER, renderBuffer.getRenderBuffer());
     }

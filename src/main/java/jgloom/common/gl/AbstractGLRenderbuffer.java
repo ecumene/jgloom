@@ -1,7 +1,6 @@
 package jgloom.common.gl;
 
-import jgloom.gl.GLRenderBuffer;
-import org.lwjgl.opengl.GL30;
+import jgloom.gl.GLRenderbuffer;
 
 /**
  * Renderbuffer Objects are OpenGL Objects that contain images. They are created and used specifically with Framebuffer
@@ -12,15 +11,15 @@ import org.lwjgl.opengl.GL30;
  *
  * AbstractRenderBuffer methods do not take targets because their target is always GL_RENDERBUFFER
  */
-public abstract class AbstractGLRenderBuffer implements GLRenderBuffer {
-    private GLRenderBuffer renderBufferInstance;
+public abstract class AbstractGLRenderbuffer implements GLRenderbuffer {
+    private GLRenderbuffer renderbufferInstance;
 
     /**
      * Contains a single renderbuffer
-     * @param renderBufferInstance The renderbuffer to contain
+     * @param renderbufferInstance The renderbuffer to contain
      */
-    public AbstractGLRenderBuffer(GLRenderBuffer renderBufferInstance){
-        this.renderBufferInstance = renderBufferInstance;
+    public AbstractGLRenderbuffer(GLRenderbuffer renderbufferInstance){
+        this.renderbufferInstance = renderbufferInstance;
     }
 
     /**
@@ -54,11 +53,11 @@ public abstract class AbstractGLRenderBuffer implements GLRenderBuffer {
 
     @Override
     public int getRenderBuffer() {
-        return renderBufferInstance.getRenderBuffer();
+        return renderbufferInstance.getRenderBuffer();
     }
 
     /** @return The renderbuffer instance contained  */
-    public GLRenderBuffer getRenderBufferInstance() {
-        return renderBufferInstance;
+    public GLRenderbuffer getRenderBufferInstance() {
+        return renderbufferInstance;
     }
 }

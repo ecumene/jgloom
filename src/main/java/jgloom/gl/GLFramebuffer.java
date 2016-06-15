@@ -1,6 +1,5 @@
 package jgloom.gl;
 
-import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL30;
 
 /**
@@ -9,7 +8,7 @@ import org.lwjgl.opengl.GL30;
  * @see <a href="https://www.opengl.org/wiki/Framebuffer_Object">opengl.org - framebuffer object</a>
  */
 @FunctionalInterface
-public interface GLFrameBuffer {
+public interface GLFramebuffer {
     /**The identifier used for binding framebuffer objects using EXT framebuffers and core framebuffers both enable
      * integer identifiers.
      * @return The procedural component of the framebuffer object */
@@ -21,9 +20,9 @@ public interface GLFrameBuffer {
     /**
      * @return A constructed framebuffer with glGenFrameBuffers
      */
-    static GLFrameBuffer createFrameBuffer() {
-        int frameBuffer = GL30.glGenFramebuffers();
-        return () -> frameBuffer;
+    static GLFramebuffer createFrameBuffer() {
+        int framebuffer = GL30.glGenFramebuffers();
+        return () -> framebuffer;
     }
 
     /**
