@@ -186,6 +186,17 @@ public abstract class AbstractGLBuffer implements GLBuffer {
     public abstract boolean unmap(int target);
 
     /**
+     * Makes the buffer's contents undefined
+     */
+    public abstract void invalidate();
+    /**
+     * Makes the buffer's contents undefined
+     * @param offset The beginning value
+     * @param size   The size of the subrange
+     */
+    public abstract void invalidateRange(int offset, int size);
+
+    /**
      * Return parameters of a buffer object
      * @param target Specifies the target buffer object. The symbolic constant must be GL_ARRAY_BUFFER or
      *               GL_ELEMENT_ARRAY_BUFFER.

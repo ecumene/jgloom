@@ -201,6 +201,16 @@ public class GLBufferContainer extends AbstractGLBuffer {
     }
 
     @Override
+    public void invalidate() {
+        GL43.glInvalidateBufferData(getBuffer());
+    }
+
+    @Override
+    public void invalidateRange(int offset, int size) {
+        GL43.glInvalidateBufferSubData(getBuffer(), offset, size);
+    }
+
+    @Override
     public IntBuffer getParameters(int target, int pname) {
         IntBuffer out = null;
         GL15.glGetBufferParameteriv(target, pname, out);
