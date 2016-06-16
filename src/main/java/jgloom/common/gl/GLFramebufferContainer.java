@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL32;
 import jgloom.gl.GLFramebuffer;
 import jgloom.gl.GLRenderbuffer;
 import jgloom.gl.GLTexture;
+import org.lwjgl.opengl.GL43;
 
 /**
  * A shell class containing functions for manipulating a given {@link GLFramebuffer}
@@ -36,7 +37,6 @@ public class GLFramebufferContainer extends AbstractGLFramebuffer {
 
     @Override
     public void attachRenderBuffer(int target, int attachment, GLRenderbuffer renderBuffer) {
-        // The 3rd is a symbolic constant (aka they added it to be cheeky)
         GL30.glFramebufferRenderbuffer(target, attachment, GL30.GL_RENDERBUFFER, renderBuffer.getRenderBuffer());
     }
 
@@ -58,6 +58,23 @@ public class GLFramebufferContainer extends AbstractGLFramebuffer {
     @Override
     public int getStatus(int target) {
         return GL30.glCheckFramebufferStatus(target);
+    }
+
+    @Override
+    public void setParameter(int target, int pname, int param) {
+        GL43.glFramebufferParameteri(target, pname, param);
+    }
+
+    @Override
+    public int getParameter(int target, int pname) {
+        return GL43.glGetFramebufferParameteri(target, pname);
+    }
+
+    @Override
+    public int[] getParameterv(int target, int pname) {
+        int[] out = null;
+        GL43.glGetFramebufferParameteriv(target, pname, out);
+        return out;
     }
 
     /**

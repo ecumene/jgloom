@@ -79,6 +79,28 @@ public abstract class AbstractGLFramebuffer implements GLFramebuffer {
     public abstract int getStatus(int target);
 
     /**
+     * Set a named parameter of a framebuffer
+     * @param target The target of the operation, which must be GL_READ_FRAMEBUFFER, GL_DRAW_FRAMEBUFFER or GL_FRAMEBUFFER.
+     * @param pname  A token indicating the parameter to be modified.
+     * @param param  The new parameter
+     */
+    public abstract void setParameter(int target, int pname, int param);
+
+    /**
+     * @param target The target of the operation, which must be GL_READ_FRAMEBUFFER, GL_DRAW_FRAMEBUFFER or GL_FRAMEBUFFER.
+     * @param pname  The parameter's name
+     * @return pname's value
+     */
+    public abstract int getParameter(int target, int pname);
+
+    /**
+     * @param target The target of the operation, which must be GL_READ_FRAMEBUFFER, GL_DRAW_FRAMEBUFFER or GL_FRAMEBUFFER.
+     * @param pname  The parameter's name
+     * @return pname's value
+     */
+    public abstract int[] getParameterv(int target, int pname);
+
+    /**
      * Deletes the FBO and frees the memory
      */
     public abstract void delete();
