@@ -106,6 +106,76 @@ public class GLBufferContainer extends AbstractGLBuffer {
     }
 
     @Override
+    public void storage(int target, ByteBuffer data, int flags) {
+        GL44.glBufferStorage(target, data, flags);
+    }
+
+    @Override
+    public void storage(int target, ShortBuffer data, int flags) {
+        GL44.glBufferStorage(target, data, flags);
+    }
+
+    @Override
+    public void storage(int target, IntBuffer data, int flags) {
+        GL44.glBufferStorage(target, data, flags);
+    }
+
+    @Override
+    public void storage(int target, FloatBuffer data, int flags) {
+        GL44.glBufferStorage(target, data, flags);
+    }
+
+    @Override
+    public void storage(int target, DoubleBuffer data, int flags) {
+        GL44.glBufferStorage(target, data, flags);
+    }
+
+    @Override
+    public void storage(int target, long size, int flags) {
+        GL44.glBufferStorage(target, size, flags);
+    }
+
+    @Override
+    public void clear(int target, int internalformat, int format, int type, ByteBuffer data) {
+        GL43.glClearBufferData(target, internalformat, format, type, data);
+    }
+
+    @Override
+    public void clear(int target, int internalformat, int format, int type, ShortBuffer data) {
+        GL43.glClearBufferData(target, internalformat, format, type, data);
+    }
+
+    @Override
+    public void clear(int target, int internalformat, int format, int type, IntBuffer data) {
+        GL43.glClearBufferData(target, internalformat, format, type, data);
+    }
+
+    @Override
+    public void clear(int target, int internalformat, int format, int type, FloatBuffer data) {
+        GL43.glClearBufferData(target, internalformat, format, type, data);
+    }
+
+    @Override
+    public void subClear(int target, int internalformat, long offset, long size, int format, int type, ByteBuffer data) {
+        GL43.glClearBufferSubData(target, internalformat, offset, size, format, type, data);
+    }
+
+    @Override
+    public void subClear(int target, int internalformat, long offset, long size, int format, int type, ShortBuffer data) {
+        GL43.glClearBufferSubData(target, internalformat, offset, size, format, type, data);
+    }
+
+    @Override
+    public void subClear(int target, int internalformat, long offset, long size, int format, int type, IntBuffer data) {
+        GL43.glClearBufferSubData(target, internalformat, offset, size, format, type, data);
+    }
+
+    @Override
+    public void subClear(int target, int internalformat, long offset, long size, int format, int type, FloatBuffer data) {
+        GL43.glClearBufferSubData(target, internalformat, offset, size, format, type, data);
+    }
+
+    @Override
     public void getSubData(int target, long offset, DoubleBuffer data) {
         GL15.glGetBufferSubData(target, offset, data);
     }

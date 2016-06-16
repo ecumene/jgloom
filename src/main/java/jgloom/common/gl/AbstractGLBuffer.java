@@ -1,6 +1,8 @@
 package jgloom.common.gl;
 
 import jgloom.gl.GLBuffer;
+import org.lwjgl.opengl.GL43;
+import org.lwjgl.opengl.GL44;
 
 import java.nio.*;
 
@@ -55,6 +57,73 @@ public abstract class AbstractGLBuffer implements GLBuffer {
     public abstract void data(int target, FloatBuffer data, int usage);
     /**@see #data(int, ByteBuffer, int)  */
     public abstract void data(int target, DoubleBuffer data, int usage);
+
+    /**
+     * Much like immutable storage textures, the storage for buffer objects can be allocated immutably. When this is
+     * done, you will be unable to reallocate that storage. You may still invalidate it with an explicit invalidation
+     * command or through mapping the buffer. But you cannot do the glBufferData(..., NULL)​ trick to invalidate it if
+     * the storage is immutable.
+     *
+     * @param target parameter is just like the one for glBindBuffer​; it says which bound buffer to modify. size​
+     *               represents how many bytes you want to allocate in this buffer object
+     * @param size   the size of the data store in basic machine units
+     * @param flags  The flags​ field sets up a contract between you and OpenGL, describing how you may and may not
+     *               access the contents of the buffer.
+     */
+    public abstract void storage(int target, long size, int flags);
+    /**@see AbstractGLBuffer#storage(int, long, int) */
+    public abstract void storage(int target, ByteBuffer data, int flags);
+    /**@see AbstractGLBuffer#storage(int, ByteBuffer, int) */
+    public abstract void storage(int target, ShortBuffer data, int flags);
+    /**@see AbstractGLBuffer#storage(int, ByteBuffer, int) */
+    public abstract void storage(int target, IntBuffer data, int flags);
+    /**@see AbstractGLBuffer#storage(int, ByteBuffer, int) */
+    public abstract void storage(int target, FloatBuffer data, int flags);
+    /**@see AbstractGLBuffer#storage(int, ByteBuffer, int) */
+    public abstract void storage(int target, DoubleBuffer data, int flags);
+
+    /**
+     * A buffer object's storage can be cleared, in part or in full, to a specific value. These functions work in a
+     * similar fashion to Pixel Transfer operations
+     * @param target         is just like the one for glBindBuffer​; it says which bound buffer to be cleared.
+     * @param internalformat must be a sized Image Format, but only of the kind that can be used for buffer textures.
+     *                       This defines how OpenGL will store the data in the buffer object. format​ and type​ operate
+     *                       as normal for Pixel Transfer operations
+     * @param format         the format of the data in memory addressed by {@code data}.
+     * @param type           the type of the data in memory addressed by {@code data}.
+     * @param data           the buffer containing the data to be used as the source of the constant fill value. The elements of data are converted by the GL into the format
+     *                       specified by internalformat, and then used to fill the specified range of the destination buffer. If data is {@code NULL}, then it is ignored and the
+     *                       sub-range of the buffer is filled with zeros.
+     */
+    public abstract void clear(int target, int internalformat, int format, int type, ByteBuffer data);
+    /**@see #clear(int, int, int, int, ByteBuffer) */
+    public abstract void clear(int target, int internalformat, int format, int type, ShortBuffer data);
+    /**@see #clear(int, int, int, int, ByteBuffer) */
+    public abstract void clear(int target, int internalformat, int format, int type, IntBuffer data);
+    /**@see #clear(int, int, int, int, ByteBuffer) */
+    public abstract void clear(int target, int internalformat, int format, int type, FloatBuffer data);
+
+    /**
+     * Fills all or part of buffer object's data store with a fixed value.
+     * @param target         is just like the one for glBindBuffer​; it says which bound buffer to be cleared.
+     * @param internalformat must be a sized Image Format, but only of the kind that can be used for buffer textures.
+     *                       This defines how OpenGL will store the data in the buffer object. format​ and type​ operate
+     *                       as normal for Pixel Transfer operations
+     * @param offset         the offset, in basic machine units into the buffer object's data store at which to start filling
+     * @param size           the size, in basic machine units of the range of the data store to fill
+     * @param format         the format of the data in memory addressed by {@code data}.
+     * @param type           the type of the data in memory addressed by {@code data}.
+     * @param data           the buffer containing the data to be used as the source of the constant fill value. The elements of data are converted by the GL into the format
+     *                       specified by internalformat, and then used to fill the specified range of the destination buffer. If data is {@code NULL}, then it is ignored and the
+     *                       sub-range of the buffer is filled with zeros.
+     */
+    public abstract void subClear(int target, int internalformat, long offset, long size, int format, int type, ByteBuffer data);
+    /**@see #subClear(int, int, long, long, int, int, ByteBuffer)  */
+    public abstract void subClear(int target, int internalformat, long offset, long size, int format, int type, ShortBuffer data);
+    /**@see #subClear(int, int, long, long, int, int, ByteBuffer)  */
+    public abstract void subClear(int target, int internalformat, long offset, long size, int format, int type, IntBuffer data);
+    /**@see #subClear(int, int, long, long, int, int, ByteBuffer)  */
+    public abstract void subClear(int target, int internalformat, long offset, long size, int format, int type, FloatBuffer data);
 
     /**
      * Updates a subset of a buffer object's data store
