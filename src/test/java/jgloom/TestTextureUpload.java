@@ -36,6 +36,8 @@ public class TestTextureUpload {
         textureContainer.parameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         textureContainer.parameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 
+        textureContainer.delete();
+
         TestGLUtil.closeContext();
     }
 }

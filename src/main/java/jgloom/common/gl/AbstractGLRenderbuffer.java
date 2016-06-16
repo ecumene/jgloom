@@ -1,7 +1,6 @@
 package jgloom.common.gl;
 
-import jgloom.gl.GLRenderBuffer;
-import org.lwjgl.opengl.GL30;
+import jgloom.gl.GLRenderbuffer;
 
 /**
  * Renderbuffer Objects are OpenGL Objects that contain images. They are created and used specifically with Framebuffer
@@ -9,24 +8,24 @@ import org.lwjgl.opengl.GL30;
  * do not need to sample (i.e. in a post-pass shader) from the produced image. If you need to resample (such as when
  * reading depth back in a second shader pass), enable Textures instead. Renderbuffer objects also natively accommodate
  * Multisampling (MSAA).
+ *
+ * AbstractRenderBuffer methods do not take targets because their target is always GL_RENDERBUFFER
  */
-public class GLRenderBufferContainer implements GLRenderBuffer {
-    private GLRenderBuffer renderBufferInstance;
+public abstract class AbstractGLRenderbuffer implements GLRenderbuffer {
+    private GLRenderbuffer renderbufferInstance;
 
     /**
      * Contains a single renderbuffer
-     * @param renderBufferInstance The renderbuffer to contain
+     * @param renderbufferInstance The renderbuffer to contain
      */
-    public GLRenderBufferContainer(GLRenderBuffer renderBufferInstance){
-        this.renderBufferInstance = renderBufferInstance;
+    public AbstractGLRenderbuffer(GLRenderbuffer renderbufferInstance){
+        this.renderbufferInstance = renderbufferInstance;
     }
 
     /**
      * Bind a renderbuffer to a renderbuffer target
      */
-    public void bind(){
-        GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, renderBufferInstance.getRenderBuffer());
-    }
+    public abstract void bind();
 
     /**
      * Establish data storage, format and dimensions of a renderbuffer object's image
@@ -34,39 +33,31 @@ public class GLRenderBufferContainer implements GLRenderBuffer {
      * @param width          Specifies the width of the renderbuffer, in pixels.
      * @param height         Specifies the height of the renderbuffer, in pixels.
      */
-    public void storage(int internalformat, int width, int height){
-        GL30.glRenderbufferStorage(GL30.GL_RENDERBUFFER, internalformat, width, height);
-    }
+    public abstract void storage(int internalformat, int width, int height);
 
     /**
      * Establish data storage, format, dimensions and sample count of a renderbuffer object's image
      */
-    public void storageMultisample(int samples, int internalformat, int width, int height){
-        GL30.glRenderbufferStorageMultisample(GL30.GL_RENDERBUFFER, samples, internalformat, width, height);
-    }
+    public abstract void storageMultisample(int samples, int internalformat, int width, int height);
 
     /**
      * @param pname The pname
      * @return the renderbuffer's parameter value
      */
-    public int getParameter(int pname){
-        return GL30.glGetRenderbufferParameteri(GL30.GL_RENDERBUFFER, pname);
-    }
+    public abstract int getParameter(int pname);
 
     /**
-     * Deletes the renderbuffer using glDeleteRenderbuffers
+     * Deletes the renderbuffer and frees up memory
      */
-    public void delete(){
-        GL30.glDeleteRenderbuffers(getRenderBuffer());
-    }
+    public abstract void delete();
 
     @Override
     public int getRenderBuffer() {
-        return renderBufferInstance.getRenderBuffer();
+        return renderbufferInstance.getRenderBuffer();
     }
 
     /** @return The renderbuffer instance contained  */
-    public GLRenderBuffer getRenderBufferInstance() {
-        return renderBufferInstance;
+    public GLRenderbuffer getRenderBufferInstance() {
+        return renderbufferInstance;
     }
 }

@@ -1,6 +1,5 @@
 package jgloom.common.glfw;
 
-import jgloom.common.glfw.common.AbstractGLFWWindow;
 import jgloom.glfw.GLFWWindow;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;

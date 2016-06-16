@@ -1,4 +1,4 @@
-package jgloom.common.glfw.common;
+package jgloom.common.glfw;
 
 import jgloom.glfw.GLFWMonitor;
 import jgloom.glfw.GLFWWindow;
@@ -9,6 +9,15 @@ import org.lwjgl.glfw.GLFWVidMode;
  * A shell class containing functions for manipulating a given {@link GLFWWindow}
  */
 public abstract class AbstractGLFWMonitor implements GLFWMonitor {
+    private GLFWMonitor monitorInstance;
+
+    /**
+     * @param monitorInstance
+     */
+    public AbstractGLFWMonitor(GLFWMonitor monitorInstance){
+        this.monitorInstance = monitorInstance;
+    }
+
     /**This function returns the current video mode of the specified monitor. If you have created a full screen window
      * for that monitor, the return value will depend on whether that window is iconified.
      * @return The current mode of the monitor, or NULL if an error occurred.*/
@@ -39,4 +48,12 @@ public abstract class AbstractGLFWMonitor implements GLFWMonitor {
      */
     public abstract void setGammaRamp(GLFWGammaRamp ramp);
 
+    @Override
+    public long getGLFWMonitor() {
+        return monitorInstance.getGLFWMonitor();
+    }
+
+    public GLFWMonitor getMonitorInstance() {
+        return monitorInstance;
+    }
 }

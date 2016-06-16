@@ -50,7 +50,6 @@ public class TestGLSLProgram {
         GL11.glVertex2f(0, 1);
         GL11.glEnd();
 
-
         program.destroy();
 
         TestGLUtil.closeContext();

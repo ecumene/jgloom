@@ -1,10 +1,10 @@
 package jgloom;
 
-import jgloom.common.gl.GLFrameBufferContainer;
-import jgloom.common.gl.GLRenderBufferContainer;
+import jgloom.common.gl.GLFramebufferContainer;
+import jgloom.common.gl.GLRenderbufferContainer;
 import jgloom.common.gl.GLTextureContainer;
-import jgloom.gl.GLFrameBuffer;
-import jgloom.gl.GLRenderBuffer;
+import jgloom.gl.GLFramebuffer;
+import jgloom.gl.GLRenderbuffer;
 import jgloom.gl.GLTexture;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
@@ -15,8 +15,8 @@ public class TestOffscreenFramebuffer {
     public void testOffscreenFramebuffer() {
         TestGLUtil.openContext();
         GLTextureContainer      colorBufferContainer = new GLTextureContainer(GLTexture.createTexture());
-        GLFrameBufferContainer  frameBufferContainer = new GLFrameBufferContainer(GLFrameBuffer.createFrameBuffer());
-        GLRenderBufferContainer depthBufferContainer = new GLRenderBufferContainer(GLRenderBuffer.createRenderBuffer());
+        GLFramebufferContainer frameBufferContainer = new GLFramebufferContainer(GLFramebuffer.createFrameBuffer());
+        GLRenderbufferContainer depthBufferContainer = new GLRenderbufferContainer(GLRenderbuffer.createRenderBuffer());
 
         colorBufferContainer.bind(GL11.GL_TEXTURE_2D);
         colorBufferContainer.image2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 100, 100, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, 0);
@@ -47,6 +47,10 @@ public class TestOffscreenFramebuffer {
         GL11.glVertex2f( 1,  1); GL11.glTexCoord2f(1, 1);
         GL11.glVertex2f(-1,  1); GL11.glTexCoord2f(0, 1);
         GL11.glEnd();
+
+        colorBufferContainer.delete();
+        frameBufferContainer.delete();
+        depthBufferContainer.delete();
 
         TestGLUtil.closeContext();
     }
