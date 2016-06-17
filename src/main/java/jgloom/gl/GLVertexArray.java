@@ -13,16 +13,16 @@ import org.lwjgl.opengl.GL30;
  */
 @FunctionalInterface
 public interface GLVertexArray {
-    /** @return The texture's identifier */
+    /** @return The vertex array's identifier */
     int getVertexArray();
 
-    /** The OpenGL texture object identifier */
+    /** The OpenGL vertex array object identifier */
     int IDENTIFIER = GL11.GL_VERTEX_ARRAY;
 
     /**
      * @return A constructed vertex array with glGenVertexArrays
      */
-    static GLVertexArray createTexture() {
+    static GLVertexArray createVertexArray() {
         int vao = GL30.glGenVertexArrays();
         return () -> vao;
     }
