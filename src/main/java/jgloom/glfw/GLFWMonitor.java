@@ -45,7 +45,7 @@ public interface GLFWMonitor {
         // I give up dealing with foreach
         // I don't really care if it works
 
-        List<Long> pointers = new LinkedList();
+        List<Long> pointers = new LinkedList<Long>();
         PointerBuffer buffer = GLFW.glfwGetMonitors();
         for (int i = 0; i < buffer.limit(); i++) pointers.add(buffer.get(i));
 

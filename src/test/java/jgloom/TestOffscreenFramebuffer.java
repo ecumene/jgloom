@@ -20,8 +20,8 @@ public class TestOffscreenFramebuffer {
 
         colorBufferContainer.bind(GL11.GL_TEXTURE_2D);
         colorBufferContainer.image2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 100, 100, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, 0);
-        colorBufferContainer.parameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-        colorBufferContainer.parameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+        colorBufferContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        colorBufferContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
         // Bind the depth render buffer and add a depth component
         depthBufferContainer.bind();
         depthBufferContainer.storage(GL11.GL_DEPTH_COMPONENT, 100, 100);

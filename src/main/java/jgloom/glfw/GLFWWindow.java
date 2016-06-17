@@ -1,12 +1,8 @@
 package jgloom.glfw;
 
-import jgloom.GLNativeException;
-import jgloom.common.glfw.GLFWVersion;
 import jgloom.common.glfw.GLFWWindowContainer;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
-import java.nio.IntBuffer;
 
 /**
  * Represents a single GLFW window object
@@ -92,7 +88,7 @@ public interface GLFWWindow {
      * @return  the major, minor and revision numbers of the GLFW library. It is intended for when you are using GLFW
      *          as a shared library and want to ensure that you are using the minimum required version
      */
-    static GLFWVersion getVersion() {
+    /* static GLFWVersion getVersion() {
         // Ugly... But it works!
         final IntBuffer major = BufferUtils.createIntBuffer(1);
         final IntBuffer minor = BufferUtils.createIntBuffer(1);
@@ -116,7 +112,7 @@ public interface GLFWWindow {
                 return patch.get(0);
             }
         };
-    }
+    } */
 
     /**
      * This function returns the compile-time generated version string of the GLFW library binary. It describes the

@@ -33,8 +33,8 @@ public class TestTextureUpload {
         GLTextureContainer textureContainer = new GLTextureContainer(GLTexture.createTexture());
         textureContainer.bind(GL11.GL_TEXTURE_2D);
         textureContainer.image2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 3, 3, 0, GL11.GL_RGB, GL11.GL_FLOAT, buffer);
-        textureContainer.parameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-        textureContainer.parameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+        textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 
         textureContainer.delete();
 

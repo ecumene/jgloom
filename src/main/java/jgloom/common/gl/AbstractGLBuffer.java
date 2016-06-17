@@ -1,8 +1,6 @@
 package jgloom.common.gl;
 
 import jgloom.gl.GLBuffer;
-import org.lwjgl.opengl.GL43;
-import org.lwjgl.opengl.GL44;
 
 import java.nio.*;
 
