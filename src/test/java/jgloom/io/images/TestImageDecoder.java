@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import jgloom.io.images.decoding.ImageDecoder;
 
+/**
+ * Tests loading RGB or RGBA data from BMP, GIF, JPEG, PNG, and TIFF images
+ */
 public class TestImageDecoder {
     private void testLoad(String path) throws IOException {
         System.out.println("Contents of " + path);

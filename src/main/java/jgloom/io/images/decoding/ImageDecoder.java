@@ -11,7 +11,18 @@ import org.lwjgl.BufferUtils;
 
 import jgloom.io.images.ImageDataCallback;
 
+/**
+ * Decodes BMP, GIF, JPEG, PNG, and TIFF graphics into useful data
+ */
 public class ImageDecoder {
+    /**
+     * Decodes BMP, GIF, JPEG, PNG, and TIFF images from the given {@link InputStream} and loads the image data into a
+     * {@link FloatBuffer}
+     * @param input {@link InputStream} to read image data from
+     * @param callback Object to pass image width, height, and hasAlpha through
+     * @return {@link FloatBuffer} containing RGB or RGBA data (depending on alpha channel) of image
+     * @throws IOException In case image loading fails
+     */
     public static FloatBuffer decodeImage(InputStream input, ImageDataCallback callback) throws IOException {
         BufferedImage image = ImageIO.read(input);
         callback.width = image.getWidth();
@@ -36,6 +47,13 @@ public class ImageDecoder {
         return buffer;
     }
 
+    /**
+     * Decodes BMP, GIF, JPEG, PNG, and TIFF images from the given {@link InputStream} and loads the image data into a
+     * {@link FloatBuffer}
+     * @param input {@link InputStream} to read image data from
+     * @return {@link FloatBuffer} containing RGB or RGBA data (depending on alpha channel) of image
+     * @throws IOException In case image loading fails
+     */
     public static FloatBuffer decodeImage(InputStream input) throws IOException {
         return decodeImage(input, new ImageDataCallback());
     }
