@@ -17,6 +17,8 @@ dependencies {
     compile "org.lwjgl:lwjgl-platform:${joglVersion}:natives-windows"
     compile "org.lwjgl:lwjgl-platform:${joglVersion}:natives-linux"
     compile "org.lwjgl:lwjgl-platform:${joglVersion}:natives-osx"
+    
+    compile "com.twelvemonkeys.imageio:imageio-tiff:3.2.1"
 }
 
 apply plugin: 'idea'; apply plugin: 'eclipse'
