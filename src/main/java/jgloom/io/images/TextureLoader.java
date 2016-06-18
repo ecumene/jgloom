@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.FloatBuffer;
 
+import org.lwjgl.opengl.GL11;
+
 import jgloom.common.gl.GLTextureContainer;
 import jgloom.gl.GLTexture;
 import jgloom.io.images.decoding.ImageDecoder;
@@ -24,7 +26,8 @@ public class TextureLoader {
         GLTexture texture = GLTexture.createTexture();
         GLTextureContainer container = new GLTextureContainer(texture);
         FloatBuffer data = ImageDecoder.decodeImage(input, callback);
-        // TODO: Upload data to texture
+        container.bind(GL11.GL_TEXTURE_2D);
+        container.image2D(GL11.GL_TEXTURE_2D, 0, callback.hasAlpha ? GL11.GL_RGBA8 : GL11.GL_RGB8, callback.width, callback.height, 0, callback.hasAlpha ? GL11.GL_RGBA : GL11.GL_RGB, GL11.GL_FLOAT, data);
         return texture;
     }
     
