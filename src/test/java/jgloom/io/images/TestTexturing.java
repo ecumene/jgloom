@@ -20,8 +20,9 @@ public class TestTexturing {
         TestGLUtil.openContext();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         InputStream in = TestImageDecoder.class.getClassLoader().getResourceAsStream("textures/test/tiny/2x2.png");
-        GLTexture loaded = TextureLoader.loadTexture(in);
-        GLTextureContainer cont = new GLTextureContainer(loaded);
+        GLTexture texture = GLTexture.createTexture();
+        TextureLoader.loadTexture2D(texture, in);
+        GLTextureContainer cont = new GLTextureContainer(texture);
         cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
         cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
         cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
