@@ -3,6 +3,8 @@ package jgloom;
 import jgloom.common.gl.GLFramebufferContainer;
 import jgloom.common.gl.GLRenderbufferContainer;
 import jgloom.common.gl.GLTextureContainer;
+import jgloom.concurrent.NonConcurrentTest;
+import jgloom.concurrent.RunInThread;
 import jgloom.gl.GLFramebuffer;
 import jgloom.gl.GLRenderbuffer;
 import jgloom.gl.GLTexture;
@@ -10,12 +12,14 @@ import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
-public class TestOffscreenFramebuffer {
+public class TestOffscreenFramebuffer extends NonConcurrentTest {
     @Test
+    @RunInThread
+
     public void testOffscreenFramebuffer() {
         TestGLUtil.openContext();
         GLTextureContainer      colorBufferContainer = new GLTextureContainer(GLTexture.createTexture());
-        GLFramebufferContainer frameBufferContainer = new GLFramebufferContainer(GLFramebuffer.createFrameBuffer());
+        GLFramebufferContainer  frameBufferContainer = new GLFramebufferContainer(GLFramebuffer.createFrameBuffer());
         GLRenderbufferContainer depthBufferContainer = new GLRenderbufferContainer(GLRenderbuffer.createRenderBuffer());
 
         colorBufferContainer.bind(GL11.GL_TEXTURE_2D);

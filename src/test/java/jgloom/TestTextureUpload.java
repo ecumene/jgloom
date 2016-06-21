@@ -1,6 +1,8 @@
 package jgloom;
 
 import jgloom.common.gl.GLTextureContainer;
+import jgloom.concurrent.NonConcurrentTest;
+import jgloom.concurrent.RunInThread;
 import jgloom.gl.GLTexture;
 import org.junit.Test;
 import org.lwjgl.BufferUtils;
@@ -8,8 +10,9 @@ import org.lwjgl.opengl.GL11;
 
 import java.nio.FloatBuffer;
 
-public class TestTextureUpload {
+public class TestTextureUpload extends NonConcurrentTest {
     @Test
+    @RunInThread
     public void testTextureUpload(){
         TestGLUtil.openContext();
         float[] texture = new float[]{

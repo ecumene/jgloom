@@ -23,7 +23,7 @@ public class GLRenderbufferContainer extends AbstractGLRenderbuffer {
 
     @Override
     public void bind(){
-        GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, renderbufferInstance.getRenderBuffer());
+        GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, getRenderBuffer());
     }
 
     @Override
