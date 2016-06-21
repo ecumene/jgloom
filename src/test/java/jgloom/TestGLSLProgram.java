@@ -8,8 +8,8 @@ import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
-import jgloom.common.gl.glsl.GLSLProgramContainer;
-import jgloom.common.gl.glsl.GLSLShaderContainer;
+import jgloom.lwjgl.gl.glsl.GLSLProgramContainer;
+import jgloom.lwjgl.gl.glsl.GLSLShaderContainer;
 
 public class TestGLSLProgram extends NonConcurrentTest {
     private String fragmentSrc = "varying vec4 vertColor;\n" +

@@ -1,8 +1,8 @@
 package jgloom;
 
-import jgloom.common.gl.GLFramebufferContainer;
-import jgloom.common.gl.GLRenderbufferContainer;
-import jgloom.common.gl.GLTextureContainer;
+import jgloom.lwjgl.gl.GLFramebufferContainer;
+import jgloom.lwjgl.gl.GLRenderbufferContainer;
+import jgloom.lwjgl.gl.GLTextureContainer;
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
 import jgloom.gl.GLFramebuffer;

@@ -2,11 +2,11 @@ package jgloom;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import jgloom.common.SharedLibraryLoader;
+import jgloom.lwjgl.SharedLibraryLoader;
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
 import jgloom.glfw.GLFWWindow;
-import jgloom.common.glfw.GLFWWindowContainer;
+import jgloom.lwjgl.glfw.GLFWWindowContainer;
 
 import org.junit.Test;
 import org.lwjgl.glfw.GLFW;

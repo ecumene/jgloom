@@ -1,4 +1,4 @@
-package jgloom.common.glfw;
+package jgloom.lwjgl.glfw;
 
 import jgloom.glfw.GLFWMonitor;
 import jgloom.glfw.GLFWWindow;

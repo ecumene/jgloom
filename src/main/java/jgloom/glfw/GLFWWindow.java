@@ -1,6 +1,6 @@
 package jgloom.glfw;
 
-import jgloom.common.glfw.GLFWWindowContainer;
+import jgloom.lwjgl.glfw.GLFWWindowContainer;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 

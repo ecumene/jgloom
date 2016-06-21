@@ -1,4 +1,4 @@
-package jgloom.common.gl;
+package jgloom.lwjgl.gl;
 
 import jgloom.gl.GLRenderbuffer;
 import org.lwjgl.opengl.GL30;

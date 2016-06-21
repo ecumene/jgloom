@@ -1,4 +1,4 @@
-package jgloom.common.gl;
+package jgloom.lwjgl.gl;
 
 /**
  * An interface between legacy (1/2), modern (3) and future (4) OpenGL vertex arrays.

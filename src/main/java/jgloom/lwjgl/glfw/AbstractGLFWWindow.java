@@ -1,6 +1,5 @@
-package jgloom.common.glfw;
+package jgloom.lwjgl.glfw;
 
-import jgloom.common.glfw.GLFWWindowContainer;
 import jgloom.glfw.GLFWWindow;
 
 import java.nio.IntBuffer;

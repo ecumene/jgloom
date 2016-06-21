@@ -1,4 +1,4 @@
-package jgloom.common;
+package jgloom.lwjgl;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package jgloom.common.gl;
+package jgloom.lwjgl.gl;
 
 import java.nio.IntBuffer;
 

@@ -1,7 +1,7 @@
 package jgloom;
 
-import jgloom.common.SharedLibraryLoader;
-import jgloom.common.glfw.GLFWWindowContainer;
+import jgloom.lwjgl.SharedLibraryLoader;
+import jgloom.lwjgl.glfw.GLFWWindowContainer;
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.glfw.GLFWWindow;
 import org.lwjgl.glfw.GLFW;

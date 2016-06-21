@@ -1,4 +1,4 @@
-package jgloom.common.gl.glsl;
+package jgloom.lwjgl.gl.glsl;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
