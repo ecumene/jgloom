@@ -10,11 +10,11 @@ Currently it is in open-development and once the initial model is finished there
 Here's some file formats we intend to support: 
 Image formats 
 ------------- 
-- [ ] JPEG 
-- [ ] PNG 
-- [ ] TIFF 
-- [ ] GIF 
-- [ ] BMP 
+- [x] JPEG 
+- [x] PNG 
+- [x] TIFF 
+- [x] GIF 
+- [x] BMP 
 
 Model formats 
 ------------- 
