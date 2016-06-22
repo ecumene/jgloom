@@ -27,13 +27,13 @@ public class TestResources {
     @Test
     public void testFileResource() throws IOException {
         File textFile = new File("src/test/resources/text/test_text.txt");
-        Resource testText = Resource.createFileResource(textFile);
+        Resource testText = FileResource.createFileResource(textFile);
         readContents(testText);
     }
     
     @Test
     public void testClasspathResource() throws IOException {
-        Resource testText = Resource.createClasspathResource("text/test_text.txt");
+        Resource testText = ClasspathResource.createClasspathResource("text/test_text.txt");
         readContents(testText);
     }
     
@@ -44,7 +44,7 @@ public class TestResources {
     @Test
     public void testWebResource() throws IOException {
         URL testImage = new URL("http://i.imgur.com/ruLnHms.png");
-        Resource testResource = Resource.createWebResource(testImage);
+        Resource testResource = WebResource.createWebResource(testImage);
         FloatBuffer loaded = ImageDecoder.decodeImage(testResource);
         System.out.println("Loaded from web resource: ");
         while (loaded.hasRemaining())

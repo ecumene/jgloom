@@ -14,14 +14,14 @@ public class TestResourceReader {
             System.out.println("Read line: " + line);
         };
 
-        Resource testText = Resource.createClasspathResource("text/test_text.txt");
+        Resource testText = ClasspathResource.createClasspathResource("text/test_text.txt");
         ResourceReader.readIndividualLines(testText, handler);
         System.out.println();
     }
     
     @Test
     public void testWholeRead() throws IOException {
-        Resource testText = Resource.createClasspathResource("text/test_text.txt");
+        Resource testText = ClasspathResource.createClasspathResource("text/test_text.txt");
         System.out.println(ResourceReader.readWhole(testText));
         testText.getInputStream().close();
         System.out.println();

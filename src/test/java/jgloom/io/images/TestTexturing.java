@@ -9,6 +9,7 @@ import jgloom.TestGLUtil;
 import jgloom.common.gl.GLTextureContainer;
 import jgloom.gl.GLTexture;
 import jgloom.glfw.GLFWWindow;
+import jgloom.io.resources.ClasspathResource;
 import jgloom.io.resources.Resource;
 
 /**
@@ -19,7 +20,7 @@ public class TestTexturing {
     public void testTexturedQuad() throws IOException {
         TestGLUtil.openContext();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        Resource testTexture = Resource.createClasspathResource("textures/tiny/2x2.png");
+        Resource testTexture = ClasspathResource.createClasspathResource("textures/tiny/2x2.png");
         GLTexture texture = GLTexture.createTexture();
         TextureLoader.loadTexture2D(texture, testTexture);
         testTexture.close();
