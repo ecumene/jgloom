@@ -6,7 +6,6 @@ import java.nio.FloatBuffer;
 import org.junit.Test;
 
 import jgloom.io.images.decoding.ImageDecoder;
-import jgloom.io.resources.ClasspathResource;
 import jgloom.io.resources.Resource;
 
 /**
@@ -17,7 +16,7 @@ public class TestImageDecoder {
         System.out.println("Contents of " + path);
         if (path.endsWith(".jpg")) System.out.println("(Inaccurate due to compression)");
         path = "textures/tiny/" + path;
-        Resource testImage = new ClasspathResource(path);
+        Resource testImage = Resource.createClasspathResource(path);
         ImageDataCallback callback = new ImageDataCallback();
         FloatBuffer dat = ImageDecoder.decodeImage(testImage, callback);
         System.out.println("Image size: " + callback.width + " by " + callback.height);
@@ -27,6 +26,7 @@ public class TestImageDecoder {
                 System.out.println(dat.get() + " " + dat.get() + " " + dat.get() + " " + dat.get());
             else
                 System.out.println(dat.get() + " " + dat.get() + " " + dat.get());
+        testImage.close();
         System.out.println();
     }
 
