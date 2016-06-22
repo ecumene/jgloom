@@ -1,12 +1,12 @@
 package jgloom.io.images;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.FloatBuffer;
 
 import org.junit.Test;
 
 import jgloom.io.images.decoding.ImageDecoder;
+import jgloom.io.resources.Resource;
 
 /**
  * Tests loading RGB or RGBA data from BMP, GIF, JPEG, PNG, and TIFF images
@@ -15,10 +15,10 @@ public class TestImageDecoder {
     private void testLoad(String path) throws IOException {
         System.out.println("Contents of " + path);
         if (path.endsWith(".jpg")) System.out.println("(Inaccurate due to compression)");
-        path = "textures/test/tiny/" + path;
-        InputStream in = TestImageDecoder.class.getClassLoader().getResourceAsStream(path);
+        path = "textures/tiny/" + path;
+        Resource testImage = Resource.createClasspathResource(path);
         ImageDataCallback callback = new ImageDataCallback();
-        FloatBuffer dat = ImageDecoder.decodeImage(in, callback);
+        FloatBuffer dat = ImageDecoder.decodeImage(testImage, callback);
         System.out.println("Image size: " + callback.width + " by " + callback.height);
         System.out.println("Has alpha channel: " + callback.hasAlpha);
         while (dat.hasRemaining())
@@ -26,6 +26,7 @@ public class TestImageDecoder {
                 System.out.println(dat.get() + " " + dat.get() + " " + dat.get() + " " + dat.get());
             else
                 System.out.println(dat.get() + " " + dat.get() + " " + dat.get());
+        testImage.close();
         System.out.println();
     }
 

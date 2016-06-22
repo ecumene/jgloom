@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 
 import jgloom.io.images.ImageDataCallback;
+import jgloom.io.resources.Resource;
 
 /**
  * Decodes BMP, GIF, JPEG, PNG, and TIFF graphics into useful data
@@ -18,13 +19,13 @@ public class ImageDecoder {
     /**
      * Decodes BMP, GIF, JPEG, PNG, and TIFF images from the given {@link InputStream} and loads the image data into a
      * {@link FloatBuffer}
-     * @param input {@link InputStream} to read image data from
+     * @param resource {@link Resource} containing image data to decode
      * @param callback Object to pass image width, height, and hasAlpha through
      * @return {@link FloatBuffer} containing RGB or RGBA data (depending on alpha channel) of image
      * @throws IOException In case image loading fails
      */
-    public static FloatBuffer decodeImage(InputStream input, ImageDataCallback callback) throws IOException {
-        BufferedImage image = ImageIO.read(input);
+    public static FloatBuffer decodeImage(Resource resource, ImageDataCallback callback) throws IOException {
+        BufferedImage image = ImageIO.read(resource.getInputStream());
         callback.width = image.getWidth();
         callback.height = image.getHeight();
         int[] pixels = new int[callback.width * callback.height];
@@ -50,11 +51,11 @@ public class ImageDecoder {
     /**
      * Decodes BMP, GIF, JPEG, PNG, and TIFF images from the given {@link InputStream} and loads the image data into a
      * {@link FloatBuffer}
-     * @param input {@link InputStream} to read image data from
+     * @param resource {@link Resource} containing image data to decode
      * @return {@link FloatBuffer} containing RGB or RGBA data (depending on alpha channel) of image
      * @throws IOException In case image loading fails
      */
-    public static FloatBuffer decodeImage(InputStream input) throws IOException {
-        return decodeImage(input, new ImageDataCallback());
+    public static FloatBuffer decodeImage(Resource resource) throws IOException {
+        return decodeImage(resource, new ImageDataCallback());
     }
 }
