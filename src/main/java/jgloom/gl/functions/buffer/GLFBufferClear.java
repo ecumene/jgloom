@@ -1,7 +1,5 @@
 package jgloom.gl.functions.buffer;
 
-import jgloom.gl.GLBuffer;
-
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
