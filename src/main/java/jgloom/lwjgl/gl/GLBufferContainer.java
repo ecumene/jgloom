@@ -186,16 +186,6 @@ public class GLBufferContainer extends AbstractGLBuffer {
     }
 
     @Override
-    public void map(int target, int access, ByteBuffer old_buffer) {
-        GL15.glMapBuffer(target, access, old_buffer);
-    }
-
-    @Override
-    public void map(int target, int access, long length, ByteBuffer old_buffer) {
-        GL15.glMapBuffer(target, access, length, old_buffer);
-    }
-
-    @Override
     public boolean unmap(int target) {
         return GL15.glUnmapBuffer(target);
     }
