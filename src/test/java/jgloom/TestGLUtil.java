@@ -1,14 +1,15 @@
 package jgloom;
 
-import jgloom.common.SharedLibraryLoader;
-import jgloom.common.glfw.GLFWWindowContainer;
+import jgloom.lwjgl.SharedLibraryLoader;
+import jgloom.lwjgl.glfw.GLFWWindowContainer;
+import jgloom.concurrent.NonConcurrentTest;
 import jgloom.glfw.GLFWWindow;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
-public class TestGLUtil {
+public class TestGLUtil extends NonConcurrentTest {
     private static GLFWWindowContainer window;
 
     public static void openContext(){

@@ -1,6 +1,6 @@
 package jgloom.gl.glsl;
 
-import jgloom.common.gl.glsl.GLSLProgramContainer;
+import jgloom.lwjgl.gl.glsl.GLSLProgramContainer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL43;

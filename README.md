@@ -33,7 +33,7 @@ Look familiar? It should! We plan to implement most or all of the functions of O
 **Manipulating the java objects - the power of OO**
 ```
 // GLFWWindow is an interface (functional using Java 8) and has one simple integer, getWindow()
-GFWWindow window = new GLFWWindowContainer(GLFWWindow.createWindow(640, 480, "GLFW Window", 0L, 0L));
+GLFWWindowContainer window = new GLFWWindowContainer(GLFWWindow.createWindow(640, 480, "GLFW Window", 0L, 0L));
 window.shouldClose(); // Would have been glfwWindowShouldClose(window)
 window.swapBuffers(); // Would have been glfwSwapBuffers(window)
 window.iconify();     // Would have been glfwIconifyWindow(window)
@@ -53,10 +53,11 @@ The library has similar objects to the one above already contributed. Here's a l
 - GLVertexArrays (3.0)
 
 ***OpenGL - GLSL***
-- GLSLProgram (2.0)
-- GLSLShader (2.0)
+- GLSLPrograms (2.0)
+- GLSLShaders (2.0)
 
 ***OpenGL - GLFW***
 - GLFWWindows (lwjgl-3)
+- GLFWMonitors (lwjgl-3)
 
 Join us in the great wrapping! Currently this is in open-development and once the initial model is finished there will be a maven repository.
