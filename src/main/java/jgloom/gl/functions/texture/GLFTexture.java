@@ -1,7 +1,6 @@
 package jgloom.gl.functions.texture;
 
 import jgloom.gl.GLTexture;
-import org.lwjgl.opengl.*;
 
 /**
  * A texture is an OpenGL Object that contains one or more images that all have the same image format. A texture can be
