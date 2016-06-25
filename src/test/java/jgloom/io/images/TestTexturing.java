@@ -6,11 +6,11 @@ import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 
 import jgloom.TestGLUtil;
-import jgloom.common.gl.GLTextureContainer;
 import jgloom.gl.GLTexture;
 import jgloom.glfw.GLFWWindow;
 import jgloom.io.resources.ClasspathResource;
 import jgloom.io.resources.Resource;
+import jgloom.lwjgl.gl.GLTextureContainer;
 
 /**
  * Tests loading the 2x2 PNG texture and rendering a quad with it

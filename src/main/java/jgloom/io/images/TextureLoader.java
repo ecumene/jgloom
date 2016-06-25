@@ -5,10 +5,10 @@ import java.nio.FloatBuffer;
 
 import org.lwjgl.opengl.GL11;
 
-import jgloom.common.gl.GLTextureContainer;
 import jgloom.gl.GLTexture;
 import jgloom.io.images.decoding.ImageDecoder;
 import jgloom.io.resources.Resource;
+import jgloom.lwjgl.gl.GLTextureContainer;
 
 /**
  * Creates a {@link GLTexture} from loaded image data
