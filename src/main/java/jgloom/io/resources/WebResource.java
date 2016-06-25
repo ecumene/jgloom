@@ -8,6 +8,7 @@ import java.net.URLConnection;
 /**
  * An interface representing a resource stored online at an internet address
  */
+@FunctionalInterface
 public interface WebResource extends Resource {
     /**
      * Creates a wrapper for an {@link InputStream} created from the given connection
