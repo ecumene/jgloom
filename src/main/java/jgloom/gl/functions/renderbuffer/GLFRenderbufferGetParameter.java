@@ -1,7 +1,5 @@
 package jgloom.gl.functions.renderbuffer;
 
-import jgloom.gl.GLRenderbuffer;
-
 /**
  * Renderbuffer Objects are OpenGL Objects that contain images. They are created and used specifically with Framebuffer
  * Objects. They are optimized for enable as render targets, while Textures may not be, and are the logical choice when you

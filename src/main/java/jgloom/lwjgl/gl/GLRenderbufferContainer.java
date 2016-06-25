@@ -11,8 +11,6 @@ import org.lwjgl.opengl.GL30;
  * Multisampling (MSAA).
  */
 public class GLRenderbufferContainer extends AbstractGLRenderbuffer {
-    private GLRenderbuffer renderbufferInstance;
-
     /**
      * Contains a single renderbuffer
      * @param renderbufferInstance The renderbuffer to contain
