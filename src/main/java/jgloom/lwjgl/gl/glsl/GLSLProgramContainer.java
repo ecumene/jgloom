@@ -3,105 +3,57 @@ package jgloom.lwjgl.gl.glsl;
 import jgloom.GLNativeException;
 import org.joml.*;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 import jgloom.gl.glsl.GLSLProgram;
 import jgloom.gl.glsl.GLSLShader;
 
 /**
- * A shell class containing functions for manipulating a given
+ * A shell class containing LWJGL functions for manipulating a given
  * {@link GLSLProgram}
  */
-public class GLSLProgramContainer implements GLSLProgram {
-    private GLSLProgram programInstance;
-
+public class GLSLProgramContainer extends AbstractGLSLProgram {
     /**
-     * Initializes the GLSL program container
+     * Initializes the LWJGL GLSL program container
      * @param programInstance The GLSL program to track and contain
      */
     public GLSLProgramContainer(GLSLProgram programInstance) {
-        this.programInstance = programInstance;
+        super(programInstance);
     }
 
-    /**
-     * Installs the program object specified by program​ as part of current rendering state. One or more executables are
-     * created in a program object by successfully attaching shader objects to it with
-     * {@link GLSLProgramContainer#attachGLSLShader(GLSLShader)}, successfully compiling the shader objects with
-     * {@link GLSLShaderContainer#compileShader()}, and successfully linking the program object with
-     * {@link GLSLProgramContainer#link()}
-     */
+    @Override
     public void use(){
         GL20.glUseProgram(getGLSLProgram());
     }
 
-    /**
-     * In order to create a complete shader program, there must be a way to specify the list of things that will be
-     * linked together. Program objects provide this mechanism. Shaders that are to be linked together in a program
-     * object must first be attached to that program object. This attaches the shader object specified by shader to
-     * the program object specified by program. This indicates that shader will be included in link operations that
-     * will be performed on program.
-     * @param shader The shader to attach
-     */
+    @Override
     public void attachGLSLShader(GLSLShader shader) {
         GL20.glAttachShader(getGLSLProgram(), shader.getGLSLShader());
     }
 
-    /**
-     * Detaches the shader object specified by shader from the program object specified by program. This command can be
-     * used to undo the effect of the command {@link GLSLProgramContainer#attachGLSLShader(GLSLShader)}.
-     * @param shader The shader to detach
-     */
+    @Override
     public void detachGLSLShader(GLSLShader shader) {
         GL20.glDetachShader(getGLSLProgram(), shader.getGLSLShader());
     }
 
-    /**
-     * Validates the program
-     */
+    @Override
     public void validate(){
         GL20.glValidateProgram(getGLSLProgram());
     }
 
-    /**
-     * Links the program object specified by program. A shader object of type GL_VERTEX_SHADER attached to program is
-     * used to create an executable that will run on the programmable vertex processor. A shader object of type
-     * GL_FRAGMENT_SHADER attached to program is used to create an executable that will run on the programmable fragment
-     * processor.
-     * @throws GLSLLinkException When the link status is false, usually because the program doesn't have a vertex and
-     *                           fragment shader. Can also be because of the OpenGL context not supporting shaders or
-     *                           not being created
-     */
+    @Override
     public void link() throws GLSLLinkException {
         GL20.glLinkProgram(getGLSLProgram());
-        if(!isLinked()) throw new GLSLLinkException(getLog());
     }
 
-    /** @return If GL_LINK_STATUS is not false */
-    public boolean isLinked(){
-        return GL20.glGetProgrami(getGLSLProgram(), GL20.GL_LINK_STATUS) != GL11.GL_FALSE;
-    }
-
-    /** @return The program's log from glGetProgramInfoLog */
+    @Override
     public String getLog(){
         return GL20.glGetProgramInfoLog(getGLSLProgram(), GL20.glGetProgrami(getGLSLProgram(), GL20.GL_INFO_LOG_LENGTH));
     }
 
-    /**
-     * Frees the memory and invalidates the name associated with the program object specified by program. This command
-     * effectively undoes the effects of a call to {@link GLSLProgram#createProgram()}.
-     */
-    public void destroy() {
-        GL20.glDeleteProgram(getGLSLProgram());
-    }
-
     @Override
-    public int getGLSLProgram() {
-        return programInstance.getGLSLProgram();
-    }
-
-    public GLSLProgram getProgramInstance() {
-        return programInstance;
+    public void delete() {
+        GL20.glDeleteProgram(getGLSLProgram());
     }
 
     /**
