@@ -1,7 +1,5 @@
 package jgloom.gl.functions.texture;
 
-import org.lwjgl.opengl.GL11;
-
 import java.nio.*;
 
 /**
@@ -12,7 +10,7 @@ public interface GLFTextureImage1D extends GLFTexture {
     /**
      * <p><a href="http://www.opengl.org/sdk/docs/man/html/glTexImage1D.xhtml">OpenGL SDK Reference</a></p>
      *
-     * @param target         the texture target. One of:<br>{@link GL11#GL_TEXTURE_1D TEXTURE_1D}, {@link GL11#GL_PROXY_TEXTURE_1D PROXY_TEXTURE_1D}
+     * @param target         the texture target. One of: GL_TEXTURE_1D TEXTURE_1D, GL_PROXY_TEXTURE_1D PROXY_TEXTURE_1D
      * @param level          the level-of-detail number
      * @param internalformat the texture internal format
      * @param width          the texture width
