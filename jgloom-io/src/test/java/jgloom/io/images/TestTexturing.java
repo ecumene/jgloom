@@ -2,10 +2,10 @@ package jgloom.io.images;
 
 import java.io.IOException;
 
+import jgloom.io.TestGLUtil;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 
-import jgloom.TestGLUtil;
 import jgloom.gl.GLTexture;
 import jgloom.glfw.GLFWWindow;
 import jgloom.io.resources.ClasspathResource;
@@ -21,19 +21,18 @@ public class TestTexturing {
         TestGLUtil.openContext();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Resource testTexture = ClasspathResource.createClasspathResource("textures/tiny/2x2.png");
-        GLTexture texture = GLTexture.createTexture();
-        TextureLoader.loadTexture2D(texture, testTexture);
+        GLTextureContainer textureContainer = new GLTextureContainer(GLTexture.createTexture());
+        TextureLoader.loadTexture2D(textureContainer, testTexture);
         testTexture.close();
-        GLTextureContainer cont = new GLTextureContainer(texture);
-        cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
-        cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
-        cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-        cont.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
+        textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
+        textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+        textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-            cont.bind(GL11.GL_TEXTURE_2D);
+            textureContainer.bind(GL11.GL_TEXTURE_2D);
             GL11.glBegin(GL11.GL_QUADS);
             GL11.glTexCoord2f(0, 1);
             GL11.glVertex2f(-1, -1);

@@ -2,15 +2,14 @@
 package jgloom.lwjgl.gl;
 
 import jgloom.gl.GLTexture;
-import jgloom.gl.functions.texture.GLFTextureImage1D;
-import jgloom.gl.functions.texture.GLFTextureImage2D;
-import jgloom.gl.functions.texture.GLFTextureSetParameter;
+import jgloom.gl.functions.texture.*;
 
 /**
  * A texture is an OpenGL Object that contains one or more images that all have the same image format. A texture can be
  * used in two ways. It can be the source of a texture access from a Shader, or it can be used as a render target.
  */
-public abstract class AbstractGLTexture implements GLFTextureImage1D, GLFTextureImage2D, GLFTextureSetParameter {
+public abstract class AbstractGLTexture implements GLFTextureImage1D, GLFTextureImage2D, GLFTextureImage3D,
+        GLFTextureSetParameter, GLFTextureSubImage1D, GLFTextureSubImage2D, GLFTextureSubImage3D {
     private GLTexture textureInstance;
 
     /**

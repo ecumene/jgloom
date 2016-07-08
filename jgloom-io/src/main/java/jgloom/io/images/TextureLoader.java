@@ -3,6 +3,7 @@ package jgloom.io.images;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 
+import jgloom.gl.functions.texture.GLFTextureImage2D;
 import org.lwjgl.opengl.GL11;
 
 import jgloom.gl.GLTexture;
@@ -24,7 +25,7 @@ public class TextureLoader {
      * @return Created texture with uploaded image data
      * @throws IOException In case of an image loading error
      */
-    public static synchronized GLTexture loadTexture(int target, GLTexture texture, Resource resource, ImageDataCallback callback) throws IOException {
+    public static synchronized GLTexture loadTexture(int target, GLFTextureImage2D texture, Resource resource, ImageDataCallback callback) throws IOException {
         GLTextureContainer container = new GLTextureContainer(texture);
         FloatBuffer data = ImageDecoder.decodeImage(resource, callback);
         container.bind(target);
@@ -42,7 +43,7 @@ public class TextureLoader {
      * @throws IOException In case of an image loading error
      */
     public static synchronized GLTexture loadTexture(int target, Resource resource, ImageDataCallback callback) throws IOException {
-        return loadTexture(target, GLTexture.createTexture(), resource, callback);
+        return loadTexture(target, (GLFTextureImage2D) GLTexture.createTexture(), resource, callback);
     }
     
     /**
@@ -54,7 +55,7 @@ public class TextureLoader {
      * @return Created texture with uploaded image data
      * @throws IOException In case of an image loading error
      */
-    public static synchronized GLTexture loadTexture(int target, GLTexture texture, Resource resource) throws IOException {
+    public static synchronized GLTexture loadTexture(int target, GLFTextureImage2D texture, Resource resource) throws IOException {
         return loadTexture(target, texture, resource, new ImageDataCallback());
     }
     
@@ -67,7 +68,7 @@ public class TextureLoader {
      * @throws IOException In case of an image loading error
      */
     public static synchronized GLTexture loadTexture(int target, Resource resource) throws IOException {
-        return loadTexture(target, GLTexture.createTexture(), resource, new ImageDataCallback());
+        return loadTexture(target, (GLFTextureImage2D) GLTexture.createTexture(), resource, new ImageDataCallback());
     }
     
     /**
@@ -79,7 +80,7 @@ public class TextureLoader {
      * @return Created texture with uploaded image data
      * @throws IOException In case of an image loading error
      */
-    public static synchronized GLTexture loadTexture2D(GLTexture texture, Resource resource, ImageDataCallback callback) throws IOException {
+    public static synchronized GLTexture loadTexture2D(GLFTextureImage2D texture, Resource resource, ImageDataCallback callback) throws IOException {
         return loadTexture(GL11.GL_TEXTURE_2D, texture, resource, callback);
     }
     
@@ -92,7 +93,7 @@ public class TextureLoader {
      * @throws IOException In case of an image loading error
      */
     public static synchronized GLTexture loadTexture2D(Resource resource, ImageDataCallback callback) throws IOException {
-        return loadTexture2D(GLTexture.createTexture(), resource, callback);
+        return loadTexture2D((GLFTextureImage2D) GLTexture.createTexture(), resource, callback);
     }
     
     /**
@@ -103,7 +104,7 @@ public class TextureLoader {
      * @return Created texture with uploaded image data
      * @throws IOException In case of an image loading error
      */
-    public static synchronized GLTexture loadTexture2D(GLTexture texture, Resource resource) throws IOException {
+    public static synchronized GLTexture loadTexture2D(GLFTextureImage2D texture, Resource resource) throws IOException {
         return loadTexture2D(texture, resource, new ImageDataCallback());
     }
     
@@ -115,6 +116,6 @@ public class TextureLoader {
      * @throws IOException In case of an image loading error
      */
     public static synchronized GLTexture loadTexture2D(Resource resource) throws IOException {
-        return loadTexture2D(GLTexture.createTexture(), resource, new ImageDataCallback());
+        return loadTexture2D((GLFTextureImage2D) GLTexture.createTexture(), resource, new ImageDataCallback());
     }
 }

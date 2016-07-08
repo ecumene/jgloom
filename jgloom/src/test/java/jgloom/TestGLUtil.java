@@ -15,7 +15,7 @@ public class TestGLUtil extends NonConcurrentTest {
     public static void openContext(){
         SharedLibraryLoader.load();
         GLFWWindow.init();
-        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_TRUE);
+        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_FALSE);
         window = new GLFWWindowContainer(GLFWWindow.createWindow(640, 480, "GLFW Window", 0L, 0L));
 
         GLFWWindow.defaultWindowHints();

@@ -31,10 +31,10 @@ public class TestGLSLProgram extends NonConcurrentTest {
 
         GLSLShaderContainer fragment = new GLSLShaderContainer(GLSLShader.createShader(GL20.GL_FRAGMENT_SHADER));
         fragment.uploadSource(fragmentSrc);
-        fragment.compileShader();
+        fragment.compile();
         GLSLShaderContainer vertex = new GLSLShaderContainer(GLSLShader.createShader(GL20.GL_VERTEX_SHADER));
         vertex.uploadSource(vertexSrc);
-        vertex.compileShader();
+        vertex.compile();
 
         program = new GLSLProgramContainer(GLSLProgram.createProgram());
         program.attachGLSLShader(vertex);
@@ -53,7 +53,7 @@ public class TestGLSLProgram extends NonConcurrentTest {
         GL11.glVertex2f(0, 1);
         GL11.glEnd();
 
-        program.destroy();
+        program.delete();
 
         TestGLUtil.closeContext();
     }
