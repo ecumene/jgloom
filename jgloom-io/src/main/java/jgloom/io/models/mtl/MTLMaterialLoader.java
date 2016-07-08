@@ -7,6 +7,9 @@ import org.joml.Vector4f;
 import jgloom.io.resources.Resource;
 import jgloom.io.resources.ResourceReader;
 
+/**
+ * Loads and parses a MTL file into separate MTL materials usable in models and other
+ */
 public class MTLMaterialLoader {
     public static final String MTL_COMMENT = "#";
     public static final String MTL_NEWMTL = "newmtl ";
@@ -14,6 +17,12 @@ public class MTLMaterialLoader {
     public static final String MTL_DIFFUSE = "Kd ";
     public static final String MTL_SPECULAR = "Ks ";
     
+    /**
+     * Loads material data from the given MTL file and returns it as a collection of MTL materials
+     * @param resource Resource leading to the MTL file containing material data
+     * @return Created collection of MTL material information
+     * @throws IOException In case MTL loading fails
+     */
     public static MTLMaterials loadMaterials(Resource resource) throws IOException {
         MTLBuilder builder = new MTLBuilder();
         startReading(resource, builder);
@@ -21,12 +30,23 @@ public class MTLMaterialLoader {
         return new MTLMaterials(builder);
     }
     
+    /**
+     * Reads the given resource as individual lines and calls the parse method for each one
+     * @param resource
+     * @param builder
+     * @throws IOException
+     */
     private static void startReading(Resource resource, MTLBuilder builder) throws IOException {
         ResourceReader.readIndividualLines(resource, (String line) -> {
             parseLine(line, builder);
         });
     }
     
+    /**
+     * Parses arguments and passes them to their requisite methods
+     * @param line
+     * @param builder
+     */
     private static void parseLine(String line, MTLBuilder builder) {
         if (line.replace(" ", "").replace("\t", "").equals(""))
             return;

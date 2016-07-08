@@ -13,6 +13,9 @@ import jgloom.io.resources.ResourceReader;
 // TODO: Add support for multiple forms of split data lines
 // TODO: Add support for material files
 // TODO: Add support for texture coordinates
+/**
+ * Loads and parses an OBJ file into vertex, normal, and index data
+ */
 public class OBJModelLoader {
     public static final String OBJ_COMMENT = "#";
     public static final String OBJ_VERTEX = "v ";
@@ -21,9 +24,22 @@ public class OBJModelLoader {
     public static final String OBJ_MTLLIB = "mtllib ";
     public static final String OBJ_USEMTL = "usemtl ";
     
+    /**
+     * Collection of materials loaded while loading a model
+     */
     private static MTLMaterials materials;
+    
+    /**
+     * Current material as dictated by the usemtl keyword
+     */
     private static MTLMaterial material;
 
+    /**
+     * Loads and parses the given OBJ resource into a usable model object
+     * @param resource Resource containing the OBJ data
+     * @return Parsed OBJ model with loaded data
+     * @throws IOException In case model loading fails
+     */
     public static Model loadModel(Resource resource) throws IOException {
         materials = null; material = null;
         OBJBuilder builder = new OBJBuilder();
@@ -31,6 +47,12 @@ public class OBJModelLoader {
         return new OBJModel(builder, materials);
     }
 
+    /**
+     * Begins reading the OBJ file line by line in order to parse
+     * @param resource
+     * @param builder
+     * @throws IOException
+     */
     private static void startReading(Resource resource, OBJBuilder builder) throws IOException {
         ResourceReader.readIndividualLines(resource, (String line) -> {
             try {
@@ -39,6 +61,12 @@ public class OBJModelLoader {
         });
     }
 
+    /**
+     * Parses the given line using the requisite methods
+     * @param line
+     * @param builder
+     * @throws IOException
+     */
     private static void parseLine(String line, OBJBuilder builder) throws IOException {
         if (line.replace(" ", "").replace("\t", "").equals(""))
             return;
@@ -63,6 +91,11 @@ public class OBJModelLoader {
             parseUseMTLLine(args, builder);
     }
 
+    /**
+     * Parses a line starting with 'v'
+     * @param args
+     * @param builder
+     */
     private static void parseVertexLine(String[] args, OBJBuilder builder) {
         float x = Float.valueOf(args[0]);
         float y = Float.valueOf(args[1]);
@@ -70,6 +103,11 @@ public class OBJModelLoader {
         builder.appendVertex(x, y, z);
     }
 
+    /**
+     * Parses a line starting with 'vn'
+     * @param args
+     * @param builder
+     */
     private static void parseNormalLine(String[] args, OBJBuilder builder) {
         float x = Float.valueOf(args[0]);
         float y = Float.valueOf(args[1]);
@@ -77,6 +115,11 @@ public class OBJModelLoader {
         builder.appendNormal(x, y, z);
     }
 
+    /**
+     * Parses a line starting with 'f' (face)
+     * @param args
+     * @param builder
+     */
     private static void parseIndexLine(String[] args, OBJBuilder builder) {
         String[] i1 = args[0].split("//");
         String[] i2 = args[1].split("//");
@@ -92,12 +135,23 @@ public class OBJModelLoader {
         builder.appendIndex(v3, n3);
     }
     
+    /**
+     * Parses a line starting with 'mtllib'
+     * @param args
+     * @param builder
+     * @throws IOException
+     */
     private static void parseMTLLibLine(String[] args, OBJBuilder builder) throws IOException {
         String fileName = args[0];
         Resource materialFile = ClasspathResource.createClasspathResource(fileName);
         materials = MTLMaterialLoader.loadMaterials(materialFile);
     }
     
+    /**
+     * Parses a line starting with 'usemtl'
+     * @param args
+     * @param builder
+     */
     private static void parseUseMTLLine(String[] args, OBJBuilder builder) {
         if (materials != null) {
             material = materials.getMaterial(args[0]);
