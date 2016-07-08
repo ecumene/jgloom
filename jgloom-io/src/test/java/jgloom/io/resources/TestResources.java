@@ -9,7 +9,7 @@ import java.nio.FloatBuffer;
 
 import org.junit.Test;
 
-import jgloom.io.images.decoding.ImageDecoder;
+import jgloom.io.images.ImageDecoder;
 
 /**
  * Class for testing implementations of {@link Resource}
@@ -26,7 +26,7 @@ public class TestResources {
     
     @Test
     public void testFileResource() throws IOException {
-        File textFile = new File("src/test/resources/text/test_text.txt");
+        File textFile = new File("jgloom-io/src/test/resources/text/test_text.txt");
         Resource testText = FileResource.createFileResource(textFile);
         readContents(testText);
     }

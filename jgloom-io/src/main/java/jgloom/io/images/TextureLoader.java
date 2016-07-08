@@ -7,7 +7,6 @@ import jgloom.gl.functions.texture.GLFTextureImage2D;
 import org.lwjgl.opengl.GL11;
 
 import jgloom.gl.GLTexture;
-import jgloom.io.images.decoding.ImageDecoder;
 import jgloom.io.resources.Resource;
 import jgloom.lwjgl.gl.GLTextureContainer;
 

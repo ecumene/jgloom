@@ -1,4 +1,4 @@
-package jgloom.io.images.decoding;
+package jgloom.io.images;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 
 import org.lwjgl.BufferUtils;
 
-import jgloom.io.images.ImageDataCallback;
 import jgloom.io.resources.Resource;
 
 /**

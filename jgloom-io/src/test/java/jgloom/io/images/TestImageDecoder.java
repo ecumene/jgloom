@@ -5,7 +5,6 @@ import java.nio.FloatBuffer;
 
 import org.junit.Test;
 
-import jgloom.io.images.decoding.ImageDecoder;
 import jgloom.io.resources.ClasspathResource;
 import jgloom.io.resources.Resource;
 
