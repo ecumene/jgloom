@@ -25,9 +25,10 @@ public class OBJModelLoader {
     private static MTLMaterial material;
 
     public static Model loadModel(Resource resource) throws IOException {
+        materials = null; material = null;
         OBJBuilder builder = new OBJBuilder();
         startReading(resource, builder);
-        return new OBJModel(builder);
+        return new OBJModel(builder, materials);
     }
 
     private static void startReading(Resource resource, OBJBuilder builder) throws IOException {

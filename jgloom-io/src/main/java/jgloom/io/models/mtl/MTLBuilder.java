@@ -7,11 +7,15 @@ import org.joml.Vector4f;
 
 public class MTLBuilder {
     private List<MTLMaterial> materials;
-    private String name;
+    private String name = null;
     private Vector4f ambient, diffuse, specular;
     
     public MTLBuilder() {
         materials = new ArrayList<MTLMaterial>();
+    }
+    
+    public void setName(String n) {
+        name = n;
     }
     
     public void setAmbient(Vector4f a) {
@@ -31,6 +35,8 @@ public class MTLBuilder {
         Vector4f a = ambient;
         Vector4f d = diffuse;
         Vector4f s = specular;
+        if (n == null)
+            return null;
         
         MTLMaterial material = new MTLMaterial() {
             @Override
