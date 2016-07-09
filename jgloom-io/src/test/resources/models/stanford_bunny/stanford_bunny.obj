@@ -1,6 +1,6 @@
 # Blender v2.77 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib stanford_bunny.mtl
+mtllib models/stanford_bunny/stanford_bunny.mtl
 o stanford_bunny
 v -4.904439 7.101145 0.594482
 v -5.125550 6.905211 0.971084
