@@ -26,8 +26,7 @@ public class TestResources {
     
     @Test
     public void testFileResource() throws IOException {
-        File textFile = new File("jgloom-io/src/test/resources/text/test_text.txt");
-        Resource testText = FileResource.createFileResource(textFile);
+        Resource testText = ClasspathResource.createClasspathResource("text/test_text.txt");
         readContents(testText);
     }
     
