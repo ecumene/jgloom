@@ -10,7 +10,7 @@ import org.joml.Vector4f;
 
 import jgloom.io.models.ModelFace;
 
-// TODO: Add support for more vertex attributes
+// FIXME Add support for more vertex attributes
 /**
  * Simple class for retaining wavefront OBJ data while reading and parsing the OBJ file
  */

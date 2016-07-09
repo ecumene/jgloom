@@ -6,7 +6,7 @@ import jgloom.io.models.Model;
 import jgloom.io.models.ModelFace;
 import jgloom.io.models.mtl.MTLMaterials;
 
-// TODO: Implement model rendering system
+// FIXME Implement model rendering system
 /**
  * Implementation of {@link Model} which contains OBJ loaded mesh data and MTL loaded material data
  */

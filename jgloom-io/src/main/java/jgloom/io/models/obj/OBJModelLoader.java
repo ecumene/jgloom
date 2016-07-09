@@ -10,9 +10,9 @@ import jgloom.io.resources.ClasspathResource;
 import jgloom.io.resources.Resource;
 import jgloom.io.resources.ResourceReader;
 
-// TODO: Add support for multiple forms of split data lines
-// TODO: Add support for material files
-// TODO: Add support for texture coordinates
+// FIXME Add support for multiple forms of split data lines
+// FIXME Add support for material files
+// FIXME Add support for texture coordinates
 /**
  * Loads and parses an OBJ file into vertex, normal, and index data
  */
@@ -32,6 +32,7 @@ public class OBJModelLoader {
     /**
      * Current material as dictated by the usemtl keyword
      */
+    @SuppressWarnings("unused")
     private static MTLMaterial material;
 
     /**
