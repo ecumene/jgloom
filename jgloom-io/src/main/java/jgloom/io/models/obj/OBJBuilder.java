@@ -10,18 +10,38 @@ import org.joml.Vector4f;
 
 import jgloom.io.models.ModelFace;
 
-// TODO: Add support for more vertex attributes
+// FIXME Add support for more vertex attributes
+/**
+ * Simple class for retaining wavefront OBJ data while reading and parsing the OBJ file
+ */
 public class OBJBuilder {
+    /**
+     * Stored vertices to reference later
+     */
     private List<Vector3f> vertices;
+    
+    /**
+     * Stored normals to reference later
+     */
     private List<Vector3f> normals;
+    
+    /**
+     * Indices to reference vertices and normals
+     */
     private List<Vector2i> indices;
 
+    /**
+     * Creates an empty OBJ building object
+     */
     public OBJBuilder() {
         vertices = new ArrayList<Vector3f>();
         normals = new ArrayList<Vector3f>();
         indices = new ArrayList<Vector2i>();
     }
 
+    /**
+     * @return Data compiled into a list of model faces, taking into account indices
+     */
     public List<ModelFace> generateFaces() {
         List<ModelFace> faces = new ArrayList<ModelFace>();
 
@@ -66,44 +86,85 @@ public class OBJBuilder {
         return faces;
     }
 
+    /**
+     * Empties the stored data
+     */
     public void clear() {
         vertices.clear();
         normals.clear();
         indices.clear();
     }
 
+    /**
+     * Adds a vertex to the stored vertices
+     * @param vertex Vertex to add
+     */
     public void appendVertex(Vector3f vertex) {
         vertices.add(vertex);
     }
 
+    /**
+     * Adds a vertex to the stored vertices
+     * @param x
+     * @param y
+     * @param z
+     */
     public void appendVertex(float x, float y, float z) {
         appendVertex(new Vector3f(x, y, z));
     }
 
+    /**
+     * @return Stored vertices to reference later
+     */
     public List<Vector3f> getVertices() {
         return vertices;
     }
 
+    /**
+     * Adds the normal to the stored normals
+     * @param normal Normal to add
+     */
     public void appendNormal(Vector3f normal) {
         normals.add(normal);
     }
 
+    /**
+     * Adds the normal to the stored normals
+     * @param x
+     * @param y
+     * @param z
+     */
     public void appendNormal(float x, float y, float z) {
         appendNormal(new Vector3f(x, y, z));
     }
 
+    /**
+     * @return Stored normals to reference later
+     */
     public List<Vector3f> getNormals() {
         return normals;
     }
 
+    /**
+     * Adds the index for vertex (x) and normal (y)
+     * @param index Vector in form <vertex, normal>
+     */
     public void appendIndex(Vector2i index) {
         indices.add(index);
     }
 
+    /**
+     * Adds the index for vertex and normal
+     * @param v Vertex index
+     * @param n Normal index
+     */
     public void appendIndex(int v, int n) {
         appendIndex(new Vector2i(v, n));
     }
 
+    /**
+     * @return Indices to reference vertices and normals
+     */
     public List<Vector2i> getIndices() {
         return indices;
     }
