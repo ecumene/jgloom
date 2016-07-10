@@ -11,9 +11,9 @@ public interface FileResource extends Resource {
     /**
      * Creates a wrapper for a {@link FileInputStream} for reading from the given {@link File}
      * @param file File to create a resource wrapper for
-     * @throws InvalidResourceException In case the resource is invalid or does not exist
+     * @throws IllegalResourceException In case the resource is invalid or does not exist
      */
-    static FileResource createFileResource(File file) throws InvalidResourceException {
+    static FileResource createFileResource(File file) throws IllegalResourceException {
         FileInputStreamContainer stream = new FileInputStreamContainer();
         
         try {
@@ -24,7 +24,7 @@ public interface FileResource extends Resource {
             try {
                 stream.s.close();
             } catch (Throwable t) {}
-            throw new InvalidResourceException("Could not find file resource: " + file.getPath());
+            throw new IllegalResourceException("Could not find file resource: " + file.getPath());
         }
     }
     

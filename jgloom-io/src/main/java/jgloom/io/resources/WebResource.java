@@ -13,14 +13,14 @@ public interface WebResource extends Resource {
      * Creates a wrapper for an {@link InputStream} created from the given connection
      * @param connection Connection to the resource already created
      * @return Wrapper for the given connection's stream
-     * @throws InvalidResourceException In case the resource's stream could not be retrieved
+     * @throws IllegalResourceException In case the resource's stream could not be retrieved
      */
-    static WebResource createWebResource(URLConnection connection) throws InvalidResourceException {
+    static WebResource createWebResource(URLConnection connection) throws IllegalResourceException {
         try {
             InputStream stream = connection.getInputStream();
             return () -> stream;
         } catch (IOException ex) {
-            throw new InvalidResourceException("Failed to get connection's stream: " + connection.getURL().getPath());
+            throw new IllegalResourceException("Failed to get connection's stream: " + connection.getURL().getPath());
         }
     }
     
@@ -28,13 +28,13 @@ public interface WebResource extends Resource {
      * Creates a wrapper for an {@link InputStream} created from a created URL connection
      * @param url Full URL (including http:// or https://) of the resource
      * @return Wrapper for a created connection to the given URL
-     * @throws InvalidResourceException In case connecting to the web resource fails
+     * @throws IllegalResourceException In case connecting to the web resource fails
      */
-    static WebResource createWebResource(URL url) throws InvalidResourceException {
+    static WebResource createWebResource(URL url) throws IllegalResourceException {
         try {
             return createWebResource(url.openConnection());
         } catch (IOException ex) {
-            throw new InvalidResourceException("Failed to connect to web resource: " + url.getPath());
+            throw new IllegalResourceException("Failed to connect to web resource: " + url.getPath());
         }
     }
 }
