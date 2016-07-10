@@ -7,14 +7,13 @@ import java.io.FileNotFoundException;
 /**
  * An interface representing a resource stored in a file on the file-system
  */
-@FunctionalInterface
 public interface FileResource extends Resource {
     /**
      * Creates a wrapper for a {@link FileInputStream} for reading from the given {@link File}
      * @param file File to create a resource wrapper for
      * @throws InvalidResourceException In case the resource is invalid or does not exist
      */
-    public static FileResource createFileResource(File file) throws InvalidResourceException {
+    static FileResource createFileResource(File file) throws InvalidResourceException {
         FileInputStreamContainer stream = new FileInputStreamContainer();
         
         try {
@@ -32,7 +31,7 @@ public interface FileResource extends Resource {
     /**
      * Only exists to fix possible resource leaks, ignore it unless you want a nice container
      */
-    public class FileInputStreamContainer {
+    class FileInputStreamContainer {
         public FileInputStream s;
     }
 }

@@ -7,7 +7,6 @@ import java.io.InputStream;
  * Interface for wrapping an {@link InputStream} for allowing loading from files, class-path resources, or from any
  * {@link InputStream} in one method
  */
-@FunctionalInterface
 public interface Resource {
     /**
      * @return {@link InputStream} wrapped by the object from which a resource can be read
@@ -27,7 +26,7 @@ public interface Resource {
      * @param input InputStream to create a simple wrapper for
      * @return Simple wrapper pointing to the given InputStream
      */
-    public static Resource createResource(InputStream input) {
+    static Resource createResource(InputStream input) {
         return () -> input;
     }
 }

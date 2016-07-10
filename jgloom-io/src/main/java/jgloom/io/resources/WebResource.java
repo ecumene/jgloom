@@ -8,7 +8,6 @@ import java.net.URLConnection;
 /**
  * An interface representing a resource stored online at an internet address
  */
-@FunctionalInterface
 public interface WebResource extends Resource {
     /**
      * Creates a wrapper for an {@link InputStream} created from the given connection
@@ -16,7 +15,7 @@ public interface WebResource extends Resource {
      * @return Wrapper for the given connection's stream
      * @throws InvalidResourceException In case the resource's stream could not be retrieved
      */
-    public static WebResource createWebResource(URLConnection connection) throws InvalidResourceException {
+    static WebResource createWebResource(URLConnection connection) throws InvalidResourceException {
         try {
             InputStream stream = connection.getInputStream();
             return () -> stream;
@@ -31,7 +30,7 @@ public interface WebResource extends Resource {
      * @return Wrapper for a created connection to the given URL
      * @throws InvalidResourceException In case connecting to the web resource fails
      */
-    public static WebResource createWebResource(URL url) throws InvalidResourceException {
+    static WebResource createWebResource(URL url) throws InvalidResourceException {
         try {
             return createWebResource(url.openConnection());
         } catch (IOException ex) {

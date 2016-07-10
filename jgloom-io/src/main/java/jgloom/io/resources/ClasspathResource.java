@@ -7,7 +7,6 @@ import java.net.URLClassLoader;
 /**
  * An interface representing a resource stored either on the current class-path or the classppath of the given loader
  */
-@FunctionalInterface
 public interface ClasspathResource extends Resource {
     /**
      * Creates a wrapper for the given resource as a stream; stream is created by the given class loader
@@ -15,7 +14,7 @@ public interface ClasspathResource extends Resource {
      * @param path Path to the resource, relative or absolute
      * @throws InvalidResourceException In case the resource is invalid or does not exist
      */
-    public static ClasspathResource createClasspathResource(ClassLoader loader, String path) throws InvalidResourceException {
+    static ClasspathResource createClasspathResource(ClassLoader loader, String path) throws InvalidResourceException {
         InputStream stream = loader.getResourceAsStream(path);
         if (stream == null)
             throw new InvalidResourceException("Could not find classpath resource: " + path);
@@ -27,7 +26,7 @@ public interface ClasspathResource extends Resource {
      * @param path Path to the resource, relative or absolute
      * @throws InvalidResourceException In case the resource is invalid or does not exist
      */
-    public static ClasspathResource createClasspathResource(String path) throws InvalidResourceException {
+    static ClasspathResource createClasspathResource(String path) throws InvalidResourceException {
         return createClasspathResource(Resource.class.getClassLoader(), path);
     }
     
@@ -37,7 +36,7 @@ public interface ClasspathResource extends Resource {
      * @param path Path to the resource, relative or absolute
      * @throws InvalidResourceException In case the resource is invalid or does not exist
      */
-    public static ClasspathResource createClasspathResource(URL jarFile, String path) throws InvalidResourceException {
+    static ClasspathResource createClasspathResource(URL jarFile, String path) throws InvalidResourceException {
         return createClasspathResource(new URLClassLoader(new URL[] { jarFile }), path);
     }
 }
