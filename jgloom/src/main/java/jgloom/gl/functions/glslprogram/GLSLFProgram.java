@@ -1,7 +1,6 @@
 package jgloom.gl.functions.glslprogram;
 
 import jgloom.gl.glsl.GLSLProgram;
-import jgloom.gl.glsl.GLSLShader;
 import jgloom.lwjgl.gl.glsl.GLSLLinkException;
 import jgloom.lwjgl.gl.glsl.GLSLProgramContainer;
 import jgloom.lwjgl.gl.glsl.GLSLShaderContainer;
