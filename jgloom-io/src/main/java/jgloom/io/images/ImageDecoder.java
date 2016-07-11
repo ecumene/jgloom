@@ -7,9 +7,8 @@ import java.nio.FloatBuffer;
 
 import javax.imageio.ImageIO;
 
-import org.lwjgl.BufferUtils;
-
 import jgloom.io.resources.Resource;
+import jgloom.utils.BufferUtils;
 
 /**
  * Decodes BMP, GIF, JPEG, PNG, and TIFF graphics into useful data
