@@ -9,5 +9,5 @@ package jgloom.gl;
 @FunctionalInterface
 public interface GLBuffer {
     /** @return The identifier for the buffer object */
-    int getBuffer();
+    int getbuffer();
 }

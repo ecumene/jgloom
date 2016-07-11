@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL30;
  */
 public class LWJGLVertexArrays {
     /** The OpenGL vertex array object identifier */
-    int IDENTIFIER = GL11.GL_VERTEX_ARRAY;
+    static int IDENTIFIER = GL11.GL_VERTEX_ARRAY;
 
     /**
      * @return A constructed vertex array with glGenVertexArrays

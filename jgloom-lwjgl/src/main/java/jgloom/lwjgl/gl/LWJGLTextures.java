@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class LWJGLTextures {
     /** The OpenGL texture object identifier */
-    int IDENTIFIER = GL11.GL_TEXTURE;
+    static int IDENTIFIER = GL11.GL_TEXTURE;
 
     /**
      * @return A constructed texture with glGenTextures

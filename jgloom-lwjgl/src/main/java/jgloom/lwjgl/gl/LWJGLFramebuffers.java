@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL30;
  */
 public class LWJGLFramebuffers {
     /** The OpenGL shader object identifier */
-    int IDENTIFIER = GL30.GL_FRAMEBUFFER;
+    static int IDENTIFIER = GL30.GL_FRAMEBUFFER;
 
     /**
      * @return A constructed framebuffer with glGenFrameBuffers

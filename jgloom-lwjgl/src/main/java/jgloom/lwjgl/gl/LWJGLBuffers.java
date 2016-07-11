@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL43;
  */
 public class LWJGLBuffers {
     /** The OpenGL framebuffer object identifier */
-    int IDENTIFIER = GL43.GL_BUFFER;
+    static int IDENTIFIER = GL43.GL_BUFFER;
 
     /**
      * Constructs a {@link GLBuffer} object with {@link GL15#glGenBuffers()}.
