@@ -1,7 +1,5 @@
 package jgloom.lwjgl.glfw;
 
-import jgloom.glfw.GLFWMonitor;
-import jgloom.glfw.GLFWWindow;
 import org.lwjgl.glfw.GLFWGammaRamp;
 import org.lwjgl.glfw.GLFWVidMode;
 
