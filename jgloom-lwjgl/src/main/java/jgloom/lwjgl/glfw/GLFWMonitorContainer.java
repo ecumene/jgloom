@@ -1,13 +1,12 @@
 package jgloom.lwjgl.glfw;
 
-import jgloom.glfw.GLFWMonitor;
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWGammaRamp;
 import org.lwjgl.glfw.GLFWVidMode;
 
 /**
- * A shell class containing functions for manipulating a given {@link jgloom.glfw.GLFWMonitor}
+ * A shell class containing functions for manipulating a given {@link GLFWMonitor}
  */
 public class GLFWMonitorContainer extends AbstractGLFWMonitor {
     /**

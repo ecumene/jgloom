@@ -1,4 +1,4 @@
-package jgloom.glfw;
+package jgloom.lwjgl.glfw;
 
 import org.lwjgl.PointerBuffer;
 import org.lwjgl.glfw.GLFW;
