@@ -97,4 +97,60 @@ public class BufferUtils {
     public static CharBuffer createCharBuffer(int capacity) {
         return createByteBuffer(capacity * CHAR_BYTES).asCharBuffer();
     }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link ByteBuffer} with the given data
+     */
+    public static ByteBuffer fromArray(byte[] array) {
+        return (ByteBuffer) createByteBuffer(array.length).put(array).flip();
+    }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link ShortBuffer} with the given data
+     */
+    public static ShortBuffer fromArray(short[] array) {
+        return (ShortBuffer) createShortBuffer(array.length).put(array).flip();
+    }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link IntBuffer} with the given data
+     */
+    public static IntBuffer fromArray(int[] array) {
+        return (IntBuffer) createIntBuffer(array.length).put(array).flip();
+    }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link LongBuffer} with the given data
+     */
+    public static LongBuffer fromArray(long[] array) {
+        return (LongBuffer) createLongBuffer(array.length).put(array).flip();
+    }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link FloatBuffer} with the given data
+     */
+    public static FloatBuffer fromArray(float[] array) {
+        return (FloatBuffer) createFloatBuffer(array.length).put(array).flip();
+    }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link DoubleBuffer} with the given data
+     */
+    public static DoubleBuffer fromArray(double[] array) {
+        return (DoubleBuffer) createDoubleBuffer(array.length).put(array).flip();
+    }
+    
+    /**
+     * @param array Contents of the buffer to create
+     * @return Created {@link CharBuffer} with the given data
+     */
+    public static CharBuffer fromArray(char[] array) {
+        return (CharBuffer) createCharBuffer(array.length).put(array).flip();
+    }
 }
