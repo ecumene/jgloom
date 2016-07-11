@@ -1,7 +1,6 @@
 package jgloom.gl.functions.glslprogram;
 
 import jgloom.gl.glsl.GLSLShader;
-import jgloom.lwjgl.gl.glsl.GLSLProgramContainer;
 
 /**
  * Functions for GLSL programs
@@ -20,7 +19,7 @@ public interface GLSLFProgramAttachShader extends GLSLFProgram {
 
     /**
      * Detaches the shader object specified by shader from the program object specified by program. This command can be
-     * used to undo the effect of the command {@link GLSLProgramContainer#attachGLSLShader(GLSLShader)}.
+     * used to undo the effect of the command {@link #attachGLSLShader(GLSLShader)}.
      * @param shader The shader to detach
      */
     void detachGLSLShader(GLSLShader shader);

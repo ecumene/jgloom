@@ -15,5 +15,5 @@ public interface GLSLFShaderUploadSource extends GLSLFShader {
      * are not scanned or parsed at this time; they are simply copied into the specified shader object.
      * @param source The source to replace the old shader with
      */
-    public void uploadSource(String source);
+    void uploadSource(String source);
 }

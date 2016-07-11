@@ -8,5 +8,5 @@ public interface GLSLFShaderGetLog extends GLSLFShader {
     /**
      * @return The shader's log from glGetShaderInfoLog
      */
-    public String getLog();
+    String getLog();
 }
