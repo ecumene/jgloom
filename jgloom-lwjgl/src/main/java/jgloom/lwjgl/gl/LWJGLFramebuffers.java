@@ -10,12 +10,12 @@ import org.lwjgl.opengl.GL30;
  */
 public class LWJGLFramebuffers {
     /** The OpenGL shader object identifier */
-    static int IDENTIFIER = GL30.GL_FRAMEBUFFER;
+    public static int IDENTIFIER = GL30.GL_FRAMEBUFFER;
 
     /**
      * @return A constructed framebuffer with glGenFrameBuffers
      */
-    static GLFramebuffer createFrameBuffer() {
+    public static GLFramebuffer createFrameBuffer() {
         int framebuffer = GL30.glGenFramebuffers();
         return () -> framebuffer;
     }
@@ -24,7 +24,7 @@ public class LWJGLFramebuffers {
      * @param fb
      * @return if an integer corresponds to an OpenGL buffer object
      */
-    static boolean isFrameBuffer(int fb){
+    public static boolean isFrameBuffer(int fb){
         return GL30.glIsFramebuffer(fb);
     }
 }

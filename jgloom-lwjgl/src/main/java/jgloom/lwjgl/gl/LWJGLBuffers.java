@@ -12,12 +12,12 @@ import org.lwjgl.opengl.GL43;
  */
 public class LWJGLBuffers {
     /** The OpenGL framebuffer object identifier */
-    static int IDENTIFIER = GL43.GL_BUFFER;
+    public static int IDENTIFIER = GL43.GL_BUFFER;
 
     /**
      * Constructs a {@link GLBuffer} object with {@link GL15#glGenBuffers()}.
      */
-    static GLBuffer createBuffer() {
+    public static GLBuffer createBuffer() {
         int buffer = GL15.glGenBuffers();
         return () -> buffer;
     }
@@ -26,7 +26,7 @@ public class LWJGLBuffers {
      * @param buffer
      * @return If an integer corresponds to an OpenGL buffer object
      */
-    static boolean isBuffer(int buffer){
+    public static boolean isBuffer(int buffer){
         return GL15.glIsBuffer(buffer);
     }
 }

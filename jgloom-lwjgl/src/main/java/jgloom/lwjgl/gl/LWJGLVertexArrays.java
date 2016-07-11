@@ -14,12 +14,12 @@ import org.lwjgl.opengl.GL30;
  */
 public class LWJGLVertexArrays {
     /** The OpenGL vertex array object identifier */
-    static int IDENTIFIER = GL11.GL_VERTEX_ARRAY;
+    public static int IDENTIFIER = GL11.GL_VERTEX_ARRAY;
 
     /**
      * @return A constructed vertex array with glGenVertexArrays
      */
-    static GLVertexArray createVertexArray() {
+    public static GLVertexArray createVertexArray() {
         int vao = GL30.glGenVertexArrays();
         return () -> vao;
     }

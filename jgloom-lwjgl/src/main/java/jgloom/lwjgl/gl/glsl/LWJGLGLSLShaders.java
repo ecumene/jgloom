@@ -11,14 +11,14 @@ import org.lwjgl.opengl.GL43;
  */
 public class LWJGLGLSLShaders {
     /** The OpenGL shader object identifier */
-    int IDENTIFIER = GL43.GL_SHADER;
+    public static int IDENTIFIER = GL43.GL_SHADER;
 
     /**
      * Creates an empty {@link GLSLShader} of the given type
      * @param type
      * @return New {@link GLSLShader} object
      */
-    static GLSLShader createShader(int type) {
+    public static GLSLShader createShader(int type) {
         int shader = GL20.glCreateShader(type);
         return () -> shader;
     }

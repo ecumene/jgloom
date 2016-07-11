@@ -13,12 +13,12 @@ import org.lwjgl.opengl.GL43;
  */
 public class LWJGLGLSLPrograms {
     /** The OpenGL shader program object identifier */
-    int IDENTIFIER = GL43.GL_PROGRAM;
+    public static int IDENTIFIER = GL43.GL_PROGRAM;
 
     /**
      * @return The currently bound shader program set by {@link GLSLProgramContainer#use()}
      */
-    static GLSLProgram getCurrentProgram() {
+    public static GLSLProgram getCurrentProgram() {
         int current = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
         return () -> current;
     }
@@ -28,7 +28,7 @@ public class LWJGLGLSLPrograms {
      * rendering
      * @return A generated GLSL program using glCreateProgram
      */
-    static GLSLProgram createProgram() {
+    public static GLSLProgram createProgram() {
         int program = GL20.glCreateProgram();
         return () -> program;
     }

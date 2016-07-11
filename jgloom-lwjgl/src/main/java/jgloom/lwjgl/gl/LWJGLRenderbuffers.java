@@ -13,10 +13,10 @@ import org.lwjgl.opengl.GL30;
  */
 public class LWJGLRenderbuffers {
     /** The OpenGL renderbuffer object identifier */
-    static int IDENTIFIER = GL30.GL_RENDERBUFFER;
+    public static int IDENTIFIER = GL30.GL_RENDERBUFFER;
 
     /** @return Renderbuffer object names */
-    static GLRenderbuffer createRenderBuffer() {
+    public static GLRenderbuffer createRenderBuffer() {
         int renderBuffer = GL30.glGenRenderbuffers();
         return () -> renderBuffer;
     }
@@ -25,7 +25,7 @@ public class LWJGLRenderbuffers {
      * @param rb
      * @return if an integer corresponds to an OpenGL renderbuffer object
      */
-    static boolean isRenderBuffer(int rb){
+    public static boolean isRenderBuffer(int rb){
         return GL30.glIsRenderbuffer(rb);
     }
 }
