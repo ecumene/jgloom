@@ -1,0 +1,4 @@
+include 'jgloom'
+include 'jgloom-io'
+include 'jgloom-lwjgl'
+
