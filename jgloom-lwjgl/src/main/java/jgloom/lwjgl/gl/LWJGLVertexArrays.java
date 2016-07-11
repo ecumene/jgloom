@@ -1,4 +1,8 @@
-package jgloom.gl;
+package jgloom.lwjgl.gl;
+
+import jgloom.gl.GLVertexArray;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL30;
 
 /**
  * A Vertex Array Object (VAO) is an OpenGL Object that stores all of the state needed to supply vertex data (with one
@@ -8,8 +12,15 @@ package jgloom.gl;
  * the VAO.
  * @see <a href="https://www.opengl.org/wiki/Vertex_Specification#Vertex_Array_Object">opengl.org - texture object</a>
  */
-@FunctionalInterface
-public interface GLVertexArray {
-    /** @return The vertex array's identifier */
-    int getVertexArray();
+public class LWJGLVertexArrays {
+    /** The OpenGL vertex array object identifier */
+    int IDENTIFIER = GL11.GL_VERTEX_ARRAY;
+
+    /**
+     * @return A constructed vertex array with glGenVertexArrays
+     */
+    static GLVertexArray createVertexArray() {
+        int vao = GL30.glGenVertexArrays();
+        return () -> vao;
+    }
 }

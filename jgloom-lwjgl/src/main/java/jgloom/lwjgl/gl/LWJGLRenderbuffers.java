@@ -1,4 +1,7 @@
-package jgloom.gl;
+package jgloom.lwjgl.gl;
+
+import jgloom.gl.GLRenderbuffer;
+import org.lwjgl.opengl.GL30;
 
 /**
  * Renderbuffer Objects are OpenGL Objects that contain images. They are created and used specifically with Framebuffer
@@ -8,8 +11,21 @@ package jgloom.gl;
  * Multisampling (MSAA).
  * @see <a href="https://www.opengl.org/wiki/Renderbuffer_Object">opengl.org - framebuffer object</a>
  */
-@FunctionalInterface
-public interface GLRenderbuffer {
-    /** @return The identifier for the renderbuffer */
-    int getRenderBuffer();
+public class LWJGLRenderbuffers {
+    /** The OpenGL renderbuffer object identifier */
+    int IDENTIFIER = GL30.GL_RENDERBUFFER;
+
+    /** @return Renderbuffer object names */
+    static GLRenderbuffer createRenderBuffer() {
+        int renderBuffer = GL30.glGenRenderbuffers();
+        return () -> renderBuffer;
+    }
+
+    /**
+     * @param rb
+     * @return if an integer corresponds to an OpenGL renderbuffer object
+     */
+    static boolean isRenderBuffer(int rb){
+        return GL30.glIsRenderbuffer(rb);
+    }
 }
