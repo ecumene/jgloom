@@ -4,6 +4,8 @@ import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
 import jgloom.gl.glsl.GLSLProgram;
 import jgloom.gl.glsl.GLSLShader;
+import jgloom.lwjgl.gl.glsl.LWJGLGLSLPrograms;
+import jgloom.lwjgl.gl.glsl.LWJGLGLSLShaders;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -29,14 +31,14 @@ public class TestGLSLProgram extends NonConcurrentTest {
     public void testGLSLProgram() {
         TestGLUtil.openContext();
 
-        GLSLShaderContainer fragment = new GLSLShaderContainer(GLSLShader.createShader(GL20.GL_FRAGMENT_SHADER));
+        GLSLShaderContainer fragment = new GLSLShaderContainer(LWJGLGLSLShaders.createShader(GL20.GL_FRAGMENT_SHADER));
         fragment.uploadSource(fragmentSrc);
         fragment.compile();
-        GLSLShaderContainer vertex = new GLSLShaderContainer(GLSLShader.createShader(GL20.GL_VERTEX_SHADER));
+        GLSLShaderContainer vertex = new GLSLShaderContainer(LWJGLGLSLShaders.createShader(GL20.GL_VERTEX_SHADER));
         vertex.uploadSource(vertexSrc);
         vertex.compile();
 
-        program = new GLSLProgramContainer(GLSLProgram.createProgram());
+        program = new GLSLProgramContainer(LWJGLGLSLPrograms.createProgram());
         program.attachGLSLShader(vertex);
         program.attachGLSLShader(fragment);
         program.link();

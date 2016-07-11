@@ -4,6 +4,7 @@ import jgloom.lwjgl.gl.GLTextureContainer;
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
 import jgloom.gl.GLTexture;
+import jgloom.lwjgl.gl.LWJGLTextures;
 import org.junit.Test;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -33,7 +34,7 @@ public class TestTextureUpload extends NonConcurrentTest {
         buffer.put(texture);
         buffer.flip();
 
-        GLTextureContainer textureContainer = new GLTextureContainer(GLTexture.createTexture());
+        GLTextureContainer textureContainer = new GLTextureContainer(LWJGLTextures.createTexture());
         textureContainer.bind(GL11.GL_TEXTURE_2D);
         textureContainer.image2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 3, 3, 0, GL11.GL_RGB, GL11.GL_FLOAT, buffer);
         textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);

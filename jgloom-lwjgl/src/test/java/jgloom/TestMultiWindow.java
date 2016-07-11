@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.*;
 import jgloom.lwjgl.SharedLibraryLoader;
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
-import jgloom.glfw.GLFWWindow;
+import jgloom.lwjgl.glfw.GLFWWindow;
 import jgloom.lwjgl.glfw.GLFWWindowContainer;
 
 import org.junit.Test;

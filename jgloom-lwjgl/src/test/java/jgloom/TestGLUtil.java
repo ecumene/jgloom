@@ -1,9 +1,10 @@
 package jgloom;
 
 import jgloom.lwjgl.SharedLibraryLoader;
+import jgloom.lwjgl.gl.LWJGLException;
+import jgloom.lwjgl.glfw.GLFWWindow;
 import jgloom.lwjgl.glfw.GLFWWindowContainer;
 import jgloom.concurrent.NonConcurrentTest;
-import jgloom.glfw.GLFWWindow;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
@@ -15,7 +16,7 @@ public class TestGLUtil extends NonConcurrentTest {
     public static void openContext(){
         SharedLibraryLoader.load();
         GLFWWindow.init();
-        GLFWWindow.hint(GLFW.GLFW_VISIBLE,               GL11.GL_FALSE);
+        GLFWWindow.hint(GLFW.GLFW_VISIBLE, GL11.GL_FALSE);
         window = new GLFWWindowContainer(GLFWWindow.createWindow(640, 480, "GLFW Window", 0L, 0L));
 
         GLFWWindow.defaultWindowHints();
@@ -41,7 +42,7 @@ public class TestGLUtil extends NonConcurrentTest {
     }
 
     public static void closeContext(){
-        GLNativeException.checkOGL();
+        LWJGLException.checkOGL();
         window.destroy();
         GLFWWindow.terminate();
     }
