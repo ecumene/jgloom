@@ -153,4 +153,60 @@ public class BufferUtils {
     public static CharBuffer fromArray(char[] array) {
         return (CharBuffer) createCharBuffer(array.length).put(array).flip();
     }
+    
+    /**
+     * @param buffer {@link ByteBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static byte[] fromBuffer(ByteBuffer buffer) {
+        return buffer.array();
+    }
+    
+    /**
+     * @param buffer {@link ShortBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static short[] fromBuffer(ShortBuffer buffer) {
+        return buffer.array();
+    }
+    
+    /**
+     * @param buffer {@link IntBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static int[] fromBuffer(IntBuffer buffer) {
+        return buffer.array();
+    }
+    
+    /**
+     * @param buffer {@link LongBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static long[] fromBuffer(LongBuffer buffer) {
+        return buffer.array();
+    }
+    
+    /**
+     * @param buffer {@link FloatBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static float[] fromBuffer(FloatBuffer buffer) {
+        return buffer.array();
+    }
+    
+    /**
+     * @param buffer {@link DoubleBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static double[] fromBuffer(DoubleBuffer buffer) {
+        return buffer.array();
+    }
+    
+    /**
+     * @param buffer {@link CharBuffer} to decode data from
+     * @return Array of data decoded from the buffer
+     */
+    public static char[] fromBuffer(CharBuffer buffer) {
+        return buffer.array();
+    }
 }
