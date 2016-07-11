@@ -2,8 +2,10 @@ package jgloom.io.resources;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.URL;
 import java.nio.FloatBuffer;
 
@@ -26,7 +28,12 @@ public class TestResources {
     
     @Test
     public void testFileResource() throws IOException {
-        Resource testText = ClasspathResource.createClasspathResource("text/test_text.txt");
+        File testFile = File.createTempFile("test", "txt");
+        testFile.deleteOnExit();
+        OutputStream out = new FileOutputStream(testFile);
+        out.write("Hello, world!".getBytes());
+        out.close();
+        Resource testText = FileResource.createFileResource(testFile);
         readContents(testText);
     }
     
