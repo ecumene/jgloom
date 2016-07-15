@@ -2,8 +2,9 @@ package jgloom.io;
 
 import jgloom.GLNativeException;
 import jgloom.io.concurrent.NonConcurrentTest;
-import jgloom.glfw.GLFWWindow;
 import jgloom.lwjgl.SharedLibraryLoader;
+import jgloom.lwjgl.gl.LWJGLException;
+import jgloom.lwjgl.glfw.GLFWWindow;
 import jgloom.lwjgl.glfw.GLFWWindowContainer;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -42,7 +43,7 @@ public class TestGLUtil extends NonConcurrentTest {
     }
 
     public static void closeContext(){
-        GLNativeException.checkOGL();
+        LWJGLException.checkOGL();
         window.destroy();
         GLFWWindow.terminate();
     }

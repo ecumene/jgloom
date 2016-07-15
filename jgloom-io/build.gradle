@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     compile project(':jgloom')
+    testCompile project(':jgloom-lwjgl')
     testCompile "junit:junit:${juntVersion}"
     compile "org.joml:joml:${jomlVersion}"
     

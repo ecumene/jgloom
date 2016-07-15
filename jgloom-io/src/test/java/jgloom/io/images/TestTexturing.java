@@ -6,11 +6,11 @@ import jgloom.io.TestGLUtil;
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 
-import jgloom.gl.GLTexture;
-import jgloom.glfw.GLFWWindow;
+import jgloom.lwjgl.glfw.GLFWWindow;
 import jgloom.io.resources.ClasspathResource;
 import jgloom.io.resources.Resource;
 import jgloom.lwjgl.gl.GLTextureContainer;
+import jgloom.lwjgl.gl.LWJGLTextures;
 
 /**
  * Tests loading the 2x2 PNG texture and rendering a quad with it
@@ -21,7 +21,7 @@ public class TestTexturing {
         TestGLUtil.openContext();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         Resource testTexture = ClasspathResource.createClasspathResource("textures/tiny/2x2.png");
-        GLTextureContainer textureContainer = new GLTextureContainer(GLTexture.createTexture());
+        GLTextureContainer textureContainer = new GLTextureContainer(LWJGLTextures.createTexture());
         TextureLoader.loadTexture2D(textureContainer, testTexture);
         testTexture.close();
         textureContainer.setParameter(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL11.GL_REPEAT);
