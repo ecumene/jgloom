@@ -1,4 +1,4 @@
-import com.sun.deploy.uitoolkit.impl.fx.ui.resources.Deployment
+import org.gradle.api.artifacts.maven.MavenDeployment
 
 apply plugin: 'java'
 apply plugin: 'maven'
@@ -42,7 +42,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             beforeDeployment {
-                Deployment deployment -> signing.signPom(deployment)
+                MavenDeployment deployment -> signing.signPom(deployment)
             }
             
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
