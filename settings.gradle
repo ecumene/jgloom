@@ -1,4 +1,4 @@
-include 'jgloom'
+include 'jgloom-core'
 include 'jgloom-io'
 include 'jgloom-lwjgl'
 
