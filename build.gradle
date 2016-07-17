@@ -42,55 +42,55 @@ signing {
     sign configurations.archives
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            beforeDeployment {
-                MavenDeployment deployment -> signing.signPom(deployment)
-            }
-            
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-            
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-            
-            pom.project {
-                name 'JGLOOm'
-                packaging 'jar'
-                artifactId 'jgloom'
-                description 'Object Oriented Java OpenGL (jgloom)'
-                url 'https://github.com/team-jgloom/jgloom'
-                
-                scm {
-                    connection 'scm:git@github.com:team-jgloom/jgloom.git'
-                    developerConnection 'scm:git@github.com:team-jgloom/jgloom.git'
-                    url 'https://github.com/team-jgloom/jgloom'
-                }
-                
-                licenses {
-                    license {
-                        name 'The MIT License (MIT)'
-                        url 'https://github.com/team-jgloom/jgloom/blob/master/LICENSE.md'
-                    }
-                }
-                
-                developers {
-                    developer {
-                        id 'zgoethel12'
-                        name 'Zach Goethel'
-                        email 'zgoethel12@gmail.com'
-                    }
-                    
-                    developer {
-                        id 'ecumene-software'
-                        name 'Mitchell Hynes'
-                        email 'mitchell.hynes@ecumene.xyz'
-                    }
-                }
-            }
-        }
-    }
-}
+// uploadArchives {
+//     repositories {
+//         mavenDeployer {
+//             beforeDeployment {
+//                 MavenDeployment deployment -> signing.signPom(deployment)
+//             }
+//
+//             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                 authentication(userName: ossrhUsername, password: ossrhPassword)
+//             }
+//
+//             snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                 authentication(userName: ossrhUsername, password: ossrhPassword)
+//             }
+//
+//             pom.project {
+//                 name 'JGLOOm'
+//                 packaging 'jar'
+//                 artifactId 'jgloom'
+//                 description 'Object Oriented Java OpenGL (jgloom)'
+//                 url 'https://github.com/team-jgloom/jgloom'
+//
+//                 scm {
+//                     connection 'scm:git@github.com:team-jgloom/jgloom.git'
+//                     developerConnection 'scm:git@github.com:team-jgloom/jgloom.git'
+//                     url 'https://github.com/team-jgloom/jgloom'
+//                 }
+//
+//                 licenses {
+//                     license {
+//                         name 'The MIT License (MIT)'
+//                         url 'https://github.com/team-jgloom/jgloom/blob/master/LICENSE.md'
+//                     }
+//                 }
+//
+//                 developers {
+//                     developer {
+//                         id 'zgoethel12'
+//                         name 'Zach Goethel'
+//                         email 'zgoethel12@gmail.com'
+//                     }
+//
+//                     developer {
+//                         id 'ecumene-software'
+//                         name 'Mitchell Hynes'
+//                         email 'mitchell.hynes@ecumene.xyz'
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
