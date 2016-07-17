@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jgloom</groupId>
+	<groupId>com.jgloom</groupId>
 	<artifactId>jgloom</artifactId>
 	<version>${jgloom.version}</version>
 	<name>JGLOOm</name>
@@ -11,7 +11,6 @@
 
 	<properties>
 		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
-		<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
 		<source.version>1.8</source.version>
 	</properties>
 
@@ -48,11 +47,11 @@
 
 	<distributionManagement>
 		<snapshotRepository>
-			<id>ossrh</id>
+			<id>jgloom-ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
+			<id>jgloom-ossrh</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
@@ -68,6 +67,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
 				<configuration>
 					<source>${source.version}</source>
 					<target>${source.version}</target>
@@ -126,7 +126,7 @@
 				<version>1.6.7</version>
 				<extensions>true</extensions>
 				<configuration>
-					<serverId>ossrh</serverId>
+					<serverId>jgloom-ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>

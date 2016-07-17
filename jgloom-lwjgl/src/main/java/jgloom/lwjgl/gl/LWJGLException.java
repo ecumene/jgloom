@@ -18,8 +18,9 @@ public class LWJGLException extends GLNativeException {
      * @throws GLNativeException If an OpenGL error exists
      */
     public static void checkOGL() throws GLNativeException {
-        if(GL11.glGetError() != GL11.GL_NO_ERROR)
-            throw new GLNativeException(GL11.glGetError());
+    	int error = GL11.glGetError();
+        if(error != GL11.GL_NO_ERROR)
+            throw new GLNativeException(error);
     }
 
 }

@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.jgloom</groupId>
+		<groupId>com.jgloom</groupId>
 		<artifactId>jgloom</artifactId>
 		<version>${jgloom.version}</version>
 	</parent>
@@ -14,7 +14,6 @@
 
 	<properties>
 		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
-		<skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
 		<junit.version>4.12</junit.version>
 	</properties>
 	
@@ -58,13 +57,13 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jgloom</groupId>
+			<groupId>com.jgloom</groupId>
 			<artifactId>jgloom-core</artifactId>
 			<version>${jgloom.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.jgloom</groupId>
+			<groupId>com.jgloom</groupId>
 			<artifactId>jgloom-lwjgl</artifactId>
 			<version>${jgloom.version}</version>
 			<scope>test</scope>
