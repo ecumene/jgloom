@@ -1,0 +1,136 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jgloom</groupId>
+	<artifactId>jgloom</artifactId>
+	<version>${jgloom.version}</version>
+	<name>JGLOOm</name>
+	<description>Object Oriented Java OpenGL (jgloom)</description>
+	<packaging>pom</packaging>
+	<url>https://github.com/team-jgloom/jgloom</url>
+
+	<properties>
+		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
+		<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+		<source.version>1.8</source.version>
+	</properties>
+
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://github.com/team-jgloom/jgloom/blob/master/LICENSE.md</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Team JGLOOm</name>
+		<url>https://github.com/team-jgloom</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>zgoethel12</id>
+			<name>Zach Goethel</name>
+		</developer>
+		
+		<developer>
+			<id>ecumene-software</id>
+			<name>Mitchell Hynes</name>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git@github.com:team-jgloom/jgloom.git</connection>
+		<developerConnection>scm:git@github.com:team-jgloom/jgloom.git</developerConnection>
+		<url>https://github.com/team-jgloom/jgloom</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+
+	<modules>
+		<module>jgloom-lwjgl</module>
+		<module>jgloom-core</module>
+		<module>jgloom-io</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${source.version}</source>
+					<target>${source.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

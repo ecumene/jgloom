@@ -2,8 +2,6 @@ package jgloom;
 
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
-import jgloom.gl.glsl.GLSLProgram;
-import jgloom.gl.glsl.GLSLShader;
 import jgloom.lwjgl.gl.glsl.LWJGLGLSLPrograms;
 import jgloom.lwjgl.gl.glsl.LWJGLGLSLShaders;
 import org.junit.Test;

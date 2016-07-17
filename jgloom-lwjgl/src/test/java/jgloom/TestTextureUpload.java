@@ -3,7 +3,6 @@ package jgloom;
 import jgloom.lwjgl.gl.GLTextureContainer;
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
-import jgloom.gl.GLTexture;
 import jgloom.lwjgl.gl.LWJGLTextures;
 import org.junit.Test;
 import org.lwjgl.BufferUtils;

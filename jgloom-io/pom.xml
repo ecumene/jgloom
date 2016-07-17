@@ -1,0 +1,80 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.jgloom</groupId>
+		<artifactId>jgloom</artifactId>
+		<version>${jgloom.version}</version>
+	</parent>
+	<artifactId>jgloom-io</artifactId>
+	<name>JGLOOm IO</name>
+	<description>Object Oriented Java OpenGL (jgloom)</description>
+	<packaging>jar</packaging>
+	<url>https://github.com/team-jgloom/jgloom</url>
+
+	<properties>
+		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
+		<skipNexusStagingDeployMojo>false</skipNexusStagingDeployMojo>
+		<junit.version>4.12</junit.version>
+	</properties>
+	
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>https://github.com/team-jgloom/jgloom/blob/master/LICENSE.md</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<organization>
+		<name>Team JGLOOm</name>
+		<url>https://github.com/team-jgloom</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>zgoethel12</id>
+			<name>Zach Goethel</name>
+		</developer>
+		
+		<developer>
+			<id>ecumene-software</id>
+			<name>Mitchell Hynes</name>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git@github.com:team-jgloom/jgloom.git</connection>
+		<developerConnection>scm:git@github.com:team-jgloom/jgloom.git</developerConnection>
+		<url>https://github.com/team-jgloom/jgloom</url>
+	</scm>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jgloom</groupId>
+			<artifactId>jgloom-core</artifactId>
+			<version>${jgloom.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jgloom</groupId>
+			<artifactId>jgloom-lwjgl</artifactId>
+			<version>${jgloom.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- To be removed with #49 -->
+		<dependency>
+			<groupId>com.twelvemonkeys.imageio</groupId>
+			<artifactId>imageio-tiff</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+	</dependencies>
+</project>

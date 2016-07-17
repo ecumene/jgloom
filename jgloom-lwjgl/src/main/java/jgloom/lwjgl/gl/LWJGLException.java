@@ -7,7 +7,9 @@ import org.lwjgl.opengl.GL11;
  * Represents an exception thrown in the LWJGL platform
  */
 public class LWJGLException extends GLNativeException {
-    public LWJGLException(String error){
+	private static final long serialVersionUID = 1L;
+
+	public LWJGLException(String error){
         super(error);
     }
 
