@@ -6,8 +6,8 @@
 		<artifactId>jgloom</artifactId>
 		<version>${jgloom.version}</version>
 	</parent>
-	<artifactId>jgloom-core</artifactId>
-	<name>JGLOOm Core</name>
+	<artifactId>jgloom-tests</artifactId>
+	<name>JGLOOm Tests</name>
 	<description>Object Oriented Java OpenGL (jgloom)</description>
 	<packaging>jar</packaging>
 	<url>https://github.com/team-jgloom/jgloom</url>
@@ -15,8 +15,6 @@
 	<properties>
 		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
 		<junit.version>4.12</junit.version>
-		<joml.version>1.8.1</joml.version>
-		<javacl.version>3.4</javacl.version>
 	</properties>
 
 	<licenses>
@@ -59,22 +57,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.joml</groupId>
-			<artifactId>joml</artifactId>
-			<version>${joml.version}</version>
+			<groupId>com.jgloom</groupId>
+			<artifactId>jgloom-core</artifactId>
+			<version>${jgloom.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${javacl.version}</version>
-		</dependency>
-
-		<!-- To be removed with #49 -->
-		<dependency>
-			<groupId>com.twelvemonkeys.imageio</groupId>
-			<artifactId>imageio-tiff</artifactId>
-			<version>3.2.1</version>
+			<groupId>com.jgloom</groupId>
+			<artifactId>jgloom-lwjgl</artifactId>
+			<version>${jgloom.version}</version>
 		</dependency>
 	</dependencies>
 </project>

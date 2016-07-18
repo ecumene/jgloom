@@ -17,7 +17,7 @@
 		<junit.version>4.12</junit.version>
 		<lwjgl.version>3.0.0</lwjgl.version>
 	</properties>
-	
+
 	<licenses>
 		<license>
 			<name>MIT</name>
@@ -36,7 +36,7 @@
 			<id>zgoethel12</id>
 			<name>Zach Goethel</name>
 		</developer>
-		
+
 		<developer>
 			<id>ecumene-software</id>
 			<name>Mitchell Hynes</name>
@@ -48,7 +48,7 @@
 		<developerConnection>scm:git@github.com:team-jgloom/jgloom.git</developerConnection>
 		<url>https://github.com/team-jgloom/jgloom</url>
 	</scm>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -56,7 +56,7 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.jgloom</groupId>
 			<artifactId>jgloom-core</artifactId>
