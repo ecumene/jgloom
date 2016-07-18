@@ -64,10 +64,24 @@
 			<version>${joml.version}</version>
 		</dependency>
 
+        <dependency>
+            <groupId>com.jgloom</groupId>
+            <artifactId>jgloom-lwjgl</artifactId>
+            <version>${jgloom.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${javacl.version}</version>
 		</dependency>
+
+        <!-- To be removed with #49 -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-tiff</artifactId>
+            <version>3.2.1</version>
+        </dependency>
 	</dependencies>
 </project>
