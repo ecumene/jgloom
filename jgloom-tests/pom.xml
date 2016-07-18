@@ -60,12 +60,14 @@
 			<groupId>com.jgloom</groupId>
 			<artifactId>jgloom-core</artifactId>
 			<version>${jgloom.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.jgloom</groupId>
 			<artifactId>jgloom-lwjgl</artifactId>
 			<version>${jgloom.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>
