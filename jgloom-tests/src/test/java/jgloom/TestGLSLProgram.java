@@ -2,14 +2,14 @@ package jgloom;
 
 import jgloom.concurrent.NonConcurrentTest;
 import jgloom.concurrent.RunInThread;
+import jgloom.lwjgl.gl.glsl.GLSLProgramContainer;
+import jgloom.lwjgl.gl.glsl.GLSLShaderContainer;
 import jgloom.lwjgl.gl.glsl.LWJGLGLSLPrograms;
 import jgloom.lwjgl.gl.glsl.LWJGLGLSLShaders;
+
 import org.junit.Test;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
-
-import jgloom.lwjgl.gl.glsl.GLSLProgramContainer;
-import jgloom.lwjgl.gl.glsl.GLSLShaderContainer;
 
 public class TestGLSLProgram extends NonConcurrentTest {
     private String fragmentSrc = "varying vec4 vertColor;\n" +
