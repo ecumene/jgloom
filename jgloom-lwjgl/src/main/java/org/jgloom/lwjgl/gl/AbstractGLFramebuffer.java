@@ -1,5 +1,6 @@
 package org.jgloom.lwjgl.gl;
 
+import org.jgloom.JgloomContainer;
 import org.jgloom.gl.GLFramebuffer;
 import org.jgloom.gl.functions.framebuffer.*;
 
@@ -10,28 +11,19 @@ import org.jgloom.gl.functions.framebuffer.*;
  * Use {@link GLFramebuffer} to create {@link GLFramebuffer}s
  * @see <a href="https://www.opengl.org/wiki/Framebuffer_Object">opengl.org - framebuffer object</a>
  */
-public abstract class AbstractGLFramebuffer implements GLFramebuffer, GLFFramebufferAttachRenderbuffer,
+public abstract class AbstractGLFramebuffer extends JgloomContainer<GLFramebuffer> implements GLFramebuffer, GLFFramebufferAttachRenderbuffer,
         GLFFramebufferAttachTexture, GLFFramebufferDrawBuffers, GLFFramebufferGetParameter, GLFFramebufferGetStatus,
         GLFFramebufferSetParameter{
-    private GLFramebuffer framebufferInstance;
 
     /**
      * @param framebufferInstance The framebuffer to track
      */
     public AbstractGLFramebuffer(GLFramebuffer framebufferInstance){
-        this.framebufferInstance = framebufferInstance;
+        super(framebufferInstance);
     }
 
     @Override
     public int getFrameBuffer() {
-        return framebufferInstance.getFrameBuffer();
-    }
-
-    /**
-     * @return The framebuffer instance
-     */
-    public GLFramebuffer getFrameBufferInstance()
-    {
-        return framebufferInstance;
+        return getInstance().getFrameBuffer();
     }
 }

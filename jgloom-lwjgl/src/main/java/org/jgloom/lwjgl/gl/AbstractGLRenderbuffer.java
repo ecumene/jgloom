@@ -1,5 +1,6 @@
 package org.jgloom.lwjgl.gl;
 
+import org.jgloom.JgloomContainer;
 import org.jgloom.gl.GLRenderbuffer;
 import org.jgloom.gl.functions.renderbuffer.GLFRenderbufferGetParameter;
 import org.jgloom.gl.functions.renderbuffer.GLFRenderbufferStorage;
@@ -14,25 +15,18 @@ import org.jgloom.gl.functions.renderbuffer.GLFRenderbufferStorageMultisample;
  *
  * AbstractRenderbuffer methods do not take targets because their target is always GL_RENDERBUFFER
  */
-public abstract class AbstractGLRenderbuffer implements GLFRenderbufferGetParameter, GLFRenderbufferStorage,
+public abstract class AbstractGLRenderbuffer extends JgloomContainer<GLRenderbuffer> implements GLFRenderbufferGetParameter, GLFRenderbufferStorage,
         GLFRenderbufferStorageMultisample {
-    private GLRenderbuffer renderbufferInstance;
-
     /**
      * Contains a single renderbuffer
      * @param renderbufferInstance The renderbuffer to contain
      */
     public AbstractGLRenderbuffer(GLRenderbuffer renderbufferInstance){
-        this.renderbufferInstance = renderbufferInstance;
+        super(renderbufferInstance);
     }
 
     @Override
     public int getRenderBuffer() {
-        return renderbufferInstance.getRenderBuffer();
-    }
-
-    /** @return The renderbuffer instance contained  */
-    public GLRenderbuffer getRenderBufferInstance() {
-        return renderbufferInstance;
+        return getInstance().getRenderBuffer();
     }
 }

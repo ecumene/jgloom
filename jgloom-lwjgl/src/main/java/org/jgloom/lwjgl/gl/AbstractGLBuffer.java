@@ -1,5 +1,6 @@
 package org.jgloom.lwjgl.gl;
 
+import org.jgloom.JgloomContainer;
 import org.jgloom.gl.GLBuffer;
 import org.jgloom.gl.functions.buffer.*;
 
@@ -10,21 +11,15 @@ import org.jgloom.gl.functions.buffer.*;
  *
  * Use {@link GLBuffer} to create {@link org.jgloom.gl.GLBuffer} objects
  */
-public abstract class AbstractGLBuffer implements GLFBufferClear, GLFBufferData, GLFBufferGetSubData,
+public abstract class AbstractGLBuffer extends JgloomContainer<GLBuffer> implements GLFBufferClear, GLFBufferData, GLFBufferGetSubData,
         GLFBufferInvalidate, GLFBufferMap, GLFBufferParameter, GLFBufferStorage, GLFBufferSubClear, GLFBufferSubData {
-    private GLBuffer bufferInstance;
-
     /** @param buffer The buffer to track */
     public AbstractGLBuffer(GLBuffer buffer){
-        bufferInstance = buffer;
+        super(buffer);
     }
 
     @Override
     public int getBuffer() {
-        return bufferInstance.getBuffer();
-    }
-
-    public GLBuffer getBufferInstance() {
-        return bufferInstance;
+        return getInstance().getBuffer();
     }
 }

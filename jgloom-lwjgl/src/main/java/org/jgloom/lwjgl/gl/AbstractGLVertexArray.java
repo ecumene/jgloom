@@ -1,19 +1,18 @@
 package org.jgloom.lwjgl.gl;
 
+import org.jgloom.JgloomContainer;
 import org.jgloom.gl.GLVertexArray;
 
 /**
  * Created by mh on 6/15/16.
  */
-public abstract class AbstractGLVertexArray implements GLVertexArray {
-    private GLVertexArray vertexArrayInstance;
-
+public abstract class AbstractGLVertexArray extends JgloomContainer<GLVertexArray> implements GLVertexArray {
     /**
      * Constructs the array container given a pre-computed vertex array object
      * @param vertexArrayInstance The object to track
      */
     public AbstractGLVertexArray(GLVertexArray vertexArrayInstance){
-        this.vertexArrayInstance = vertexArrayInstance;
+        super(vertexArrayInstance);
     }
 
     /**
@@ -27,14 +26,8 @@ public abstract class AbstractGLVertexArray implements GLVertexArray {
      */
     public abstract void delete();
 
-
-    /** @return The container's instance of the vertex array*/
-    public GLVertexArray getVertexArrayInstance() {
-        return vertexArrayInstance;
-    }
-
     @Override
     public int getVertexArray() {
-        return vertexArrayInstance.getVertexArray();
+        return getInstance().getVertexArray();
     }
 }
