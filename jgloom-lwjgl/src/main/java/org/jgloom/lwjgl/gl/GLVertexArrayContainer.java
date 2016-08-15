@@ -28,7 +28,12 @@ public class GLVertexArrayContainer extends AbstractGLVertexArray {
 
     @Override
     public void delete(){
+        onStateChanged();
         GL30.glDeleteVertexArrays(getVertexArray());
     }
 
+    @Override
+    public void onStateChanged() {
+
+    }
 }

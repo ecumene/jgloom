@@ -42,22 +42,32 @@ public class GLTextureContainer extends AbstractGLTexture {
     }
 
     @Override
+    public void delete(){
+        onStateChanged();
+        GL11.glDeleteTextures(getTexture());
+    }
+
+    @Override
     public void setParameter(int target, int param, float parameter){
+        onStateChanged();
         GL11.glTexParameterf(target, param, parameter);
     }
 
     @Override
     public void setParameter(int target, int param, int parameter){
+        onStateChanged();
         GL11.glTexParameteri(target, param, parameter);
     }
 
     @Override
     public void setParameter(int target, int param, FloatBuffer parameter){
+        onStateChanged();
         GL11.glTexParameterfv(target, param, parameter);
     }
 
     @Override
     public void setParameter(int target, int param, IntBuffer parameter){
+        onStateChanged();
         GL11.glTexParameteriv(target, param, parameter);
     }
 
@@ -66,6 +76,7 @@ public class GLTextureContainer extends AbstractGLTexture {
         FloatBuffer buffer = BufferUtils.createFloatBuffer(parameter.length);
         buffer.put(parameter);
         buffer.flip();
+        onStateChanged();
         GL11.glTexParameterfv(target, param, buffer);
     }
 
@@ -74,193 +85,226 @@ public class GLTextureContainer extends AbstractGLTexture {
         IntBuffer buffer = BufferUtils.createIntBuffer(parameter.length);
         buffer.put(parameter);
         buffer.flip();
+        onStateChanged();
         GL11.glTexParameteriv(target, param, buffer);
     }
 
     @Override
     public void image1D(int target, int level, int internalformat, int width, int border, int format, int type, ByteBuffer pixels){
+        onStateChanged();
         GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
     @Override
     public void image1D(int target, int level, int internalformat, int width, int border, int format, int type, long pixelsOffset){
+        onStateChanged();
         GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixelsOffset);
     }
 
     @Override
     public void image1D(int target, int level, int internalformat, int width, int border, int format, int type, ShortBuffer pixels){
+        onStateChanged();
         GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
     @Override
     public void image1D(int target, int level, int internalformat, int width, int border, int format, int type, IntBuffer pixels){
+        onStateChanged();
         GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
     @Override
     public void image1D(int target, int level, int internalformat, int width, int border, int format, int type, FloatBuffer pixels){
+        onStateChanged();
         GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
     @Override
     public void image1D(int target, int level, int internalformat, int width, int border, int format, int type, DoubleBuffer pixels){
+        onStateChanged();
         GL11.glTexImage1D(target, level, internalformat, width, border, format, type, pixels);
     }
 
     @Override
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, ByteBuffer pixels){
+        onStateChanged();
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
     @Override
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, long pixelsOffset){
+        onStateChanged();
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixelsOffset);
     }
 
     @Override
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, ShortBuffer pixels){
+        onStateChanged();
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
     @Override
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, IntBuffer pixels){
-
+        onStateChanged();
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
     @Override
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, FloatBuffer pixels){
+        onStateChanged();
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
     @Override
     public void image2D(int target, int level, int internalformat, int width, int height, int border, int format, int type, DoubleBuffer pixels){
+        onStateChanged();
         GL11.glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
     }
 
     @Override
     public void image3D(int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, ByteBuffer pixels){
+        onStateChanged();
         GL12.glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
     }
 
     @Override
     public void image3D(int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, long pixelsOffset){
+        onStateChanged();
         GL12.glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixelsOffset);
     }
 
     @Override
     public void image3D(int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, ShortBuffer pixels){
+        onStateChanged();
         GL12.glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
     }
 
     @Override
     public void image3D(int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, IntBuffer pixels){
+        onStateChanged();
         GL12.glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
     }
 
     @Override
     public void image3D(int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, FloatBuffer pixels){
+        onStateChanged();
         GL12.glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
     }
 
     @Override
     public void image3D(int target, int level, int internalformat, int width, int height, int depth, int border, int format, int type, DoubleBuffer pixels){
+        onStateChanged();
         GL12.glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
     }
 
     @Override
     public void subImage1D(int target, int level, int xoffset, int width, int format, int type, long pixelsOffset) {
+        onStateChanged();
         GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixelsOffset);
     }
 
     @Override
     public void subImage1D(int target, int level, int xoffset, int width, int format, int type, ShortBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
     @Override
     public void subImage1D(int target, int level, int xoffset, int width, int format, int type, IntBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
     @Override
     public void subImage1D(int target, int level, int xoffset, int width, int format, int type, FloatBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
     @Override
     public void subImage1D(int target, int level, int xoffset, int width, int format, int type, DoubleBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
     @Override
     public void subImage1D(int target, int level, int xoffset, int width, int format, int type, ByteBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
     }
 
     @Override
     public void subImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int border, int format, int type, DoubleBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
     @Override
     public void subImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int border, int format, int type, long pixelsOffset) {
+        onStateChanged();
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixelsOffset);
     }
 
     @Override
     public void subImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int border, int format, int type, ShortBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
     @Override
     public void subImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int border, int format, int type, IntBuffer pixels) {
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
+        onStateChanged();
     }
 
     @Override
     public void subImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int border, int format, int type, FloatBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
     @Override
     public void subImage2D(int target, int level, int xoffset, int yoffset, int width, int height, int format, int type, ByteBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
     @Override
     public void subImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int border, int format, int type, DoubleBuffer pixels) {
+        onStateChanged();
         GL12.glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
     @Override
     public void subImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int format, int type, ByteBuffer pixels) {
+        onStateChanged();
         GL11.glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
     }
 
     @Override
     public void subImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int border, int format, int type, long pixelsOffset) {
+        onStateChanged();
         GL12.glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixelsOffset);
     }
 
     @Override
     public void subImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int border, int format, int type, ShortBuffer pixels) {
+        onStateChanged();
         GL12.glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
     @Override
     public void subImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int border, int format, int type, IntBuffer pixels) {
+        onStateChanged();
         GL12.glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
     @Override
     public void subImage3D(int target, int level, int xoffset, int yoffset, int zoffset, int width, int height, int depth, int border, int format, int type, FloatBuffer pixels) {
+        onStateChanged();
         GL12.glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
     }
 
     @Override
-    public void delete(){
-        GL11.glDeleteTextures(getTexture());
-    }
-
+    public void onStateChanged() {}
 }

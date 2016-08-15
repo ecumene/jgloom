@@ -25,22 +25,28 @@ public class GLRenderbufferContainer extends AbstractGLRenderbuffer {
     }
 
     @Override
+    public void delete(){
+        GL30.glDeleteRenderbuffers(getRenderBuffer());
+    }
+
+    @Override
     public void storage(int internalformat, int width, int height){
+        onStateChanged();
         GL30.glRenderbufferStorage(GL30.GL_RENDERBUFFER, internalformat, width, height);
     }
 
     @Override
     public void storageMultisample(int samples, int internalformat, int width, int height){
+        onStateChanged();
         GL30.glRenderbufferStorageMultisample(GL30.GL_RENDERBUFFER, samples, internalformat, width, height);
     }
 
     @Override
     public int getParameter(int pname){
+        onStateChanged();
         return GL30.glGetRenderbufferParameteri(GL30.GL_RENDERBUFFER, pname);
     }
 
     @Override
-    public void delete(){
-        GL30.glDeleteRenderbuffers(getRenderBuffer());
-    }
+    public void onStateChanged() {}
 }
