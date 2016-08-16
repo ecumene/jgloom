@@ -58,6 +58,7 @@
 	<modules>
 		<module>jgloom-lwjgl</module>
 		<module>jgloom-core</module>
+		<module>jgloom-includes</module>
 		<module>jgloom-tests</module>
 	</modules>
 

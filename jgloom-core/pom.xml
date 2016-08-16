@@ -14,9 +14,6 @@
 
 	<properties>
 		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
-		<junit.version>4.12</junit.version>
-		<joml.version>1.8.1</joml.version>
-		<javacl.version>3.4</javacl.version>
 	</properties>
 
 	<licenses>
@@ -49,32 +46,4 @@
 		<developerConnection>scm:git@github.com:team-jgloom/jgloom.git</developerConnection>
 		<url>https://github.com/team-jgloom/jgloom</url>
 	</scm>
-
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.joml</groupId>
-			<artifactId>joml</artifactId>
-			<version>${joml.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${javacl.version}</version>
-		</dependency>
-
-		<!-- To be removed with #49 -->
-		<dependency>
-			<groupId>com.twelvemonkeys.imageio</groupId>
-			<artifactId>imageio-tiff</artifactId>
-			<version>3.2.1</version>
-		</dependency>
-	</dependencies>
 </project>
