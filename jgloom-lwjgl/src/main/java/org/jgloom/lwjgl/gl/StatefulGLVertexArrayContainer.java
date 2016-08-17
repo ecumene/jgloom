@@ -6,8 +6,6 @@ import org.jgloom.gl.GLVertexArray;
  * Identical to {@link GLVertexArrayContainer}, except binds when the state is changed
  */
 public class StatefulGLVertexArrayContainer extends GLVertexArrayContainer {
-    private int lastTarget;
-
     /** @param vertexArray The vertex array to track */
     public StatefulGLVertexArrayContainer(GLVertexArray vertexArray){
         super(vertexArray);
