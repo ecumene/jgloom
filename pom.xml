@@ -4,7 +4,7 @@
 	<groupId>org.jgloom</groupId>
 	<artifactId>jgloom</artifactId>
 	<version>1.1.0-SNAPSHOT</version>
-	<name>JGLOOm</name>
+	<name>JGLOOm (root)</name>
 	<description>Object Oriented Java OpenGL (jgloom)</description>
 	<packaging>pom</packaging>
 	<url>https://github.com/team-jgloom/jgloom</url>
@@ -60,6 +60,7 @@
 		<module>jgloom-core</module>
 		<module>jgloom-includes</module>
 		<module>jgloom-tests</module>
+		<module>jgloom-webgl</module>
 	</modules>
 
 	<build>
