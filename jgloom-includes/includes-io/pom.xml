@@ -1,55 +1,53 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>org.jgloom.includes</groupId>
-        <artifactId>includes</artifactId>
-        <version>0.0.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.jgloom.includes</groupId>
-    <artifactId>io</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
-    <name>Shared IO - Java IO Utilities (Desktop Only)</name>
-    <description>Contains code for IO helpers on the desktop or similar file systems.</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>org.jgloom.includes</groupId>
+		<artifactId>includes</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jgloom.includes</groupId>
+	<artifactId>io</artifactId>
+	<name>Shared IO - Java IO Utilities (Desktop Only)</name>
+	<description>Contains code for IO helpers on the desktop or similar file systems.</description>
 
-    <properties>
-        <jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
-        <junit.version>4.12</junit.version>
-        <joml.version>1.8.1</joml.version>
-        <javacl.version>3.4</javacl.version>
-    </properties>
+	<properties>
+		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
+		<junit.version>4.12</junit.version>
+		<joml.version>1.8.1</joml.version>
+		<javacl.version>3.4</javacl.version>
+	</properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jgloom</groupId>
-            <artifactId>jgloom-core</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
-        </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.jgloom</groupId>
+			<artifactId>jgloom-core</artifactId>
+			<version>${jgloom.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.joml</groupId>
-            <artifactId>joml</artifactId>
-            <version>${joml.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.joml</groupId>
+			<artifactId>joml</artifactId>
+			<version>${joml.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${javacl.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${javacl.version}</version>
+		</dependency>
 
-        <!-- To be removed with #49 -->
-        <dependency>
-            <groupId>com.twelvemonkeys.imageio</groupId>
-            <artifactId>imageio-tiff</artifactId>
-            <version>3.2.1</version>
-        </dependency>
-    </dependencies>
+		<!-- To be removed with #49 -->
+		<dependency>
+			<groupId>com.twelvemonkeys.imageio</groupId>
+			<artifactId>imageio-tiff</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+	</dependencies>
 </project>

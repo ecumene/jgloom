@@ -1,76 +1,75 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>org.jgloom</groupId>
-        <artifactId>jgloom-webgl</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>webgl-gwt</artifactId>
-    <version>0.0.0-SNAPSHOT</version>
-    <name>JGLOOm WebGL / GWT</name>
-    <packaging>jar</packaging>
-    <description>Contains code for IO helpers on the desktop or similar file systems.</description>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<groupId>org.jgloom</groupId>
+		<artifactId>jgloom-webgl</artifactId>
+		<version>1.1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>jgloom-gwt</artifactId>
+	<version>1.1.0-SNAPSHOT</version>
+	<name>JGLOOm WebGL / GWT</name>
+	<packaging>jar</packaging>
+	<description>Contains code for IO helpers on the desktop or similar file systems.</description>
 
-    <properties>
-        <jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
-        <junit.version>4.12</junit.version>
-    </properties>
+	<properties>
+		<jgloom.version>1.1.0-SNAPSHOT</jgloom.version>
+		<junit.version>4.12</junit.version>
+	</properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <skip>false</skip>
-                </configuration>
-            </plugin>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.8.0-rc1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>generateAsync</goal>
-                            <goal>test</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>2.8.0-rc1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>generateAsync</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.jgloom</groupId>
-            <artifactId>jgloom-core</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
-        </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.jgloom</groupId>
+			<artifactId>jgloom-core</artifactId>
+			<version>${jgloom.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
 
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>2.8.0-rc1</version>
-            <scope>runtime</scope>
-        </dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>2.8.0-rc1</version>
+			<scope>runtime</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>2.8.0-rc1</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>2.8.0-rc1</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
