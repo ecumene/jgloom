@@ -1,7 +1,4 @@
 language: java
-branches:
-  except:
-  - update-md
 jdk:
 - oraclejdk8
 install: mvn install -DskipTests=true -Dgpg.skip=true --settings settings.xml
